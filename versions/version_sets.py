@@ -97,22 +97,26 @@ class VersionSetProtocol(Specification, Protocol):
     def __and__(self, version_set: VersionSet) -> VersionSet:
         return self.intersection(version_set)
 
-    __iand__ = __rand__ = __and__
+    def __iand__(self, version_set: VersionSet) -> VersionSet:
+        return self.union(version_set)
 
     def __or__(self, version_set: VersionSet) -> VersionSet:
         return self.union(version_set)
 
-    __ior__ = __ror__ = __or__
+    def __ior__(self, version_set: VersionSet) -> VersionSet:
+        return self.union(version_set)
 
     def __sub__(self, version_set: VersionSet) -> VersionSet:
         return self.difference(version_set)
 
-    __isub__ = __sub__
+    def __isub__(self, version_set: VersionSet) -> VersionSet:
+        return self.difference(version_set)
 
     def __xor__(self, version_set: VersionSet) -> VersionSet:
         return self.symmetric_difference(version_set)
 
-    __ixor__ = __rxor__ = __xor__
+    def __ixor__(self, version_set: VersionSet) -> VersionSet:
+        return self.symmetric_difference(version_set)
 
     def __negate__(self) -> VersionSet:
         return self.complement()

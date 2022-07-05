@@ -13,6 +13,6 @@ class Representation:
 
     def __repr__(self) -> str:
         return TEMPLATE.format(
-            name=get_name(type(self)),
+            name=get_name(type(self)),  # type: ignore
             string=create_wrap_around(str(self)) if self.WRAP else str(self),
         )
