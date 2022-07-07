@@ -81,6 +81,7 @@ E = TypeVar("E", bound="Epoch")
 
 @frozen(repr=False, eq=True, order=True)
 class Epoch(Representation, FromString, ToString):
+    """Represents the epoch part of the version (`e!`)."""
     value: int = field(default=DEFAULT_VALUE)
 
     def __bool__(self) -> bool:
@@ -105,6 +106,8 @@ R = TypeVar("R", bound="Release")
 
 @frozen(repr=False, eq=True, order=True)
 class Release(Representation, FromString, ToString):
+    """Represents the release part of the version (`x.y.z`)."""
+
     parts: Parts = field(default=DEFAULT_PARTS, eq=False, order=False)
 
     compare_parts: Parts = field(repr=False, init=False, eq=True, order=True)
@@ -297,6 +300,8 @@ T = TypeVar("T", bound="Tag")
 
 @frozen(repr=False, eq=True, order=True)
 class Tag(Representation, FromString, ToString):
+    """Represents various tag parts of the version (`tag.n`)."""
+
     DEFAULT_PHASE: ClassVar[str] = PHASE_ALL_DEFAULT
     PHASE_SET: ClassVar[Set[str]] = PHASE_ALL_SET
 
@@ -370,18 +375,24 @@ class Tag(Representation, FromString, ToString):
 
 @frozen(repr=False, eq=True, order=True)
 class PreTag(Tag):
+    """Represents the pre-release part of the version (`pre.n`)."""
+
     DEFAULT_PHASE = PHASE_PRE_DEFAULT
     PHASE_SET = PHASE_PRE_SET
 
 
 @frozen(repr=False, eq=True, order=True)
 class PostTag(Tag):
+    """Represents the post-release part of the version (`pre.n`)."""
+
     DEFAULT_PHASE = PHASE_POST_DEFAULT
     PHASE_SET = PHASE_POST_SET
 
 
 @frozen(repr=False, eq=True, order=True)
 class DevTag(Tag):
+    """Represents the dev-release part of the version (`dev.n`)."""
+
     DEFAULT_PHASE = PHASE_DEV_DEFAULT
     PHASE_SET = PHASE_DEV_SET
 
@@ -405,7 +416,9 @@ def local_part(string: str) -> LocalPart:
 
 
 @frozen(repr=False, eq=True, order=True)
-class Local(Representation, FromString, ToString):  # TODO: improve?
+class Local(Representation, FromString, ToString):
+    """Represents the local part of the version (`+abcdefg.n`)"""
+
     parts: LocalParts = field(eq=False, order=False)
 
     compare_parts: CompareLocalParts = field(repr=False, init=False, eq=True, order=True)

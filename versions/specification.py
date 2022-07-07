@@ -13,6 +13,16 @@ __all__ = ("Specification",)
 
 @runtime_checkable
 class Specification(Protocol):
+    """The specification protocol for specifying version requirements."""
+
     @abstractmethod
     def accepts(self, version: Version) -> bool:
+        """Checks if the `version` matches the specification.
+
+        Arguments:
+            version: The version to check.
+
+        Returns:
+            Whether the `version` matches the specification.
+        """
         raise NotImplementedError

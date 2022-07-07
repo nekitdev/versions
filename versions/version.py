@@ -45,6 +45,8 @@ W = TypeVar("W", bound="Version")
 
 @frozen(repr=False, eq=True, order=True)
 class Version(Representation, FromString, ToString):
+    """Represents versions."""
+
     epoch: Epoch = field(factory=Epoch, eq=False, order=False)
     release: Release = field(factory=Release, eq=False, order=False)
     pre: Optional[PreTag] = field(default=None, eq=False, order=False)
@@ -435,6 +437,24 @@ class Version(Representation, FromString, ToString):
         return self if self.is_stable() else self.create(self.epoch, self.release)
 
     def next_breaking(self: V) -> V:
+        """Returns the next breaking version.
+
+        This function is slightly convoluted due to how `0.x.y` versions are handled:
+
+        | version | next breaking |
+        |---------|---------------|
+        | `1.2.3` | `2.0.0`       |
+        | `1.2.0` | `2.0.0`       |
+        | `1.0.0` | `2.0.0`       |
+        | `0.2.3` | `0.3.0`       |
+        | `0.0.3` | `0.0.4`       |
+        | `0.0.0` | `0.0.1`       |
+        | `0.0`   | `0.1.0`       |
+        | `0`     | `1.0.0`       |
+
+        Returns:
+            The next breaking [`Version`][versions.version.Version].
+        """
         if not self.major:
             if self.minor:
                 return self.next_minor()

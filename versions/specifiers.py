@@ -41,7 +41,7 @@ __all__ = (
 
 
 class Specifier(Representation, ToString, Specification):
-    pass
+    """Represents all possible specifiers."""
 
 
 Specifiers = DynamicTuple[Specifier]
@@ -49,6 +49,8 @@ Specifiers = DynamicTuple[Specifier]
 
 @frozen(repr=False)
 class SpecifierFalse(Specifier):
+    """Represents specifiers that do not accept any version."""
+
     def accepts(self, version: Version) -> Literal[False]:
         return False
 
@@ -58,6 +60,8 @@ class SpecifierFalse(Specifier):
 
 @frozen(repr=False)
 class SpecifierTrue(Specifier):
+    """Represents specifiers that accept all versions."""
+
     def accepts(self, version: Version) -> Literal[True]:
         return True
 
@@ -67,6 +71,10 @@ class SpecifierTrue(Specifier):
 
 @frozen(repr=False)
 class SpecifierSingle(Operator, Specifier):
+    """Represents specifiers that accept versions according to the
+    [`Operator`][versions.operators.Operator] type.
+    """
+
     def accepts(self, version: Version) -> bool:
         return self.partial_matches(version)
 
@@ -85,6 +93,10 @@ def check_specifiers(specifiers: Specifiers) -> None:
 
 @frozen(repr=False)
 class SpecifierAny(Specifier):
+    """Represents collections of two or more specifiers that accept versions
+    if any of the contained specifiers accept it.
+    """
+
     WRAP: ClassVar[bool] = False
 
     specifiers: Specifiers = field()
@@ -127,6 +139,10 @@ class SpecifierAny(Specifier):
 
 @frozen(repr=False)
 class SpecifierAll(Specifier):
+    """Represents collections of two or more specifiers that accept versions
+    if and only if all of the contained specifiers accept it.
+    """
+
     WRAP: ClassVar[bool] = False
 
     specifiers: Specifiers = field()
@@ -168,24 +184,82 @@ class SpecifierAll(Specifier):
 
 
 def is_specifier(item: Any) -> TypeGuard[Specifier]:
+    """Checks if an `item` is an instance of [`Specifier`][versions.specifiers.Specifier].
+
+    Arguments:
+        item: The item to check.
+
+    Returns:
+        Whether the `item` provided is an instance of [`Specifier`][versions.specifiers.Specifier].
+    """
     return is_instance(item, Specifier)
 
 
 def is_specifier_false(item: Any) -> TypeGuard[SpecifierFalse]:
+    """Checks if an `item` is an instance of
+    [`SpecifierFalse`][versions.specifiers.SpecifierFalse].
+
+    Arguments:
+        item: The item to check.
+
+    Returns:
+        Whether the `item` provided is an instance of
+        [`SpecifierFalse`][versions.specifiers.SpecifierFalse].
+    """
     return is_instance(item, SpecifierFalse)
 
 
 def is_specifier_true(item: Any) -> TypeGuard[SpecifierTrue]:
+    """Checks if an `item` is an instance of
+    [`SpecifierTrue`][versions.specifiers.SpecifierTrue].
+
+    Arguments:
+        item: The item to check.
+
+    Returns:
+        Whether the `item` provided is an instance of
+        [`SpecifierTrue`][versions.specifiers.SpecifierTrue].
+    """
     return is_instance(item, SpecifierTrue)
 
 
 def is_specifier_single(item: Any) -> TypeGuard[SpecifierSingle]:
+    """Checks if an `item` is an instance of
+    [`SpecifierSingle`][versions.specifiers.SpecifierSingle].
+
+    Arguments:
+        item: The item to check.
+
+    Returns:
+        Whether the `item` provided is an instance of
+        [`SpecifierSingle`][versions.specifiers.SpecifierSingle].
+    """
     return is_instance(item, SpecifierSingle)
 
 
 def is_specifier_any(item: Any) -> TypeGuard[SpecifierAny]:
+    """Checks if an `item` is an instance of
+    [`SpecifierAny`][versions.specifiers.SpecifierAny].
+
+    Arguments:
+        item: The item to check.
+
+    Returns:
+        Whether the `item` provided is an instance of
+        [`SpecifierAny`][versions.specifiers.SpecifierAny].
+    """
     return is_instance(item, SpecifierAny)
 
 
 def is_specifier_all(item: Any) -> TypeGuard[SpecifierAll]:
+    """Checks if an `item` is an instance of
+    [`SpecifierAll`][versions.specifiers.SpecifierAll].
+
+    Arguments:
+        item: The item to check.
+
+    Returns:
+        Whether the `item` provided is an instance of
+        [`SpecifierAll`][versions.specifiers.SpecifierAll].
+    """
     return is_instance(item, SpecifierAll)

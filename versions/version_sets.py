@@ -1,6 +1,6 @@
 from __future__ import annotations
-from abc import abstractmethod
 
+from abc import abstractmethod
 from builtins import isinstance as is_instance
 from itertools import chain
 from typing import TYPE_CHECKING, Any, Iterable, Iterator, List, Optional, Tuple, TypeVar, Union
@@ -152,6 +152,8 @@ S = TypeVar("S", bound="VersionSet")
 
 @frozen(repr=False, order=False)
 class VersionEmpty(Representation, ToString, VersionSetProtocol):
+    """Represents version empty sets (`{}`)."""
+
     def is_empty(self) -> Literal[True]:
         return True
 
@@ -387,6 +389,8 @@ class VersionRangeProtocol(Protocol):
 
 @frozen(repr=False, eq=False, order=False)
 class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetProtocol):
+    """Represents version ranges (`(x, y)`, `(x, y]`, `[x, y)` and `[x, y]`)."""
+
     min: Optional[Version] = None
     max: Optional[Version] = None
     include_min: bool = False
@@ -738,6 +742,8 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
 
 @frozen(repr=False, eq=False, order=False)
 class VersionPoint(Representation, ToString, VersionRangeProtocol, VersionSetProtocol):
+    """Represents version points (`[v, v]` aka `{v}`)."""
+
     version: Version
 
     @property
@@ -827,6 +833,8 @@ def check_items(items: VersionItems) -> None:
 
 @frozen(repr=False, order=False)
 class VersionUnion(Representation, ToString, Specification):
+    """Represents version unions."""
+
     items: VersionItems = field()
 
     @items.validator
@@ -1122,6 +1130,13 @@ class ItemsDifference:
 
 
 VersionSet = Union[VersionEmpty, VersionPoint, VersionRange, VersionUnion]
+"""The union of the following types:
+
+- [`VersionEmpty`][versions.version_sets.VersionEmpty]
+- [`VersionPoint`][versions.version_sets.VersionPoint]
+- [`VersionRange`][versions.version_sets.VersionRange]
+- [`VersionUnion`][versions.version_sets.VersionUnion]
+"""
 VersionSetTypes = (VersionEmpty, VersionPoint, VersionRange, VersionUnion)
 
 VersionItem = Union[VersionPoint, VersionRange]

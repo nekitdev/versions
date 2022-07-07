@@ -1,4 +1,19 @@
-"""Parsing, inspecting and specifying versions."""
+"""Parsing, inspecting and specifying versions.
+
+## Example
+
+```python
+>>> from versions import parse_version, parse_version_set
+>>> version = parse_version("1.0.0")
+>>> version
+<Version (1.0.0)>
+>>> version_set = parse_version_set("^1.0.0")
+>>> version_set
+<VersionRange (>= 1.0.0, < 2.0.0)>
+>>> version.matches(version_set)
+True
+```
+"""
 
 __description__ = "Parsing, inspecting and specifying versions."
 __url__ = "https://github.com/nekitdev/versions"

@@ -9,6 +9,7 @@ remote_branch: github-pages
 
 nav:
   - Index: "index.md"
+  - Usage: "usage.md"
   - Reference: "reference.md"
   - Changelog: "changelog.md"
   - Security: "security.md"

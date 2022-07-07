@@ -25,12 +25,39 @@ def parse_version(string: str, version_type: Type[V]) -> V:
 
 
 def parse_version(string: str, version_type: Type[Version] = Version) -> Version:
+    """Parses a `string` into a version of `version_type`.
+
+    Arguments:
+        string: The string to parse.
+        version_type: The version type to use in conversion.
+
+    Returns:
+        A newly parsed [`Version`][versions.version.Version].
+    """
     return VersionParser(version_type).parse(string)
 
 
 def parse_specifier(string: str, version_type: Type[Version] = Version) -> Specifier:
+    """Parses a `string` into a version specifier with versions of `version_type`.
+
+    Arguments:
+        string: The string to parse.
+        version_type: The version type to use in conversion.
+
+    Returns:
+        A newly parsed [`Specifier`][versions.specifiers.Specifier].
+    """
     return SpecifierParser(VersionParser(version_type)).parse(string)
 
 
 def parse_version_set(string: str, version_type: Type[Version] = Version) -> VersionSet:
+    """Parses a `string` into a version set with versions of `version_type`.
+
+    Arguments:
+        string: The string to parse.
+        version_type: The version type to use in conversion.
+
+    Returns:
+        A newly parsed [`Specifier`][versions.specifiers.Specifier].
+    """
     return VersionSetParser(SpecifierParser(VersionParser(version_type))).parse(string)
