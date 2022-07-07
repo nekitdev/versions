@@ -53,8 +53,6 @@ def simplify(specifier: Specifier) -> Specifier:
 def specifier_to_version_set(specifier: Specifier) -> VersionSet:
     """Converts [`Specifier`][versions.specifiers.Specifier]
     to [`VersionSet`][versions.version_sets.VersionSet].
-
-    There is an alias of this called `version_set_from_specifier`.
     """
     if is_specifier_single(specifier):
         return specifier.translate(specifier.version)
@@ -75,13 +73,12 @@ def specifier_to_version_set(specifier: Specifier) -> VersionSet:
 
 
 version_set_from_specifier = specifier_to_version_set
+"""An alias of [`specifier_to_version_set`][versions.converters.specifier_to_version_set]."""
 
 
 def version_set_to_specifier(version_set: VersionSet) -> Specifier:
     """Converts [`VersionSet`][versions.version_sets.VersionSet]
     to [`Specifier`][versions.specifiers.Specifier].
-
-    There is an alias of this function called `specifier_from_version_set`.
     """
     if is_version_empty(version_set):
         return SpecifierFalse()
@@ -137,3 +134,4 @@ def version_set_to_specifier(version_set: VersionSet) -> Specifier:
 
 
 specifier_from_version_set = version_set_to_specifier
+"""An alias of [`version_set_to_specifier`][versions.converters.version_set_to_specifier]."""

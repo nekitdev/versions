@@ -9,8 +9,18 @@ remote_branch: github-pages
 
 nav:
   - Index: "index.md"
-  - Usage: "usage.md"
-  - Reference: "reference.md"
+
+  - Reference:
+    - Functions: "reference/functions.md"
+    - Version: "reference/version.md"
+    - Segments: "reference/segments.md"
+    - Specification: "reference/specification.md"
+    - Version Sets: "reference/version_sets.md"
+    - Specifiers: "reference/specifiers.md"
+    - Converters: "reference/converters.md"
+    - Operators: "reference/operators.md"
+    - Errors: "reference/errors.md"
+
   - Changelog: "changelog.md"
   - Security: "security.md"
   - Code of Conduct: "code_of_conduct.md"
