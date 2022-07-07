@@ -58,6 +58,8 @@ git = "https://github.com/nekitdev/versions.git"
 
 ### Versions
 
+[`parse_version`][versions.functions.parse_version] is used to parse versions:
+
 ```python
 from versions import parse_version
 
@@ -68,10 +70,64 @@ print(version)  # 1.0.0-dev.1+build.1
 
 ### Segments
 
+All version segments can be fetched with their respective names:
+
 ```python
-print(version.release)  # 1.0.0
-print(version.dev)      # dev.1
-print(version.local)    # build.1
+>>> print(version.release)
+1.0.0
+>>> version.release.parts
+(1, 0, 0)
+>>> print(version.dev)
+dev.1
+>>> (version.dev.phase, version.dev.value)
+("dev", 1)
+>>> print(version.local)
+build.1
+>>> version.local.parts
+("build", 1)
+```
+
+### Comparison
+
+Versions support total ordering:
+
+```python
+>>> v1 = parse_version("1.0.0")
+>>> v2 = parse_version("2.0.0")
+>>> v1 == v2
+False
+>>> v1 != v2
+True
+>>> v1 >= v2
+False
+>>> v1 <= v2
+True
+>>> v1 > v2
+False
+>>> v1 < v2
+True
+```
+
+### Specification
+
+`versions` also supports specifying version requirements and matching version against them:
+
+Since versions support total ordering, they can be checked using version sets
+(via [`parse_version_set`][versions.functions.parse_version_set]):
+
+```python
+>>> from versions import parse_version, parse_version_set
+>>> version_set = parse_version_set("^1.0.0")
+>>> version_set
+<VersionRange (>= 1.0.0, < 2.0.0)>
+>>> version = parse_version("1.3.0")
+>>> version
+<Version (1.3.0)>
+>>> version.matches(version_set)
+True
+>>> another = parse_version("2.2.0")
+>>> another.matches(version_set)
+False
 ```
 
 ## Documentation
@@ -126,3 +182,6 @@ If you are interested in contributing to `versions`, make sure to take a look at
 [Check Badge]: https://github.com/nekitdev/versions/workflows/check/badge.svg
 [Test Badge]: https://github.com/nekitdev/versions/workflows/test/badge.svg
 [Coverage Badge]: https://codecov.io/gh/nekitdev/versions/branch/main/graph/badge.svg
+
+[versions.functions.parse_version]: https://nekitdev.github.io/versions/reference#wraps.parse_version
+[versions.functions.parse_version_set]: https://nekitdev.github.io/versions/reference#wraps.parse_version_set
