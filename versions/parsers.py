@@ -105,7 +105,7 @@ class VersionParser(Parser[V]):
 
     @staticmethod
     def parse_post_implicit_optional(string: Optional[str]) -> Optional[PostTag]:
-        return None if string is None else PostTag.default_with_value(int(string))
+        return None if string is None else PostTag.default_phase_with_value(int(string))
 
     @staticmethod
     def parse_dev_optional(string: Optional[str]) -> Optional[DevTag]:

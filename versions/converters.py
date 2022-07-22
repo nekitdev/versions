@@ -43,16 +43,28 @@ def union(left: VersionSet, right: VersionSet) -> VersionSet:
 
 
 def simplify(specifier: Specifier) -> Specifier:
-    """Simplifies [`Specifier`][versions.specifiers.Specifier] specification.
+    """Simplifies a [`Specifier`][versions.specifiers.Specifier].
 
     Simplification is accomplished through converting to the version set and back.
+
+    Arguments:
+        specifier: The version specifier to simplify.
+
+    Returns:
+        The simplified specifier.
     """
     return specifier_from_version_set(specifier_to_version_set(specifier))
 
 
 def specifier_to_version_set(specifier: Specifier) -> VersionSet:
-    """Converts [`Specifier`][versions.specifiers.Specifier]
+    """Converts a [`Specifier`][versions.specifiers.Specifier]
     to [`VersionSet`][versions.version_sets.VersionSet].
+
+    Arguments:
+        specifier: The version specifier to convert.
+
+    Returns:
+        The converted version set.
     """
     if is_specifier_single(specifier):
         return specifier.translate(specifier.version)
@@ -77,8 +89,14 @@ version_set_from_specifier = specifier_to_version_set
 
 
 def version_set_to_specifier(version_set: VersionSet) -> Specifier:
-    """Converts [`VersionSet`][versions.version_sets.VersionSet]
+    """Converts a [`VersionSet`][versions.version_sets.VersionSet]
     to [`Specifier`][versions.specifiers.Specifier].
+
+    Arguments:
+        version_set: The version set to convert.
+
+    Returns:
+        The converted version specifier.
     """
     if is_version_empty(version_set):
         return SpecifierFalse()

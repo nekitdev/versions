@@ -13,7 +13,7 @@ __all__ = ("Specification",)
 
 @runtime_checkable
 class Specification(Protocol):
-    """The specification protocol for specifying version requirements."""
+    """The specification protocol for defining version requirements."""
 
     @abstractmethod
     def accepts(self, version: Version) -> bool:

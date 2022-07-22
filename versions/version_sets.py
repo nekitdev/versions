@@ -98,7 +98,7 @@ class VersionSetProtocol(Specification, Protocol):
         return self.intersection(version_set)
 
     def __iand__(self, version_set: VersionSet) -> VersionSet:
-        return self.union(version_set)
+        return self.intersection(version_set)
 
     def __or__(self, version_set: VersionSet) -> VersionSet:
         return self.union(version_set)

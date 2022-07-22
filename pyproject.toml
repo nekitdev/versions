@@ -14,7 +14,7 @@ documentation = "https://nekitdev.github.io/versions"
 keywords = ["python", "semver", "version", "versions"]
 
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Operating System :: OS Independent",
     "Topic :: Utilities",
@@ -33,7 +33,7 @@ include = "versions"
 python = ">= 3.7"
 
 attrs = ">= 21.4.0"
-typing-extensions = ">= 4.2.0"
+typing-extensions = ">= 4.3.0"
 
 [tool.poetry.group.format]
 optional = true
@@ -49,7 +49,7 @@ python = "^3.7"
 optional = true
 
 [tool.poetry.group.check.dependencies]
-mypy = "0.961"
+mypy = "0.971"
 
 [tool.poetry.group.test]
 optional = true
@@ -124,7 +124,7 @@ warn_unreachable = true
 warn_redundant_casts = true
 warn_unused_ignores = false  # compatibility
 
-[tool.changelog]
+[tool.changelogging]
 name = "versions"
 version = "1.0.0-alpha.1"
 url = "https://github.com/nekitdev/versions"
@@ -143,5 +143,5 @@ wrap_size = 100
 display = ["feature", "change", "fix", "security", "deprecation", "removal", "internal"]
 
 [build-system]
-requires = ["poetry-core >= 1.1.0b2"]
+requires = ["poetry-core >= 1.1.0b3"]
 build-backend = "poetry.core.masonry.api"

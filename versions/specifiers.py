@@ -94,7 +94,7 @@ def check_specifiers(specifiers: Specifiers) -> None:
 @frozen(repr=False)
 class SpecifierAny(Specifier):
     """Represents collections of two or more specifiers that accept versions
-    if any of the contained specifiers accept it.
+    if *any* of the contained specifiers accept it.
     """
 
     WRAP: ClassVar[bool] = False
@@ -140,7 +140,7 @@ class SpecifierAny(Specifier):
 @frozen(repr=False)
 class SpecifierAll(Specifier):
     """Represents collections of two or more specifiers that accept versions
-    if and only if all of the contained specifiers accept it.
+    if and only if *all* of the contained specifiers accept it.
     """
 
     WRAP: ClassVar[bool] = False
@@ -204,7 +204,7 @@ def is_specifier_false(item: Any) -> TypeGuard[SpecifierFalse]:
 
     Returns:
         Whether the `item` provided is an instance of
-        [`SpecifierFalse`][versions.specifiers.SpecifierFalse].
+            [`SpecifierFalse`][versions.specifiers.SpecifierFalse].
     """
     return is_instance(item, SpecifierFalse)
 
@@ -218,7 +218,7 @@ def is_specifier_true(item: Any) -> TypeGuard[SpecifierTrue]:
 
     Returns:
         Whether the `item` provided is an instance of
-        [`SpecifierTrue`][versions.specifiers.SpecifierTrue].
+            [`SpecifierTrue`][versions.specifiers.SpecifierTrue].
     """
     return is_instance(item, SpecifierTrue)
 
@@ -232,7 +232,7 @@ def is_specifier_single(item: Any) -> TypeGuard[SpecifierSingle]:
 
     Returns:
         Whether the `item` provided is an instance of
-        [`SpecifierSingle`][versions.specifiers.SpecifierSingle].
+            [`SpecifierSingle`][versions.specifiers.SpecifierSingle].
     """
     return is_instance(item, SpecifierSingle)
 
@@ -246,7 +246,7 @@ def is_specifier_any(item: Any) -> TypeGuard[SpecifierAny]:
 
     Returns:
         Whether the `item` provided is an instance of
-        [`SpecifierAny`][versions.specifiers.SpecifierAny].
+            [`SpecifierAny`][versions.specifiers.SpecifierAny].
     """
     return is_instance(item, SpecifierAny)
 
@@ -260,6 +260,6 @@ def is_specifier_all(item: Any) -> TypeGuard[SpecifierAll]:
 
     Returns:
         Whether the `item` provided is an instance of
-        [`SpecifierAll`][versions.specifiers.SpecifierAll].
+            [`SpecifierAll`][versions.specifiers.SpecifierAll].
     """
     return is_instance(item, SpecifierAll)

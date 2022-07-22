@@ -664,11 +664,19 @@ class OperatorType(Enum):
     WILDCARD_NOT_EQUAL = WILDCARD_NOT_EQUAL
 
     def is_wildcard(self) -> bool:
-        """Checks whether the operator is *wildcard*."""
+        """Checks if the operator is *wildcard*.
+
+        Returns:
+            Whether the operator is *wildcard*.
+        """
         return self in WILDCARD
 
     def is_unary(self) -> bool:
-        """Checks whether the operator is *unary*."""
+        """Checks if the operator is *unary*.
+
+        Returns:
+            Whether the operator is *unary*.
+        """
         return self in UNARY
 
     @property
@@ -709,11 +717,19 @@ class Operator(Representation, ToString):
     version: Version
 
     def is_unary(self) -> bool:
-        """Checks whether the operator is *unary*."""
+        """Checks if the operator is *unary*.
+
+        Returns:
+            Whether the operator is *unary*.
+        """
         return self.type.is_unary()
 
     def is_wildcard(self) -> bool:
-        """Checks whether the operator is *wildcard*."""
+        """Checks if the operator is *wildcard*.
+
+        Returns:
+            Whether the operator is *wildcard*.
+        """
         return self.type.is_wildcard()
 
     @property
