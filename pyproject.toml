@@ -131,7 +131,7 @@ url = "https://github.com/nekitdev/versions"
 directory = "changes"
 output = "CHANGELOG.md"
 
-start_string = "<!-- changelog: start -->"
+start_string = "<!-- changelogging: start -->"
 
 title_format = "{version} ({date})"
 issue_format = "[#{issue}]({url}/pull/{issue})"
