@@ -694,8 +694,50 @@
 
   <div class="doc doc-contents ">
   
-      <p>Simplifies <a class="autorefs autorefs-internal" href="../specifiers/#versions.specifiers.Specifier"><code>Specifier</code></a> specification.</p>
+      <p>Simplifies a <a class="autorefs autorefs-internal" href="../specifiers/#versions.specifiers.Specifier"><code>Specifier</code></a>.</p>
 <p>Simplification is accomplished through converting to the version set and back.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>specifier</code></td>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="versions.specifiers.Specifier" href="../specifiers/#versions.specifiers.Specifier">Specifier</a></code>
+          </td>
+          <td><p>The version specifier to simplify.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="versions.specifiers.Specifier" href="../specifiers/#versions.specifiers.Specifier">Specifier</a></code>
+          </td>
+          <td><p>The simplified specifier.</p></td>
+        </tr>
+    </tbody>
+  </table>
 
       <details class="quote">
         <summary>Source code in <code>versions/converters.py</code></summary>
@@ -704,10 +746,22 @@
 <span class="normal">47</span>
 <span class="normal">48</span>
 <span class="normal">49</span>
-<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">simplify</span><span class="p">(</span><span class="n">specifier</span><span class="p">:</span> <span class="n">Specifier</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Specifier</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Simplifies [`Specifier`][versions.specifiers.Specifier] specification.</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">simplify</span><span class="p">(</span><span class="n">specifier</span><span class="p">:</span> <span class="n">Specifier</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Specifier</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Simplifies a [`Specifier`][versions.specifiers.Specifier].</span>
 
 <span class="sd">    Simplification is accomplished through converting to the version set and back.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        specifier: The version specifier to simplify.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The simplified specifier.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">specifier_from_version_set</span><span class="p">(</span><span class="n">specifier_to_version_set</span><span class="p">(</span><span class="n">specifier</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -728,18 +782,54 @@
 
   <div class="doc doc-contents ">
   
-      <p>Converts <a class="autorefs autorefs-internal" href="../specifiers/#versions.specifiers.Specifier"><code>Specifier</code></a>
+      <p>Converts a <a class="autorefs autorefs-internal" href="../specifiers/#versions.specifiers.Specifier"><code>Specifier</code></a>
 to <a class="autorefs autorefs-internal" href="../version_sets/#versions.version_sets.VersionSet"><code>VersionSet</code></a>.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>specifier</code></td>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="versions.specifiers.Specifier" href="../specifiers/#versions.specifiers.Specifier">Specifier</a></code>
+          </td>
+          <td><p>The version specifier to convert.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="versions.version_sets.VersionSet" href="../version_sets/#versions.version_sets.VersionSet">VersionSet</a></code>
+          </td>
+          <td><p>The converted version set.</p></td>
+        </tr>
+    </tbody>
+  </table>
 
       <details class="quote">
         <summary>Source code in <code>versions/converters.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">59</span>
 <span class="normal">60</span>
 <span class="normal">61</span>
 <span class="normal">62</span>
@@ -752,9 +842,27 @@ to <a class="autorefs autorefs-internal" href="../version_sets/#versions.version
 <span class="normal">69</span>
 <span class="normal">70</span>
 <span class="normal">71</span>
-<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">specifier_to_version_set</span><span class="p">(</span><span class="n">specifier</span><span class="p">:</span> <span class="n">Specifier</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Converts [`Specifier`][versions.specifiers.Specifier]</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">specifier_to_version_set</span><span class="p">(</span><span class="n">specifier</span><span class="p">:</span> <span class="n">Specifier</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Converts a [`Specifier`][versions.specifiers.Specifier]</span>
 <span class="sd">    to [`VersionSet`][versions.version_sets.VersionSet].</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        specifier: The version specifier to convert.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The converted version set.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">is_specifier_single</span><span class="p">(</span><span class="n">specifier</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">specifier</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">specifier</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
@@ -790,24 +898,54 @@ to <a class="autorefs autorefs-internal" href="../version_sets/#versions.version
 
   <div class="doc doc-contents ">
   
-      <p>Converts <a class="autorefs autorefs-internal" href="../version_sets/#versions.version_sets.VersionSet"><code>VersionSet</code></a>
+      <p>Converts a <a class="autorefs autorefs-internal" href="../version_sets/#versions.version_sets.VersionSet"><code>VersionSet</code></a>
 to <a class="autorefs autorefs-internal" href="../specifiers/#versions.specifiers.Specifier"><code>Specifier</code></a>.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>version_set</code></td>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="versions.version_sets.VersionSet" href="../version_sets/#versions.version_sets.VersionSet">VersionSet</a></code>
+          </td>
+          <td><p>The version set to convert.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="versions.specifiers.Specifier" href="../specifiers/#versions.specifiers.Specifier">Specifier</a></code>
+          </td>
+          <td><p>The converted version specifier.</p></td>
+        </tr>
+    </tbody>
+  </table>
 
       <details class="quote">
         <summary>Source code in <code>versions/converters.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 79</span>
-<span class="normal"> 80</span>
-<span class="normal"> 81</span>
-<span class="normal"> 82</span>
-<span class="normal"> 83</span>
-<span class="normal"> 84</span>
-<span class="normal"> 85</span>
-<span class="normal"> 86</span>
-<span class="normal"> 87</span>
-<span class="normal"> 88</span>
-<span class="normal"> 89</span>
-<span class="normal"> 90</span>
-<span class="normal"> 91</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 91</span>
 <span class="normal"> 92</span>
 <span class="normal"> 93</span>
 <span class="normal"> 94</span>
@@ -849,9 +987,33 @@ to <a class="autorefs autorefs-internal" href="../specifiers/#versions.specifier
 <span class="normal">130</span>
 <span class="normal">131</span>
 <span class="normal">132</span>
-<span class="normal">133</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">version_set_to_specifier</span><span class="p">(</span><span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Specifier</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Converts [`VersionSet`][versions.version_sets.VersionSet]</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">version_set_to_specifier</span><span class="p">(</span><span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Specifier</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Converts a [`VersionSet`][versions.version_sets.VersionSet]</span>
 <span class="sd">    to [`Specifier`][versions.specifiers.Specifier].</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        version_set: The version set to convert.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The converted version specifier.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">is_version_empty</span><span class="p">(</span><span class="n">version_set</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">SpecifierFalse</span><span class="p">()</span>

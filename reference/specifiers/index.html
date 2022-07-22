@@ -967,7 +967,7 @@
 
   
       <p>Represents collections of two or more specifiers that accept versions
-if any of the contained specifiers accept it.</p>
+if <em>any</em> of the contained specifiers accept it.</p>
 
 
         <details class="quote">
@@ -1018,7 +1018,7 @@ if any of the contained specifiers accept it.</p>
 <span class="normal">137</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">SpecifierAny</span><span class="p">(</span><span class="n">Specifier</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Represents collections of two or more specifiers that accept versions</span>
-<span class="sd">    if any of the contained specifiers accept it.</span>
+<span class="sd">    if *any* of the contained specifiers accept it.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">WRAP</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
@@ -1099,7 +1099,7 @@ if any of the contained specifiers accept it.</p>
 
   
       <p>Represents collections of two or more specifiers that accept versions
-if and only if all of the contained specifiers accept it.</p>
+if and only if <em>all</em> of the contained specifiers accept it.</p>
 
 
         <details class="quote">
@@ -1150,7 +1150,7 @@ if and only if all of the contained specifiers accept it.</p>
 <span class="normal">183</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">SpecifierAll</span><span class="p">(</span><span class="n">Specifier</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Represents collections of two or more specifiers that accept versions</span>
-<span class="sd">    if and only if all of the contained specifiers accept it.</span>
+<span class="sd">    if and only if *all* of the contained specifiers accept it.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">WRAP</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
@@ -1350,13 +1350,8 @@ if and only if all of the contained specifiers accept it.</p>
           <td>
                 <code><span title="typing_extensions.TypeGuard">TypeGuard</span>[<a class="autorefs autorefs-internal" title="versions.specifiers.SpecifierFalse" href="#versions.specifiers.SpecifierFalse">SpecifierFalse</a>]</code>
           </td>
-          <td><p>Whether the <code>item</code> provided is an instance of</p></td>
-        </tr>
-        <tr>
-          <td>
-                <code><span title="typing_extensions.TypeGuard">TypeGuard</span>[<a class="autorefs autorefs-internal" title="versions.specifiers.SpecifierFalse" href="#versions.specifiers.SpecifierFalse">SpecifierFalse</a>]</code>
-          </td>
-          <td><p><a class="autorefs autorefs-internal" href="#versions.specifiers.SpecifierFalse"><code>SpecifierFalse</code></a>.</p></td>
+          <td><p>Whether the <code>item</code> provided is an instance of
+<a class="autorefs autorefs-internal" href="#versions.specifiers.SpecifierFalse"><code>SpecifierFalse</code></a>.</p></td>
         </tr>
     </tbody>
   </table>
@@ -1383,7 +1378,7 @@ if and only if all of the contained specifiers accept it.</p>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Whether the `item` provided is an instance of</span>
-<span class="sd">        [`SpecifierFalse`][versions.specifiers.SpecifierFalse].</span>
+<span class="sd">            [`SpecifierFalse`][versions.specifiers.SpecifierFalse].</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">is_instance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">SpecifierFalse</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1444,13 +1439,8 @@ if and only if all of the contained specifiers accept it.</p>
           <td>
                 <code><span title="typing_extensions.TypeGuard">TypeGuard</span>[<a class="autorefs autorefs-internal" title="versions.specifiers.SpecifierTrue" href="#versions.specifiers.SpecifierTrue">SpecifierTrue</a>]</code>
           </td>
-          <td><p>Whether the <code>item</code> provided is an instance of</p></td>
-        </tr>
-        <tr>
-          <td>
-                <code><span title="typing_extensions.TypeGuard">TypeGuard</span>[<a class="autorefs autorefs-internal" title="versions.specifiers.SpecifierTrue" href="#versions.specifiers.SpecifierTrue">SpecifierTrue</a>]</code>
-          </td>
-          <td><p><a class="autorefs autorefs-internal" href="#versions.specifiers.SpecifierTrue"><code>SpecifierTrue</code></a>.</p></td>
+          <td><p>Whether the <code>item</code> provided is an instance of
+<a class="autorefs autorefs-internal" href="#versions.specifiers.SpecifierTrue"><code>SpecifierTrue</code></a>.</p></td>
         </tr>
     </tbody>
   </table>
@@ -1477,7 +1467,7 @@ if and only if all of the contained specifiers accept it.</p>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Whether the `item` provided is an instance of</span>
-<span class="sd">        [`SpecifierTrue`][versions.specifiers.SpecifierTrue].</span>
+<span class="sd">            [`SpecifierTrue`][versions.specifiers.SpecifierTrue].</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">is_instance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">SpecifierTrue</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1538,13 +1528,8 @@ if and only if all of the contained specifiers accept it.</p>
           <td>
                 <code><span title="typing_extensions.TypeGuard">TypeGuard</span>[<a class="autorefs autorefs-internal" title="versions.specifiers.SpecifierSingle" href="#versions.specifiers.SpecifierSingle">SpecifierSingle</a>]</code>
           </td>
-          <td><p>Whether the <code>item</code> provided is an instance of</p></td>
-        </tr>
-        <tr>
-          <td>
-                <code><span title="typing_extensions.TypeGuard">TypeGuard</span>[<a class="autorefs autorefs-internal" title="versions.specifiers.SpecifierSingle" href="#versions.specifiers.SpecifierSingle">SpecifierSingle</a>]</code>
-          </td>
-          <td><p><a class="autorefs autorefs-internal" href="#versions.specifiers.SpecifierSingle"><code>SpecifierSingle</code></a>.</p></td>
+          <td><p>Whether the <code>item</code> provided is an instance of
+<a class="autorefs autorefs-internal" href="#versions.specifiers.SpecifierSingle"><code>SpecifierSingle</code></a>.</p></td>
         </tr>
     </tbody>
   </table>
@@ -1571,7 +1556,7 @@ if and only if all of the contained specifiers accept it.</p>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Whether the `item` provided is an instance of</span>
-<span class="sd">        [`SpecifierSingle`][versions.specifiers.SpecifierSingle].</span>
+<span class="sd">            [`SpecifierSingle`][versions.specifiers.SpecifierSingle].</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">is_instance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">SpecifierSingle</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1632,13 +1617,8 @@ if and only if all of the contained specifiers accept it.</p>
           <td>
                 <code><span title="typing_extensions.TypeGuard">TypeGuard</span>[<a class="autorefs autorefs-internal" title="versions.specifiers.SpecifierAny" href="#versions.specifiers.SpecifierAny">SpecifierAny</a>]</code>
           </td>
-          <td><p>Whether the <code>item</code> provided is an instance of</p></td>
-        </tr>
-        <tr>
-          <td>
-                <code><span title="typing_extensions.TypeGuard">TypeGuard</span>[<a class="autorefs autorefs-internal" title="versions.specifiers.SpecifierAny" href="#versions.specifiers.SpecifierAny">SpecifierAny</a>]</code>
-          </td>
-          <td><p><a class="autorefs autorefs-internal" href="#versions.specifiers.SpecifierAny"><code>SpecifierAny</code></a>.</p></td>
+          <td><p>Whether the <code>item</code> provided is an instance of
+<a class="autorefs autorefs-internal" href="#versions.specifiers.SpecifierAny"><code>SpecifierAny</code></a>.</p></td>
         </tr>
     </tbody>
   </table>
@@ -1665,7 +1645,7 @@ if and only if all of the contained specifiers accept it.</p>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Whether the `item` provided is an instance of</span>
-<span class="sd">        [`SpecifierAny`][versions.specifiers.SpecifierAny].</span>
+<span class="sd">            [`SpecifierAny`][versions.specifiers.SpecifierAny].</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">is_instance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">SpecifierAny</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1726,13 +1706,8 @@ if and only if all of the contained specifiers accept it.</p>
           <td>
                 <code><span title="typing_extensions.TypeGuard">TypeGuard</span>[<a class="autorefs autorefs-internal" title="versions.specifiers.SpecifierAll" href="#versions.specifiers.SpecifierAll">SpecifierAll</a>]</code>
           </td>
-          <td><p>Whether the <code>item</code> provided is an instance of</p></td>
-        </tr>
-        <tr>
-          <td>
-                <code><span title="typing_extensions.TypeGuard">TypeGuard</span>[<a class="autorefs autorefs-internal" title="versions.specifiers.SpecifierAll" href="#versions.specifiers.SpecifierAll">SpecifierAll</a>]</code>
-          </td>
-          <td><p><a class="autorefs autorefs-internal" href="#versions.specifiers.SpecifierAll"><code>SpecifierAll</code></a>.</p></td>
+          <td><p>Whether the <code>item</code> provided is an instance of
+<a class="autorefs autorefs-internal" href="#versions.specifiers.SpecifierAll"><code>SpecifierAll</code></a>.</p></td>
         </tr>
     </tbody>
   </table>
@@ -1759,7 +1734,7 @@ if and only if all of the contained specifiers accept it.</p>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Whether the `item` provided is an instance of</span>
-<span class="sd">        [`SpecifierAll`][versions.specifiers.SpecifierAll].</span>
+<span class="sd">            [`SpecifierAll`][versions.specifiers.SpecifierAll].</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">is_instance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">SpecifierAll</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>

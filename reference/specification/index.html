@@ -625,7 +625,7 @@
         Bases: <code><span title="typing_extensions.Protocol">Protocol</span></code></p>
 
   
-      <p>The specification protocol for specifying version requirements.</p>
+      <p>The specification protocol for defining version requirements.</p>
 
 
         <details class="quote">
@@ -646,7 +646,7 @@
 <span class="normal">27</span>
 <span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@runtime_checkable</span>
 <span class="k">class</span> <span class="nc">Specification</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;The specification protocol for specifying version requirements.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;The specification protocol for defining version requirements.&quot;&quot;&quot;</span>
 
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">accepts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
