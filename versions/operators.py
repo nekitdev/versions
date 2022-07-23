@@ -129,7 +129,7 @@ def next_tilde_equal_breaking(version: V) -> V:
     if index:
         return version.to_stable().next_at(index - 1)
 
-    raise ValueError  # TODO: message?
+    raise InternalError  # TODO: message?  # pragma: no cover
 
 
 def next_tilde_breaking(version: V) -> V:
@@ -542,7 +542,7 @@ def translate_not_equal(version: Version) -> VersionUnion:
     if is_version_union(result):
         return result
 
-    raise InternalError  # TODO: message?
+    raise InternalError  # TODO: message?  # pragma: no cover
 
 
 def translate_less(version: Version) -> VersionRange:
@@ -641,7 +641,7 @@ def translate_wildcard_not_equal(version: Version) -> Union[VersionEmpty, Versio
     if is_version_empty(result) or is_version_union(result):
         return result
 
-    raise InternalError  # TODO: message?
+    raise InternalError  # TODO: message?  # pragma: no cover
 
 
 class OperatorType(Enum):

@@ -4,6 +4,9 @@ import pytest
 
 from versions.functions import parse_version
 
+# NOTE: versions are ordered from smallest to largest
+
+
 @pytest.mark.parametrize(
     "strings",
     (

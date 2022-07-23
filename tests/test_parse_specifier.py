@@ -21,6 +21,7 @@ from versions.version import Version
         ("> 0.7", SpecifierSingle(OperatorType.GREATER, Version.from_parts(0, 7))),
         ("^3.4", SpecifierSingle(OperatorType.CARET, Version.from_parts(3, 4))),
         ("~1.8", SpecifierSingle(OperatorType.TILDE, Version.from_parts(1, 8))),
+        ("~7", SpecifierSingle(OperatorType.TILDE, Version.from_parts(7))),
         ("=8.8", SpecifierSingle(OperatorType.EQUAL, Version.from_parts(8, 8))),
         ("1.0", SpecifierSingle(OperatorType.EQUAL, Version.from_parts(1, 0))),
         ("= 1.3.*", SpecifierSingle(OperatorType.WILDCARD_EQUAL, Version.from_parts(1, 3))),

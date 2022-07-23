@@ -50,6 +50,15 @@ from versions.version_sets import (
                 include_max=False,
             ),
         ),
+        (
+            "~7",
+            VersionRange(
+                min=Version.from_parts(7),
+                max=Version.from_parts(8),
+                include_min=True,
+                include_max=False,
+            ),
+        ),
         ("=8.8", VersionPoint(Version.from_parts(8, 8))),
         ("1.0", VersionPoint(Version.from_parts(1, 0))),
         (
