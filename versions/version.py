@@ -248,7 +248,8 @@ class Version(Representation, FromString, ToString):
         return self.release.extra
 
     def get_at(self, index: int, default: int = DEFAULT_VALUE) -> int:
-        """Gets the [`Release`][versions.segments.Release] part at `index`, defaulting to `default`.
+        """Gets the [`Release`][versions.segments.Release] part at the `index`,
+        defaulting to `default`.
 
         Arguments:
             index: The index of the part to get.
@@ -260,7 +261,7 @@ class Version(Representation, FromString, ToString):
         return self.release.get_at(index, default)
 
     def get_at_unchecked(self, index: int) -> int:
-        """Gets the [`Release`][versions.segments.Release] part at `index`.
+        """Gets the [`Release`][versions.segments.Release] part at the `index`.
 
         Arguments:
             index: The index of the part to get.
@@ -269,7 +270,7 @@ class Version(Representation, FromString, ToString):
             IndexError: The index is *out-of-bounds*.
 
         Returns:
-            The release part at `index`.
+            The release part at the `index`.
         """
         return self.release.get_at_unchecked(index)
 
@@ -590,11 +591,11 @@ class Version(Representation, FromString, ToString):
         return self.create(self.epoch, self.release, pre)
 
     def next_pre_phase(self: V) -> Optional[V]:
-        """Bumps the [`PreTag`][versions.segments.PreTag] phase if it is present,
+        """Bumps the [`PreTag`][versions.segments.PreTag] phase if it is present (and if possible),
         otherwise adds one to the version.
 
         Returns:
-            The bumped version.
+            The bumped version (if the next [`PreTag`][versions.segments.PreTag] is present).
         """
         pre = self.pre
 

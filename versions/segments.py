@@ -40,6 +40,7 @@ __all__ = (
     # default values
     "DEFAULT_PARTS",
     "DEFAULT_VALUE",
+    "DEFAULT_PADDING",
     # useful release indexes
     "MAJOR",
     "MINOR",
@@ -196,7 +197,7 @@ class Release(Representation, FromString, ToString):
         return cls(parts)
 
     def into_parts(self) -> Parts:
-        """Converts [`Release`][versions.segments.Release] to its parts.
+        """Converts a [`Release`][versions.segments.Release] to its parts.
 
         Returns:
             The parts of the release.
@@ -230,8 +231,9 @@ class Release(Representation, FromString, ToString):
 
     @property
     def patch(self) -> int:
-        """The *patch* part of the release. This is equivalent to
-        [`micro`][versions.segments.Release.micro].
+        """The *patch* part of the release.
+
+        This is equivalent to [`micro`][versions.segments.Release.micro].
         """
         return self.get_at(PATCH)
 
@@ -241,7 +243,7 @@ class Release(Representation, FromString, ToString):
         return self.parts[TOTAL:]
 
     def get_at(self, index: int, default: int = DEFAULT_VALUE) -> int:
-        """Gets the release part at `index`, defaulting to `default`.
+        """Gets the release part at the `index`, defaulting to `default`.
 
         Arguments:
             index: The index of the part to get.
@@ -253,7 +255,7 @@ class Release(Representation, FromString, ToString):
         return self.get_at_unchecked(index) if self.has_at(index) else default
 
     def get_at_unchecked(self, index: int) -> int:
-        """Gets the release part at `index`.
+        """Gets the release part at the `index`.
 
         Arguments:
             index: The index of the part to get.
@@ -728,42 +730,42 @@ class Local(Representation, FromString, ToString):
 
     @classmethod
     def create(cls: Type[L], parts: LocalParts) -> L:
-        """Creates a [`Local`][versions.segments.Local] from local `parts`.
+        """Creates a [`Local`][versions.segments.Local] segment from local `parts`.
 
         Arguments:
             parts: The local parts.
 
         Returns:
-            The newly created [`Local`][versions.segments.Local].
+            The newly created [`Local`][versions.segments.Local] segment.
         """
         return cls(parts)
 
     @classmethod
     def from_iterable(cls: Type[L], iterable: Iterable[LocalPart]) -> L:
-        """Creates a [`Local`][versions.segments.Local] from `iterable`.
+        """Creates a [`Local`][versions.segments.Local] segment from `iterable`.
 
         Arguments:
             iterable: The local parts in an iterable.
 
         Returns:
-            The newly created [`Local`][versions.segments.Local].
+            The newly created [`Local`][versions.segments.Local] segment.
         """
         return cls(tuple(iterable))
 
     @classmethod
     def from_parts(cls: Type[L], *parts: LocalPart) -> L:
-        """Creates a [`Local`][versions.segments.Local] from local `parts`.
+        """Creates a [`Local`][versions.segments.Local] segment from local `parts`.
 
         Arguments:
             *parts: The local parts.
 
         Returns:
-            The newly created [`Local`][versions.segments.Local].
+            The newly created [`Local`][versions.segments.Local] segment.
         """
         return cls(parts)
 
     def into_parts(self) -> LocalParts:
-        """Converts a [`Local`][versions.segments.Local] to its parts.
+        """Converts a [`Local`][versions.segments.Local] segment to its parts.
 
         Returns:
             The parts of the local segment.
@@ -772,7 +774,7 @@ class Local(Representation, FromString, ToString):
 
     @classmethod
     def from_string(cls: Type[L], string: str) -> L:
-        """Parses a [`Local`][versions.segments.Local] from `string`.
+        """Parses a [`Local`][versions.segments.Local] segment from `string`.
 
         Arguments:
             string: The string to parse.
@@ -783,9 +785,9 @@ class Local(Representation, FromString, ToString):
         return cls.from_iterable(map(local_part, split_separators(string)))
 
     def to_string(self) -> str:
-        """Converts a [`Local`][versions.segments.Local] to its string representation.
+        """Converts a [`Local`][versions.segments.Local] segment to its string representation.
 
         Returns:
-            The local string.
+            The local segment string.
         """
         return concat_dot(map(str, self.parts))

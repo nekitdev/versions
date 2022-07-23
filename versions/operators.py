@@ -82,7 +82,7 @@ def next_caret_breaking(version: V) -> V:
 
     This function is slightly convoluted due to handling `0.x.y` versions.
 
-    See [`Version.next_breaking`][versions.version.Version.next_breaking] for more information.
+    See [`next_breaking`][versions.version.Version.next_breaking] for more information.
 
     Example:
         ```python
@@ -135,13 +135,13 @@ def next_tilde_equal_breaking(version: V) -> V:
 def next_tilde_breaking(version: V) -> V:
     """Returns the next breaking version according to the *tilde* (`~`) strategy.
 
-    This function simply bumps the minor part of the version
+    This function simply bumps the minor part of the release
     if it is present, otherwise the major part is bumped.
 
     Example:
         ```python
         >>> from versions import next_tilde_equal_breaking, parse_version
-        >>> version = parse_version("2.0.0")
+        >>> version = parse_version("2.1.0")
         >>> version
         <Version (2.1.0)>
         >>> next_tilde_breaking(version)
@@ -165,18 +165,19 @@ def next_wildcard_breaking(version: V) -> Optional[V]:
 
     There are three cases to handle:
 
-    - If the wildcard is used within the `pre` part of the version,
-      next breaking version has the same release with `pre` part removed.
+    - If the wildcard is used within the *pre-release* tag of the version,
+      next breaking version has the same release with *pre-release* tag removed.
       For example, `x.y.z-rc.*` is bumped to `x.y.z`.
 
-    - If the wildcard is used within the `post` part of the version,
+    - If the wildcard is used within the *post-release* tag of the version,
       next breaking version has the last part of the release bumped.
       For instance, `x.y.z-post.*` is bumped to `x.y.z'`, where `z' = z + 1`.
 
     - Otherwise, the second to last part of the release is bumped.
       For example, `x.y.*` is bumped to `x.y'.0`, where `y' = y + 1`.
 
-    Note that this function returns [`None`][None] if the given version is `*`.
+    Note:
+        This function returns [`None`][None] if the given version is `*`.
 
     Example:
         ```python
@@ -246,7 +247,7 @@ def matches_caret(version: Version, against: Version) -> bool:
 
     Arguments:
         version: The version to check.
-        against: The version to check `version` against.
+        against: The version to check the `version` against.
 
     Returns:
         Whether the `version` matches `against`.
@@ -265,7 +266,7 @@ def matches_tilde_equal(version: Version, against: Version) -> bool:
 
     Arguments:
         version: The version to check.
-        against: The version to check `version` against.
+        against: The version to check the `version` against.
 
     Returns:
         Whether the `version` matches `against`.
@@ -284,7 +285,7 @@ def matches_tilde(version: Version, against: Version) -> bool:
 
     Arguments:
         version: The version to check.
-        against: The version to check `version` against.
+        against: The version to check the `version` against.
 
     Returns:
         Whether the `version` matches `against`.
@@ -303,7 +304,7 @@ def matches_equal(version: Version, against: Version) -> bool:
 
     Arguments:
         version: The version to check.
-        against: The version to check `version` against.
+        against: The version to check the `version` against.
 
     Returns:
         Whether the `version` matches `against`.
@@ -322,7 +323,7 @@ def matches_not_equal(version: Version, against: Version) -> bool:
 
     Arguments:
         version: The version to check.
-        against: The version to check `version` against.
+        against: The version to check the `version` against.
 
     Returns:
         Whether the `version` matches `against`.
@@ -341,7 +342,7 @@ def matches_less(version: Version, against: Version) -> bool:
 
     Arguments:
         version: The version to check.
-        against: The version to check `version` against.
+        against: The version to check the `version` against.
 
     Returns:
         Whether the `version` matches `against`.
@@ -361,7 +362,7 @@ def matches_less_or_equal(version: Version, against: Version) -> bool:
 
     Arguments:
         version: The version to check.
-        against: The version to check `version` against.
+        against: The version to check the `version` against.
 
     Returns:
         Whether the `version` matches `against`.
@@ -380,7 +381,7 @@ def matches_greater(version: Version, against: Version) -> bool:
 
     Arguments:
         version: The version to check.
-        against: The version to check `version` against.
+        against: The version to check the `version` against.
 
     Returns:
         Whether the `version` matches `against`.
@@ -399,7 +400,7 @@ def matches_greater_or_equal(version: Version, against: Version) -> bool:
 
     Arguments:
         version: The version to check.
-        against: The version to check `version` against.
+        against: The version to check the `version` against.
 
     Returns:
         Whether the `version` matches `against`.
@@ -420,7 +421,7 @@ def matches_wildcard_equal(version: Version, against: Version) -> bool:
 
     Arguments:
         version: The version to check.
-        against: The version to check `version` against.
+        against: The version to check the `version` against.
 
     Returns:
         Whether the `version` matches `against`.
@@ -446,7 +447,7 @@ def matches_wildcard_not_equal(version: Version, against: Version) -> bool:
 
     Arguments:
         version: The version to check.
-        against: The version to check `version` against.
+        against: The version to check the `version` against.
 
     Returns:
         Whether the `version` matches `against`.
@@ -455,7 +456,7 @@ def matches_wildcard_not_equal(version: Version, against: Version) -> bool:
 
 
 def translate_caret(version: Version) -> VersionRange:
-    """Translate the `version` into a version set according to the *caret* (`^`) strategy.
+    """Translates the `version` into a version set according to the *caret* (`^`) strategy.
 
     This function returns the `[version, next_caret_breaking(version))` range.
 
@@ -474,7 +475,7 @@ def translate_caret(version: Version) -> VersionRange:
 
 
 def translate_tilde_equal(version: Version) -> VersionRange:
-    """Translate the `version` into a version set according to the *tilde-equal* (`~=`) strategy.
+    """Translates the `version` into a version set according to the *tilde-equal* (`~=`) strategy.
 
     This function returns the `[version, next_tilde_equal_breaking(version))` range.
 
@@ -493,7 +494,7 @@ def translate_tilde_equal(version: Version) -> VersionRange:
 
 
 def translate_tilde(version: Version) -> VersionRange:
-    """Translate the `version` into a version set according to the *tilde* (`~`) strategy.
+    """Translates the `version` into a version set according to the *tilde* (`~`) strategy.
 
     This function returns the `[version, next_tilde_breaking(version))` range.
 
@@ -512,7 +513,7 @@ def translate_tilde(version: Version) -> VersionRange:
 
 
 def translate_equal(version: Version) -> VersionPoint:
-    """Translate the `version` into a version set according to the *equal* (`==`) strategy.
+    """Translates the `version` into a version set according to the *equal* (`==`) strategy.
 
     This function returns the `[version, version]` range (aka `version` point).
 
@@ -526,7 +527,7 @@ def translate_equal(version: Version) -> VersionPoint:
 
 
 def translate_not_equal(version: Version) -> VersionUnion:
-    """Translate the `version` into a version set according to the *not-equal* (`!=`) strategy.
+    """Translates the `version` into a version set according to the *not-equal* (`!=`) strategy.
 
     This function returns the `(e, version) | (version, w)` union.
 
@@ -545,7 +546,7 @@ def translate_not_equal(version: Version) -> VersionUnion:
 
 
 def translate_less(version: Version) -> VersionRange:
-    """Translate the `version` into a version set according to the *less* (`<`) strategy.
+    """Translates the `version` into a version set according to the *less* (`<`) strategy.
 
     This function returns the `(e, version)` range.
 
@@ -559,7 +560,7 @@ def translate_less(version: Version) -> VersionRange:
 
 
 def translate_less_or_equal(version: Version) -> VersionRange:
-    """Translate the `version` into a version set according to the *less-or-equal* (`<=`) strategy.
+    """Translates the `version` into a version set according to the *less-or-equal* (`<=`) strategy.
 
     This function returns the `(e, version]` range.
 
@@ -573,7 +574,7 @@ def translate_less_or_equal(version: Version) -> VersionRange:
 
 
 def translate_greater(version: Version) -> VersionRange:
-    """Translate the `version` into a version set according to the *greater* (`>`) strategy.
+    """Translates the `version` into a version set according to the *greater* (`>`) strategy.
 
     This function returns the `(version, w)` range.
 
@@ -587,7 +588,7 @@ def translate_greater(version: Version) -> VersionRange:
 
 
 def translate_greater_or_equal(version: Version) -> VersionRange:
-    """Translate the `version` into a version set according to
+    """Translates the `version` into a version set according to
     the *greater-or-equal* (`>=`) strategy.
 
     This function returns the `[version, w)` range.
@@ -602,11 +603,11 @@ def translate_greater_or_equal(version: Version) -> VersionRange:
 
 
 def translate_wildcard_equal(version: Version) -> VersionRange:
-    """Translate the `version` into a version set according to
+    """Translates the `version` into a version set according to
     the *wildcard-equal* (`== *`) strategy.
 
     This function returns the `[version, next_wildcard_version(version))` range in most cases,
-    except for when the version is `*`: then the `(e, w)` range is returned.
+    except for when the version is `*`; then the `(e, w)` range is returned.
 
     Arguments:
         version: The version to translate.
@@ -623,11 +624,11 @@ def translate_wildcard_equal(version: Version) -> VersionRange:
 
 
 def translate_wildcard_not_equal(version: Version) -> Union[VersionEmpty, VersionUnion]:
-    """Translate the `version` into a version set according to
+    """Translates the `version` into a version set according to
     the *wildcard-not-equal* (`!= *`) strategy.
 
     This function returns the `(e, version) | (next_wildcard_breaking(version), w)` union
-    in most cases, except for when the version is `*`: then the `{}` empty set is returned.
+    in most cases, except for when the version is `*`; then the `{}` empty set is returned.
 
     Arguments:
         version: The version to translate.
@@ -664,7 +665,7 @@ class OperatorType(Enum):
     WILDCARD_NOT_EQUAL = WILDCARD_NOT_EQUAL
 
     def is_wildcard(self) -> bool:
-        """Checks if the operator is *wildcard*.
+        """Checks if an operator is *wildcard*.
 
         Returns:
             Whether the operator is *wildcard*.
@@ -672,7 +673,7 @@ class OperatorType(Enum):
         return self in WILDCARD
 
     def is_unary(self) -> bool:
-        """Checks if the operator is *unary*.
+        """Checks if an operator is *unary*.
 
         Returns:
             Whether the operator is *unary*.
@@ -714,10 +715,13 @@ class Operator(Representation, ToString):
     """Represents operators."""
 
     type: OperatorType
+    """The operator type."""
+
     version: Version
+    """The operator version."""
 
     def is_unary(self) -> bool:
-        """Checks if the operator is *unary*.
+        """Checks if an operator is *unary*.
 
         Returns:
             Whether the operator is *unary*.
@@ -725,7 +729,7 @@ class Operator(Representation, ToString):
         return self.type.is_unary()
 
     def is_wildcard(self) -> bool:
-        """Checks if the operator is *wildcard*.
+        """Checks if an operator is *wildcard*.
 
         Returns:
             Whether the operator is *wildcard*.
@@ -752,10 +756,15 @@ class Operator(Representation, ToString):
 
     @property
     def partial_matches(self) -> PartialMatches:
-        """The partial `matches` function with `self.version` as the `version`."""
+        """The partial `matches` function with `self.version` as the `against` version."""
         return partial_matches(self.matches, self.version)
 
     def to_string(self) -> str:
+        """Converts an [`Operator`][versions.operators.Operator] to its string representation.
+
+        Returns:
+            The operator string.
+        """
         string = self.version.to_string()
 
         if self.is_wildcard():
@@ -767,6 +776,11 @@ class Operator(Representation, ToString):
         return concat_space_args(self.type.string, string)
 
     def to_short_string(self) -> str:
+        """Converts an [`Operator`][versions.operators.Operator] to its *short* string representation.
+
+        Returns:
+            The *short* operator string.
+        """
         string = self.version.to_short_string()
 
         if self.is_wildcard():

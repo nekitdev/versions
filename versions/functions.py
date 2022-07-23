@@ -32,7 +32,7 @@ def parse_version(string: str, version_type: Type[Version] = Version) -> Version
         version_type: The version type to use in conversion.
 
     Returns:
-        A newly parsed [`Version`][versions.version.Version].
+        The newly parsed [`Version`][versions.version.Version].
     """
     return VersionParser(version_type).parse(string)
 
@@ -45,7 +45,7 @@ def parse_specifier(string: str, version_type: Type[Version] = Version) -> Speci
         version_type: The version type to use in conversion.
 
     Returns:
-        A newly parsed [`Specifier`][versions.specifiers.Specifier].
+        The newly parsed [`Specifier`][versions.specifiers.Specifier].
     """
     return SpecifierParser(VersionParser(version_type)).parse(string)
 
@@ -58,6 +58,6 @@ def parse_version_set(string: str, version_type: Type[Version] = Version) -> Ver
         version_type: The version type to use in conversion.
 
     Returns:
-        A newly parsed [`Specifier`][versions.specifiers.Specifier].
+        The newly parsed [`VersionSet`][versions.version_sets.VersionSet].
     """
     return VersionSetParser(SpecifierParser(VersionParser(version_type))).parse(string)
