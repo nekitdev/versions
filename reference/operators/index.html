@@ -2195,7 +2195,7 @@
     <span class="k">if</span> <span class="n">index</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">version</span><span class="o">.</span><span class="n">to_stable</span><span class="p">()</span><span class="o">.</span><span class="n">next_at</span><span class="p">(</span><span class="n">index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
-    <span class="k">raise</span> <span class="ne">ValueError</span>  <span class="c1"># TODO: message?</span>
+    <span class="k">raise</span> <span class="n">InternalError</span>  <span class="c1"># TODO: message?  # pragma: no cover</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -4255,7 +4255,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
     <span class="k">if</span> <span class="n">is_version_union</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">result</span>
 
-    <span class="k">raise</span> <span class="n">InternalError</span>  <span class="c1"># TODO: message?</span>
+    <span class="k">raise</span> <span class="n">InternalError</span>  <span class="c1"># TODO: message?  # pragma: no cover</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -4818,7 +4818,7 @@ in most cases, except for when the version is <code>*</code>; then the <code>{}<
     <span class="k">if</span> <span class="n">is_version_empty</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="ow">or</span> <span class="n">is_version_union</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">result</span>
 
-    <span class="k">raise</span> <span class="n">InternalError</span>  <span class="c1"># TODO: message?</span>
+    <span class="k">raise</span> <span class="n">InternalError</span>  <span class="c1"># TODO: message?  # pragma: no cover</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
