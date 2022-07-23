@@ -1052,7 +1052,7 @@ to <a class="autorefs autorefs-internal" href="../specifiers/#versions.specifier
 
         <span class="n">specifier</span> <span class="o">=</span> <span class="n">min_specifier</span> <span class="ow">or</span> <span class="n">max_specifier</span>
 
-        <span class="k">if</span> <span class="n">specifier</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">specifier</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
             <span class="k">raise</span> <span class="n">InternalError</span>  <span class="c1"># TODO: message?</span>
 
         <span class="k">return</span> <span class="n">specifier</span>
