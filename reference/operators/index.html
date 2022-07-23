@@ -448,6 +448,20 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#versions.operators.Operator.type" class="md-nav__link">
+    type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versions.operators.Operator.version" class="md-nav__link">
+    version
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#versions.operators.Operator.is_unary" class="md-nav__link">
     is_unary()
   </a>
@@ -478,6 +492,20 @@
           <li class="md-nav__item">
   <a href="#versions.operators.Operator.partial_matches" class="md-nav__link">
     partial_matches()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versions.operators.Operator.to_string" class="md-nav__link">
+    to_string()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versions.operators.Operator.to_short_string" class="md-nav__link">
+    to_short_string()
   </a>
   
 </li>
@@ -825,6 +853,20 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#versions.operators.Operator.type" class="md-nav__link">
+    type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versions.operators.Operator.version" class="md-nav__link">
+    version
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#versions.operators.Operator.is_unary" class="md-nav__link">
     is_unary()
   </a>
@@ -855,6 +897,20 @@
           <li class="md-nav__item">
   <a href="#versions.operators.Operator.partial_matches" class="md-nav__link">
     partial_matches()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versions.operators.Operator.to_string" class="md-nav__link">
+    to_string()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versions.operators.Operator.to_short_string" class="md-nav__link">
+    to_short_string()
   </a>
   
 </li>
@@ -1104,8 +1160,7 @@
 
         <details class="quote">
           <summary>Source code in <code>versions/operators.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">646</span>
-<span class="normal">647</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">647</span>
 <span class="normal">648</span>
 <span class="normal">649</span>
 <span class="normal">650</span>
@@ -1142,7 +1197,8 @@
 <span class="normal">681</span>
 <span class="normal">682</span>
 <span class="normal">683</span>
-<span class="normal">684</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">OperatorType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="normal">684</span>
+<span class="normal">685</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">OperatorType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Represents operator types.&quot;&quot;&quot;</span>
 
     <span class="c1"># official constraints</span>
@@ -1163,7 +1219,7 @@
     <span class="n">WILDCARD_NOT_EQUAL</span> <span class="o">=</span> <span class="n">WILDCARD_NOT_EQUAL</span>
 
     <span class="k">def</span> <span class="nf">is_wildcard</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Checks if the operator is *wildcard*.</span>
+        <span class="sd">&quot;&quot;&quot;Checks if an operator is *wildcard*.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Whether the operator is *wildcard*.</span>
@@ -1171,7 +1227,7 @@
         <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="n">WILDCARD</span>
 
     <span class="k">def</span> <span class="nf">is_unary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Checks if the operator is *unary*.</span>
+        <span class="sd">&quot;&quot;&quot;Checks if an operator is *unary*.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Whether the operator is *unary*.</span>
@@ -1208,7 +1264,7 @@
 
   <div class="doc doc-contents ">
   
-      <p>Checks if the operator is <em>wildcard</em>.</p>
+      <p>Checks if an operator is <em>wildcard</em>.</p>
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -1230,14 +1286,14 @@
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">666</span>
-<span class="normal">667</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">667</span>
 <span class="normal">668</span>
 <span class="normal">669</span>
 <span class="normal">670</span>
 <span class="normal">671</span>
-<span class="normal">672</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_wildcard</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Checks if the operator is *wildcard*.</span>
+<span class="normal">672</span>
+<span class="normal">673</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_wildcard</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Checks if an operator is *wildcard*.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Whether the operator is *wildcard*.</span>
@@ -1261,7 +1317,7 @@
 
   <div class="doc doc-contents ">
   
-      <p>Checks if the operator is <em>unary</em>.</p>
+      <p>Checks if an operator is <em>unary</em>.</p>
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -1283,14 +1339,14 @@
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">674</span>
-<span class="normal">675</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">675</span>
 <span class="normal">676</span>
 <span class="normal">677</span>
 <span class="normal">678</span>
 <span class="normal">679</span>
-<span class="normal">680</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_unary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Checks if the operator is *unary*.</span>
+<span class="normal">680</span>
+<span class="normal">681</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_unary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Checks if an operator is *unary*.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Whether the operator is *unary*.</span>
@@ -1331,8 +1387,7 @@
 
         <details class="quote">
           <summary>Source code in <code>versions/operators.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">712</span>
-<span class="normal">713</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">713</span>
 <span class="normal">714</span>
 <span class="normal">715</span>
 <span class="normal">716</span>
@@ -1394,15 +1449,32 @@
 <span class="normal">772</span>
 <span class="normal">773</span>
 <span class="normal">774</span>
-<span class="normal">775</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="normal">775</span>
+<span class="normal">776</span>
+<span class="normal">777</span>
+<span class="normal">778</span>
+<span class="normal">779</span>
+<span class="normal">780</span>
+<span class="normal">781</span>
+<span class="normal">782</span>
+<span class="normal">783</span>
+<span class="normal">784</span>
+<span class="normal">785</span>
+<span class="normal">786</span>
+<span class="normal">787</span>
+<span class="normal">788</span>
+<span class="normal">789</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">Operator</span><span class="p">(</span><span class="n">Representation</span><span class="p">,</span> <span class="n">ToString</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Represents operators.&quot;&quot;&quot;</span>
 
     <span class="nb">type</span><span class="p">:</span> <span class="n">OperatorType</span>
+    <span class="sd">&quot;&quot;&quot;The operator type.&quot;&quot;&quot;</span>
+
     <span class="n">version</span><span class="p">:</span> <span class="n">Version</span>
+    <span class="sd">&quot;&quot;&quot;The operator version.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">is_unary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Checks if the operator is *unary*.</span>
+        <span class="sd">&quot;&quot;&quot;Checks if an operator is *unary*.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Whether the operator is *unary*.</span>
@@ -1410,7 +1482,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">is_unary</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">is_wildcard</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Checks if the operator is *wildcard*.</span>
+        <span class="sd">&quot;&quot;&quot;Checks if an operator is *wildcard*.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Whether the operator is *wildcard*.</span>
@@ -1437,10 +1509,15 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">partial_matches</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PartialMatches</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The partial `matches` function with `self.version` as the `version`.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;The partial `matches` function with `self.version` as the `against` version.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">partial_matches</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matches</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Converts an [`Operator`][versions.operators.Operator] to its string representation.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The operator string.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">string</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_wildcard</span><span class="p">():</span>
@@ -1452,6 +1529,11 @@
         <span class="k">return</span> <span class="n">concat_space_args</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">string</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">to_short_string</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Converts an [`Operator`][versions.operators.Operator] to its *short* string representation.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The *short* operator string.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">string</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">to_short_string</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_wildcard</span><span class="p">():</span>
@@ -1471,6 +1553,48 @@
 
 
 
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="versions.operators.Operator.type" class="doc doc-heading">
+<code class="highlight language-python"><span class="nb">type</span><span class="p">:</span> <span class="n">OperatorType</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>The operator type.</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="versions.operators.Operator.version" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">version</span><span class="p">:</span> <span class="n">Version</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>The operator version.</p>
+  </div>
+
+</div>
+
 
 
 <div class="doc doc-object doc-function">
@@ -1485,7 +1609,7 @@
 
   <div class="doc doc-contents ">
   
-      <p>Checks if the operator is <em>unary</em>.</p>
+      <p>Checks if an operator is <em>unary</em>.</p>
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -1507,14 +1631,14 @@
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">719</span>
-<span class="normal">720</span>
-<span class="normal">721</span>
-<span class="normal">722</span>
-<span class="normal">723</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">723</span>
 <span class="normal">724</span>
-<span class="normal">725</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_unary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Checks if the operator is *unary*.</span>
+<span class="normal">725</span>
+<span class="normal">726</span>
+<span class="normal">727</span>
+<span class="normal">728</span>
+<span class="normal">729</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_unary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Checks if an operator is *unary*.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Whether the operator is *unary*.</span>
@@ -1538,7 +1662,7 @@
 
   <div class="doc doc-contents ">
   
-      <p>Checks if the operator is <em>wildcard</em>.</p>
+      <p>Checks if an operator is <em>wildcard</em>.</p>
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -1560,14 +1684,14 @@
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">727</span>
-<span class="normal">728</span>
-<span class="normal">729</span>
-<span class="normal">730</span>
-<span class="normal">731</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">731</span>
 <span class="normal">732</span>
-<span class="normal">733</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_wildcard</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Checks if the operator is *wildcard*.</span>
+<span class="normal">733</span>
+<span class="normal">734</span>
+<span class="normal">735</span>
+<span class="normal">736</span>
+<span class="normal">737</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_wildcard</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Checks if an operator is *wildcard*.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Whether the operator is *wildcard*.</span>
@@ -1599,12 +1723,12 @@
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">739</span>
-<span class="normal">740</span>
-<span class="normal">741</span>
-<span class="normal">742</span>
-<span class="normal">743</span>
-<span class="normal">744</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">743</span>
+<span class="normal">744</span>
+<span class="normal">745</span>
+<span class="normal">746</span>
+<span class="normal">747</span>
+<span class="normal">748</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
 <span class="k">def</span> <span class="nf">matches</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Matches</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;The `matches` function representing the operator.&quot;&quot;&quot;</span>
     <span class="n">matches</span><span class="p">,</span> <span class="n">_translate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matches_and_translate</span>
@@ -1636,12 +1760,12 @@
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">746</span>
-<span class="normal">747</span>
-<span class="normal">748</span>
-<span class="normal">749</span>
-<span class="normal">750</span>
-<span class="normal">751</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">750</span>
+<span class="normal">751</span>
+<span class="normal">752</span>
+<span class="normal">753</span>
+<span class="normal">754</span>
+<span class="normal">755</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
 <span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Translate</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;The `translate` function representing the operator.&quot;&quot;&quot;</span>
     <span class="n">_matches</span><span class="p">,</span> <span class="n">translate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matches_and_translate</span>
@@ -1669,17 +1793,149 @@
 
   <div class="doc doc-contents ">
   
-      <p>The partial <code>matches</code> function with <code>self.version</code> as the <code>version</code>.</p>
+      <p>The partial <code>matches</code> function with <code>self.version</code> as the <code>against</code> version.</p>
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">753</span>
-<span class="normal">754</span>
-<span class="normal">755</span>
-<span class="normal">756</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">757</span>
+<span class="normal">758</span>
+<span class="normal">759</span>
+<span class="normal">760</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
 <span class="k">def</span> <span class="nf">partial_matches</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PartialMatches</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;The partial `matches` function with `self.version` as the `version`.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;The partial `matches` function with `self.version` as the `against` version.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">partial_matches</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matches</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="versions.operators.Operator.to_string" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">to_string</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Converts an <a class="autorefs autorefs-internal" href="#versions.operators.Operator"><code>Operator</code></a> to its string representation.</p>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+          </td>
+          <td><p>The operator string.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+      <details class="quote">
+        <summary>Source code in <code>versions/operators.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">762</span>
+<span class="normal">763</span>
+<span class="normal">764</span>
+<span class="normal">765</span>
+<span class="normal">766</span>
+<span class="normal">767</span>
+<span class="normal">768</span>
+<span class="normal">769</span>
+<span class="normal">770</span>
+<span class="normal">771</span>
+<span class="normal">772</span>
+<span class="normal">773</span>
+<span class="normal">774</span>
+<span class="normal">775</span>
+<span class="normal">776</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Converts an [`Operator`][versions.operators.Operator] to its string representation.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The operator string.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_wildcard</span><span class="p">():</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="n">wildcard_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_unary</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">concat_empty_args</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">string</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">concat_space_args</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">string</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="versions.operators.Operator.to_short_string" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">to_short_string</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Converts an <a class="autorefs autorefs-internal" href="#versions.operators.Operator"><code>Operator</code></a> to its <em>short</em> string representation.</p>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+          </td>
+          <td><p>The <em>short</em> operator string.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+      <details class="quote">
+        <summary>Source code in <code>versions/operators.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">778</span>
+<span class="normal">779</span>
+<span class="normal">780</span>
+<span class="normal">781</span>
+<span class="normal">782</span>
+<span class="normal">783</span>
+<span class="normal">784</span>
+<span class="normal">785</span>
+<span class="normal">786</span>
+<span class="normal">787</span>
+<span class="normal">788</span>
+<span class="normal">789</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_short_string</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Converts an [`Operator`][versions.operators.Operator] to its *short* string representation.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The *short* operator string.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">to_short_string</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_wildcard</span><span class="p">():</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="n">wildcard_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">concat_empty_args</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">string</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -1709,7 +1965,7 @@
   
       <p>Returns the next breaking version according to the <em>caret</em> (<code>^</code>) strategy.</p>
 <p>This function is slightly convoluted due to handling <code>0.x.y</code> versions.</p>
-<p>See <a class="autorefs autorefs-internal" href="../version/#versions.version.Version.next_breaking"><code>Version.next_breaking</code></a> for more information.</p>
+<p>See <a class="autorefs autorefs-internal" href="../version/#versions.version.Version.next_breaking"><code>next_breaking</code></a> for more information.</p>
 
 <details class="example">
   <summary>Example</summary>
@@ -1793,7 +2049,7 @@
 
 <span class="sd">    This function is slightly convoluted due to handling `0.x.y` versions.</span>
 
-<span class="sd">    See [`Version.next_breaking`][versions.version.Version.next_breaking] for more information.</span>
+<span class="sd">    See [`next_breaking`][versions.version.Version.next_breaking] for more information.</span>
 
 <span class="sd">    Example:</span>
 <span class="sd">        ```python</span>
@@ -1959,13 +2215,13 @@
   <div class="doc doc-contents ">
   
       <p>Returns the next breaking version according to the <em>tilde</em> (<code>~</code>) strategy.</p>
-<p>This function simply bumps the minor part of the version
+<p>This function simply bumps the minor part of the release
 if it is present, otherwise the major part is bumped.</p>
 
 <details class="example">
   <summary>Example</summary>
   <div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">versions</span> <span class="kn">import</span> <span class="n">next_tilde_equal_breaking</span><span class="p">,</span> <span class="n">parse_version</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">version</span> <span class="o">=</span> <span class="n">parse_version</span><span class="p">(</span><span class="s2">&quot;2.0.0&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">version</span> <span class="o">=</span> <span class="n">parse_version</span><span class="p">(</span><span class="s2">&quot;2.1.0&quot;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">version</span>
 <span class="o">&lt;</span><span class="n">Version</span> <span class="p">(</span><span class="mf">2.1.0</span><span class="p">)</span><span class="o">&gt;</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">next_tilde_breaking</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
@@ -2044,13 +2300,13 @@ if it is present, otherwise the major part is bumped.</p>
 <span class="normal">160</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">next_tilde_breaking</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">V</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Returns the next breaking version according to the *tilde* (`~`) strategy.</span>
 
-<span class="sd">    This function simply bumps the minor part of the version</span>
+<span class="sd">    This function simply bumps the minor part of the release</span>
 <span class="sd">    if it is present, otherwise the major part is bumped.</span>
 
 <span class="sd">    Example:</span>
 <span class="sd">        ```python</span>
 <span class="sd">        &gt;&gt;&gt; from versions import next_tilde_equal_breaking, parse_version</span>
-<span class="sd">        &gt;&gt;&gt; version = parse_version(&quot;2.0.0&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; version = parse_version(&quot;2.1.0&quot;)</span>
 <span class="sd">        &gt;&gt;&gt; version</span>
 <span class="sd">        &lt;Version (2.1.0)&gt;</span>
 <span class="sd">        &gt;&gt;&gt; next_tilde_breaking(version)</span>
@@ -2089,12 +2345,12 @@ if it is present, otherwise the major part is bumped.</p>
 <p>There are three cases to handle:</p>
 <ul>
 <li>
-<p>If the wildcard is used within the <code>pre</code> part of the version,
-  next breaking version has the same release with <code>pre</code> part removed.
+<p>If the wildcard is used within the <em>pre-release</em> tag of the version,
+  next breaking version has the same release with <em>pre-release</em> tag removed.
   For example, <code>x.y.z-rc.*</code> is bumped to <code>x.y.z</code>.</p>
 </li>
 <li>
-<p>If the wildcard is used within the <code>post</code> part of the version,
+<p>If the wildcard is used within the <em>post-release</em> tag of the version,
   next breaking version has the last part of the release bumped.
   For instance, <code>x.y.z-post.*</code> is bumped to <code>x.y.z'</code>, where <code>z' = z + 1</code>.</p>
 </li>
@@ -2103,8 +2359,11 @@ if it is present, otherwise the major part is bumped.</p>
   For example, <code>x.y.*</code> is bumped to <code>x.y'.0</code>, where <code>y' = y + 1</code>.</p>
 </li>
 </ul>
-<p>Note that this function returns <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a> if the given version is <code>*</code>.</p>
 
+<details class="note">
+  <summary>Note</summary>
+  <p>This function returns <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a> if the given version is <code>*</code>.</p>
+</details>
 <details class="example">
   <summary>Example</summary>
   <div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">versions</span> <span class="kn">import</span> <span class="n">next_wildcard_breaking</span><span class="p">,</span> <span class="n">parse_version</span>
@@ -2225,23 +2484,25 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 <span class="normal">215</span>
 <span class="normal">216</span>
 <span class="normal">217</span>
-<span class="normal">218</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">next_wildcard_breaking</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">V</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">V</span><span class="p">]:</span>
+<span class="normal">218</span>
+<span class="normal">219</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">next_wildcard_breaking</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">V</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">V</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Returns the next breaking version according to the *wildcard* (`*`) strategy.</span>
 
 <span class="sd">    There are three cases to handle:</span>
 
-<span class="sd">    - If the wildcard is used within the `pre` part of the version,</span>
-<span class="sd">      next breaking version has the same release with `pre` part removed.</span>
+<span class="sd">    - If the wildcard is used within the *pre-release* tag of the version,</span>
+<span class="sd">      next breaking version has the same release with *pre-release* tag removed.</span>
 <span class="sd">      For example, `x.y.z-rc.*` is bumped to `x.y.z`.</span>
 
-<span class="sd">    - If the wildcard is used within the `post` part of the version,</span>
+<span class="sd">    - If the wildcard is used within the *post-release* tag of the version,</span>
 <span class="sd">      next breaking version has the last part of the release bumped.</span>
 <span class="sd">      For instance, `x.y.z-post.*` is bumped to `x.y.z&#39;`, where `z&#39; = z + 1`.</span>
 
 <span class="sd">    - Otherwise, the second to last part of the release is bumped.</span>
 <span class="sd">      For example, `x.y.*` is bumped to `x.y&#39;.0`, where `y&#39; = y + 1`.</span>
 
-<span class="sd">    Note that this function returns [`None`][None] if the given version is `*`.</span>
+<span class="sd">    Note:</span>
+<span class="sd">        This function returns [`None`][None] if the given version is `*`.</span>
 
 <span class="sd">    Example:</span>
 <span class="sd">        ```python</span>
@@ -2330,7 +2591,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
           <td>
                 <code><a class="autorefs autorefs-internal" title="versions.version.Version" href="../version/#versions.version.Version">Version</a></code>
           </td>
-          <td><p>The version to check <code>version</code> against.</p></td>
+          <td><p>The version to check the <code>version</code> against.</p></td>
           <td>
               <em>required</em>
           </td>
@@ -2358,8 +2619,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">238</span>
-<span class="normal">239</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">239</span>
 <span class="normal">240</span>
 <span class="normal">241</span>
 <span class="normal">242</span>
@@ -2374,7 +2634,8 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 <span class="normal">251</span>
 <span class="normal">252</span>
 <span class="normal">253</span>
-<span class="normal">254</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_caret</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="normal">254</span>
+<span class="normal">255</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_caret</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Checks if the `version` matches the *caret* (`^`) specification.</span>
 
 <span class="sd">    This is functionally the same as:</span>
@@ -2385,7 +2646,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        version: The version to check.</span>
-<span class="sd">        against: The version to check `version` against.</span>
+<span class="sd">        against: The version to check the `version` against.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Whether the `version` matches `against`.</span>
@@ -2440,7 +2701,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
           <td>
                 <code><a class="autorefs autorefs-internal" title="versions.version.Version" href="../version/#versions.version.Version">Version</a></code>
           </td>
-          <td><p>The version to check <code>version</code> against.</p></td>
+          <td><p>The version to check the <code>version</code> against.</p></td>
           <td>
               <em>required</em>
           </td>
@@ -2468,8 +2729,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">257</span>
-<span class="normal">258</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">258</span>
 <span class="normal">259</span>
 <span class="normal">260</span>
 <span class="normal">261</span>
@@ -2484,7 +2744,8 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 <span class="normal">270</span>
 <span class="normal">271</span>
 <span class="normal">272</span>
-<span class="normal">273</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_tilde_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="normal">273</span>
+<span class="normal">274</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_tilde_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Checks if the `version` matches the *tilde-equal* (`~=`) specification.</span>
 
 <span class="sd">    This is functionally the same as:</span>
@@ -2495,7 +2756,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        version: The version to check.</span>
-<span class="sd">        against: The version to check `version` against.</span>
+<span class="sd">        against: The version to check the `version` against.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Whether the `version` matches `against`.</span>
@@ -2550,7 +2811,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
           <td>
                 <code><a class="autorefs autorefs-internal" title="versions.version.Version" href="../version/#versions.version.Version">Version</a></code>
           </td>
-          <td><p>The version to check <code>version</code> against.</p></td>
+          <td><p>The version to check the <code>version</code> against.</p></td>
           <td>
               <em>required</em>
           </td>
@@ -2578,8 +2839,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">276</span>
-<span class="normal">277</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">277</span>
 <span class="normal">278</span>
 <span class="normal">279</span>
 <span class="normal">280</span>
@@ -2594,7 +2854,8 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 <span class="normal">289</span>
 <span class="normal">290</span>
 <span class="normal">291</span>
-<span class="normal">292</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_tilde</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="normal">292</span>
+<span class="normal">293</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_tilde</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Checks if the `version` matches the *tilde* (`~`) specification.</span>
 
 <span class="sd">    This is functionally the same as:</span>
@@ -2605,7 +2866,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        version: The version to check.</span>
-<span class="sd">        against: The version to check `version` against.</span>
+<span class="sd">        against: The version to check the `version` against.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Whether the `version` matches `against`.</span>
@@ -2660,7 +2921,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
           <td>
                 <code><a class="autorefs autorefs-internal" title="versions.version.Version" href="../version/#versions.version.Version">Version</a></code>
           </td>
-          <td><p>The version to check <code>version</code> against.</p></td>
+          <td><p>The version to check the <code>version</code> against.</p></td>
           <td>
               <em>required</em>
           </td>
@@ -2688,8 +2949,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">295</span>
-<span class="normal">296</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">296</span>
 <span class="normal">297</span>
 <span class="normal">298</span>
 <span class="normal">299</span>
@@ -2704,7 +2964,8 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 <span class="normal">308</span>
 <span class="normal">309</span>
 <span class="normal">310</span>
-<span class="normal">311</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="normal">311</span>
+<span class="normal">312</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Checks if the `version` matches the *equal* (`==`) specification.</span>
 
 <span class="sd">    This is functionally the same as:</span>
@@ -2715,7 +2976,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        version: The version to check.</span>
-<span class="sd">        against: The version to check `version` against.</span>
+<span class="sd">        against: The version to check the `version` against.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Whether the `version` matches `against`.</span>
@@ -2770,7 +3031,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
           <td>
                 <code><a class="autorefs autorefs-internal" title="versions.version.Version" href="../version/#versions.version.Version">Version</a></code>
           </td>
-          <td><p>The version to check <code>version</code> against.</p></td>
+          <td><p>The version to check the <code>version</code> against.</p></td>
           <td>
               <em>required</em>
           </td>
@@ -2798,8 +3059,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">314</span>
-<span class="normal">315</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">315</span>
 <span class="normal">316</span>
 <span class="normal">317</span>
 <span class="normal">318</span>
@@ -2814,7 +3074,8 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 <span class="normal">327</span>
 <span class="normal">328</span>
 <span class="normal">329</span>
-<span class="normal">330</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_not_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="normal">330</span>
+<span class="normal">331</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_not_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Checks if the `version` matches the *not-equal* (`!=`) specification.</span>
 
 <span class="sd">    This is functionally the same as:</span>
@@ -2825,7 +3086,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        version: The version to check.</span>
-<span class="sd">        against: The version to check `version` against.</span>
+<span class="sd">        against: The version to check the `version` against.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Whether the `version` matches `against`.</span>
@@ -2880,7 +3141,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
           <td>
                 <code><a class="autorefs autorefs-internal" title="versions.version.Version" href="../version/#versions.version.Version">Version</a></code>
           </td>
-          <td><p>The version to check <code>version</code> against.</p></td>
+          <td><p>The version to check the <code>version</code> against.</p></td>
           <td>
               <em>required</em>
           </td>
@@ -2908,8 +3169,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">333</span>
-<span class="normal">334</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">334</span>
 <span class="normal">335</span>
 <span class="normal">336</span>
 <span class="normal">337</span>
@@ -2925,7 +3185,8 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 <span class="normal">347</span>
 <span class="normal">348</span>
 <span class="normal">349</span>
-<span class="normal">350</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_less</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="normal">350</span>
+<span class="normal">351</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_less</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Checks if the `version` matches the *less* (`&lt;`) specification.</span>
 
 <span class="sd">    This is functionally the same as:</span>
@@ -2936,7 +3197,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        version: The version to check.</span>
-<span class="sd">        against: The version to check `version` against.</span>
+<span class="sd">        against: The version to check the `version` against.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Whether the `version` matches `against`.</span>
@@ -2992,7 +3253,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
           <td>
                 <code><a class="autorefs autorefs-internal" title="versions.version.Version" href="../version/#versions.version.Version">Version</a></code>
           </td>
-          <td><p>The version to check <code>version</code> against.</p></td>
+          <td><p>The version to check the <code>version</code> against.</p></td>
           <td>
               <em>required</em>
           </td>
@@ -3020,8 +3281,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">353</span>
-<span class="normal">354</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">354</span>
 <span class="normal">355</span>
 <span class="normal">356</span>
 <span class="normal">357</span>
@@ -3036,7 +3296,8 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 <span class="normal">366</span>
 <span class="normal">367</span>
 <span class="normal">368</span>
-<span class="normal">369</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_less_or_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="normal">369</span>
+<span class="normal">370</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_less_or_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Checks if the `version` matches the *less-or-equal* (`&lt;=`) specification.</span>
 
 <span class="sd">    This is functionally the same as:</span>
@@ -3047,7 +3308,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        version: The version to check.</span>
-<span class="sd">        against: The version to check `version` against.</span>
+<span class="sd">        against: The version to check the `version` against.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Whether the `version` matches `against`.</span>
@@ -3102,7 +3363,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
           <td>
                 <code><a class="autorefs autorefs-internal" title="versions.version.Version" href="../version/#versions.version.Version">Version</a></code>
           </td>
-          <td><p>The version to check <code>version</code> against.</p></td>
+          <td><p>The version to check the <code>version</code> against.</p></td>
           <td>
               <em>required</em>
           </td>
@@ -3130,8 +3391,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">372</span>
-<span class="normal">373</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">373</span>
 <span class="normal">374</span>
 <span class="normal">375</span>
 <span class="normal">376</span>
@@ -3146,7 +3406,8 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 <span class="normal">385</span>
 <span class="normal">386</span>
 <span class="normal">387</span>
-<span class="normal">388</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_greater</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="normal">388</span>
+<span class="normal">389</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_greater</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Checks if the `version` matches the *greater* (`&gt;`) specification.</span>
 
 <span class="sd">    This is functionally the same as:</span>
@@ -3157,7 +3418,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        version: The version to check.</span>
-<span class="sd">        against: The version to check `version` against.</span>
+<span class="sd">        against: The version to check the `version` against.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Whether the `version` matches `against`.</span>
@@ -3212,7 +3473,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
           <td>
                 <code><a class="autorefs autorefs-internal" title="versions.version.Version" href="../version/#versions.version.Version">Version</a></code>
           </td>
-          <td><p>The version to check <code>version</code> against.</p></td>
+          <td><p>The version to check the <code>version</code> against.</p></td>
           <td>
               <em>required</em>
           </td>
@@ -3240,8 +3501,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">391</span>
-<span class="normal">392</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">392</span>
 <span class="normal">393</span>
 <span class="normal">394</span>
 <span class="normal">395</span>
@@ -3256,7 +3516,8 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 <span class="normal">404</span>
 <span class="normal">405</span>
 <span class="normal">406</span>
-<span class="normal">407</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_greater_or_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="normal">407</span>
+<span class="normal">408</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_greater_or_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Checks if the `version` matches the *greater-or-equal* (`&gt;=`) specification.</span>
 
 <span class="sd">    This is functionally the same as:</span>
@@ -3267,7 +3528,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        version: The version to check.</span>
-<span class="sd">        against: The version to check `version` against.</span>
+<span class="sd">        against: The version to check the `version` against.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Whether the `version` matches `against`.</span>
@@ -3324,7 +3585,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
           <td>
                 <code><a class="autorefs autorefs-internal" title="versions.version.Version" href="../version/#versions.version.Version">Version</a></code>
           </td>
-          <td><p>The version to check <code>version</code> against.</p></td>
+          <td><p>The version to check the <code>version</code> against.</p></td>
           <td>
               <em>required</em>
           </td>
@@ -3352,8 +3613,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">410</span>
-<span class="normal">411</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">411</span>
 <span class="normal">412</span>
 <span class="normal">413</span>
 <span class="normal">414</span>
@@ -3375,7 +3635,8 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 <span class="normal">430</span>
 <span class="normal">431</span>
 <span class="normal">432</span>
-<span class="normal">433</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_wildcard_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="normal">433</span>
+<span class="normal">434</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_wildcard_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Checks if the `version` matches the *wildcard-equal* (`== *`) specification.</span>
 
 <span class="sd">    This is functionally the same as:</span>
@@ -3388,7 +3649,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        version: The version to check.</span>
-<span class="sd">        against: The version to check `version` against.</span>
+<span class="sd">        against: The version to check the `version` against.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Whether the `version` matches `against`.</span>
@@ -3450,7 +3711,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
           <td>
                 <code><a class="autorefs autorefs-internal" title="versions.version.Version" href="../version/#versions.version.Version">Version</a></code>
           </td>
-          <td><p>The version to check <code>version</code> against.</p></td>
+          <td><p>The version to check the <code>version</code> against.</p></td>
           <td>
               <em>required</em>
           </td>
@@ -3478,8 +3739,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">436</span>
-<span class="normal">437</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">437</span>
 <span class="normal">438</span>
 <span class="normal">439</span>
 <span class="normal">440</span>
@@ -3496,7 +3756,8 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 <span class="normal">451</span>
 <span class="normal">452</span>
 <span class="normal">453</span>
-<span class="normal">454</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_wildcard_not_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="normal">454</span>
+<span class="normal">455</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">matches_wildcard_not_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Checks if the `version` matches the *wildcard-not-equal* (`!= *`) specification.</span>
 
 <span class="sd">    This is functionally the same as:</span>
@@ -3509,7 +3770,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        version: The version to check.</span>
-<span class="sd">        against: The version to check `version` against.</span>
+<span class="sd">        against: The version to check the `version` against.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Whether the `version` matches `against`.</span>
@@ -3533,7 +3794,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
   <div class="doc doc-contents ">
   
-      <p>Translate the <code>version</code> into a version set according to the <em>caret</em> (<code>^</code>) strategy.</p>
+      <p>Translates the <code>version</code> into a version set according to the <em>caret</em> (<code>^</code>) strategy.</p>
 <p>This function returns the <code>[version, next_caret_breaking(version))</code> range.</p>
 
   <p><strong>Parameters:</strong></p>
@@ -3580,8 +3841,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">457</span>
-<span class="normal">458</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">458</span>
 <span class="normal">459</span>
 <span class="normal">460</span>
 <span class="normal">461</span>
@@ -3596,8 +3856,9 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 <span class="normal">470</span>
 <span class="normal">471</span>
 <span class="normal">472</span>
-<span class="normal">473</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_caret</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Translate the `version` into a version set according to the *caret* (`^`) strategy.</span>
+<span class="normal">473</span>
+<span class="normal">474</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_caret</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Translates the `version` into a version set according to the *caret* (`^`) strategy.</span>
 
 <span class="sd">    This function returns the `[version, next_caret_breaking(version))` range.</span>
 
@@ -3631,7 +3892,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
   <div class="doc doc-contents ">
   
-      <p>Translate the <code>version</code> into a version set according to the <em>tilde-equal</em> (<code>~=</code>) strategy.</p>
+      <p>Translates the <code>version</code> into a version set according to the <em>tilde-equal</em> (<code>~=</code>) strategy.</p>
 <p>This function returns the <code>[version, next_tilde_equal_breaking(version))</code> range.</p>
 
   <p><strong>Parameters:</strong></p>
@@ -3678,8 +3939,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">476</span>
-<span class="normal">477</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">477</span>
 <span class="normal">478</span>
 <span class="normal">479</span>
 <span class="normal">480</span>
@@ -3694,8 +3954,9 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 <span class="normal">489</span>
 <span class="normal">490</span>
 <span class="normal">491</span>
-<span class="normal">492</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_tilde_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Translate the `version` into a version set according to the *tilde-equal* (`~=`) strategy.</span>
+<span class="normal">492</span>
+<span class="normal">493</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_tilde_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Translates the `version` into a version set according to the *tilde-equal* (`~=`) strategy.</span>
 
 <span class="sd">    This function returns the `[version, next_tilde_equal_breaking(version))` range.</span>
 
@@ -3729,7 +3990,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
   <div class="doc doc-contents ">
   
-      <p>Translate the <code>version</code> into a version set according to the <em>tilde</em> (<code>~</code>) strategy.</p>
+      <p>Translates the <code>version</code> into a version set according to the <em>tilde</em> (<code>~</code>) strategy.</p>
 <p>This function returns the <code>[version, next_tilde_breaking(version))</code> range.</p>
 
   <p><strong>Parameters:</strong></p>
@@ -3776,8 +4037,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">495</span>
-<span class="normal">496</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">496</span>
 <span class="normal">497</span>
 <span class="normal">498</span>
 <span class="normal">499</span>
@@ -3792,8 +4052,9 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 <span class="normal">508</span>
 <span class="normal">509</span>
 <span class="normal">510</span>
-<span class="normal">511</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_tilde</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Translate the `version` into a version set according to the *tilde* (`~`) strategy.</span>
+<span class="normal">511</span>
+<span class="normal">512</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_tilde</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Translates the `version` into a version set according to the *tilde* (`~`) strategy.</span>
 
 <span class="sd">    This function returns the `[version, next_tilde_breaking(version))` range.</span>
 
@@ -3827,7 +4088,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
   <div class="doc doc-contents ">
   
-      <p>Translate the <code>version</code> into a version set according to the <em>equal</em> (<code>==</code>) strategy.</p>
+      <p>Translates the <code>version</code> into a version set according to the <em>equal</em> (<code>==</code>) strategy.</p>
 <p>This function returns the <code>[version, version]</code> range (aka <code>version</code> point).</p>
 
   <p><strong>Parameters:</strong></p>
@@ -3874,8 +4135,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">514</span>
-<span class="normal">515</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">515</span>
 <span class="normal">516</span>
 <span class="normal">517</span>
 <span class="normal">518</span>
@@ -3885,8 +4145,9 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 <span class="normal">522</span>
 <span class="normal">523</span>
 <span class="normal">524</span>
-<span class="normal">525</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionPoint</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Translate the `version` into a version set according to the *equal* (`==`) strategy.</span>
+<span class="normal">525</span>
+<span class="normal">526</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionPoint</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Translates the `version` into a version set according to the *equal* (`==`) strategy.</span>
 
 <span class="sd">    This function returns the `[version, version]` range (aka `version` point).</span>
 
@@ -3915,7 +4176,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
   <div class="doc doc-contents ">
   
-      <p>Translate the <code>version</code> into a version set according to the <em>not-equal</em> (<code>!=</code>) strategy.</p>
+      <p>Translates the <code>version</code> into a version set according to the <em>not-equal</em> (<code>!=</code>) strategy.</p>
 <p>This function returns the <code>(e, version) | (version, w)</code> union.</p>
 
   <p><strong>Parameters:</strong></p>
@@ -3962,8 +4223,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">528</span>
-<span class="normal">529</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">529</span>
 <span class="normal">530</span>
 <span class="normal">531</span>
 <span class="normal">532</span>
@@ -3978,8 +4238,9 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 <span class="normal">541</span>
 <span class="normal">542</span>
 <span class="normal">543</span>
-<span class="normal">544</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_not_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionUnion</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Translate the `version` into a version set according to the *not-equal* (`!=`) strategy.</span>
+<span class="normal">544</span>
+<span class="normal">545</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_not_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionUnion</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Translates the `version` into a version set according to the *not-equal* (`!=`) strategy.</span>
 
 <span class="sd">    This function returns the `(e, version) | (version, w)` union.</span>
 
@@ -4013,7 +4274,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
   <div class="doc doc-contents ">
   
-      <p>Translate the <code>version</code> into a version set according to the <em>less</em> (<code>&lt;</code>) strategy.</p>
+      <p>Translates the <code>version</code> into a version set according to the <em>less</em> (<code>&lt;</code>) strategy.</p>
 <p>This function returns the <code>(e, version)</code> range.</p>
 
   <p><strong>Parameters:</strong></p>
@@ -4060,8 +4321,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">547</span>
-<span class="normal">548</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">548</span>
 <span class="normal">549</span>
 <span class="normal">550</span>
 <span class="normal">551</span>
@@ -4071,8 +4331,9 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 <span class="normal">555</span>
 <span class="normal">556</span>
 <span class="normal">557</span>
-<span class="normal">558</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_less</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Translate the `version` into a version set according to the *less* (`&lt;`) strategy.</span>
+<span class="normal">558</span>
+<span class="normal">559</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_less</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Translates the `version` into a version set according to the *less* (`&lt;`) strategy.</span>
 
 <span class="sd">    This function returns the `(e, version)` range.</span>
 
@@ -4101,7 +4362,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
   <div class="doc doc-contents ">
   
-      <p>Translate the <code>version</code> into a version set according to the <em>less-or-equal</em> (<code>&lt;=</code>) strategy.</p>
+      <p>Translates the <code>version</code> into a version set according to the <em>less-or-equal</em> (<code>&lt;=</code>) strategy.</p>
 <p>This function returns the <code>(e, version]</code> range.</p>
 
   <p><strong>Parameters:</strong></p>
@@ -4148,8 +4409,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">561</span>
-<span class="normal">562</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">562</span>
 <span class="normal">563</span>
 <span class="normal">564</span>
 <span class="normal">565</span>
@@ -4159,8 +4419,9 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 <span class="normal">569</span>
 <span class="normal">570</span>
 <span class="normal">571</span>
-<span class="normal">572</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_less_or_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Translate the `version` into a version set according to the *less-or-equal* (`&lt;=`) strategy.</span>
+<span class="normal">572</span>
+<span class="normal">573</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_less_or_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Translates the `version` into a version set according to the *less-or-equal* (`&lt;=`) strategy.</span>
 
 <span class="sd">    This function returns the `(e, version]` range.</span>
 
@@ -4189,7 +4450,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
   <div class="doc doc-contents ">
   
-      <p>Translate the <code>version</code> into a version set according to the <em>greater</em> (<code>&gt;</code>) strategy.</p>
+      <p>Translates the <code>version</code> into a version set according to the <em>greater</em> (<code>&gt;</code>) strategy.</p>
 <p>This function returns the <code>(version, w)</code> range.</p>
 
   <p><strong>Parameters:</strong></p>
@@ -4236,8 +4497,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">575</span>
-<span class="normal">576</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">576</span>
 <span class="normal">577</span>
 <span class="normal">578</span>
 <span class="normal">579</span>
@@ -4247,8 +4507,9 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 <span class="normal">583</span>
 <span class="normal">584</span>
 <span class="normal">585</span>
-<span class="normal">586</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_greater</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Translate the `version` into a version set according to the *greater* (`&gt;`) strategy.</span>
+<span class="normal">586</span>
+<span class="normal">587</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_greater</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Translates the `version` into a version set according to the *greater* (`&gt;`) strategy.</span>
 
 <span class="sd">    This function returns the `(version, w)` range.</span>
 
@@ -4277,7 +4538,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
   <div class="doc doc-contents ">
   
-      <p>Translate the <code>version</code> into a version set according to
+      <p>Translates the <code>version</code> into a version set according to
 the <em>greater-or-equal</em> (<code>&gt;=</code>) strategy.</p>
 <p>This function returns the <code>[version, w)</code> range.</p>
 
@@ -4325,8 +4586,7 @@ the <em>greater-or-equal</em> (<code>&gt;=</code>) strategy.</p>
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">589</span>
-<span class="normal">590</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">590</span>
 <span class="normal">591</span>
 <span class="normal">592</span>
 <span class="normal">593</span>
@@ -4337,8 +4597,9 @@ the <em>greater-or-equal</em> (<code>&gt;=</code>) strategy.</p>
 <span class="normal">598</span>
 <span class="normal">599</span>
 <span class="normal">600</span>
-<span class="normal">601</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_greater_or_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Translate the `version` into a version set according to</span>
+<span class="normal">601</span>
+<span class="normal">602</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_greater_or_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Translates the `version` into a version set according to</span>
 <span class="sd">    the *greater-or-equal* (`&gt;=`) strategy.</span>
 
 <span class="sd">    This function returns the `[version, w)` range.</span>
@@ -4368,10 +4629,10 @@ the <em>greater-or-equal</em> (<code>&gt;=</code>) strategy.</p>
 
   <div class="doc doc-contents ">
   
-      <p>Translate the <code>version</code> into a version set according to
+      <p>Translates the <code>version</code> into a version set according to
 the <em>wildcard-equal</em> (<code>== *</code>) strategy.</p>
 <p>This function returns the <code>[version, next_wildcard_version(version))</code> range in most cases,
-except for when the version is <code>*</code>: then the <code>(e, w)</code> range is returned.</p>
+except for when the version is <code>*</code>; then the <code>(e, w)</code> range is returned.</p>
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -4417,8 +4678,7 @@ except for when the version is <code>*</code>: then the <code>(e, w)</code> rang
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">604</span>
-<span class="normal">605</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">605</span>
 <span class="normal">606</span>
 <span class="normal">607</span>
 <span class="normal">608</span>
@@ -4435,12 +4695,13 @@ except for when the version is <code>*</code>: then the <code>(e, w)</code> rang
 <span class="normal">619</span>
 <span class="normal">620</span>
 <span class="normal">621</span>
-<span class="normal">622</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_wildcard_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Translate the `version` into a version set according to</span>
+<span class="normal">622</span>
+<span class="normal">623</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_wildcard_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Translates the `version` into a version set according to</span>
 <span class="sd">    the *wildcard-equal* (`== *`) strategy.</span>
 
 <span class="sd">    This function returns the `[version, next_wildcard_version(version))` range in most cases,</span>
-<span class="sd">    except for when the version is `*`: then the `(e, w)` range is returned.</span>
+<span class="sd">    except for when the version is `*`; then the `(e, w)` range is returned.</span>
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        version: The version to translate.</span>
@@ -4472,10 +4733,10 @@ except for when the version is <code>*</code>: then the <code>(e, w)</code> rang
 
   <div class="doc doc-contents ">
   
-      <p>Translate the <code>version</code> into a version set according to
+      <p>Translates the <code>version</code> into a version set according to
 the <em>wildcard-not-equal</em> (<code>!= *</code>) strategy.</p>
 <p>This function returns the <code>(e, version) | (next_wildcard_breaking(version), w)</code> union
-in most cases, except for when the version is <code>*</code>: then the <code>{}</code> empty set is returned.</p>
+in most cases, except for when the version is <code>*</code>; then the <code>{}</code> empty set is returned.</p>
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -4521,8 +4782,7 @@ in most cases, except for when the version is <code>*</code>: then the <code>{}<
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">625</span>
-<span class="normal">626</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">626</span>
 <span class="normal">627</span>
 <span class="normal">628</span>
 <span class="normal">629</span>
@@ -4539,12 +4799,13 @@ in most cases, except for when the version is <code>*</code>: then the <code>{}<
 <span class="normal">640</span>
 <span class="normal">641</span>
 <span class="normal">642</span>
-<span class="normal">643</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_wildcard_not_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">VersionEmpty</span><span class="p">,</span> <span class="n">VersionUnion</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Translate the `version` into a version set according to</span>
+<span class="normal">643</span>
+<span class="normal">644</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">translate_wildcard_not_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">VersionEmpty</span><span class="p">,</span> <span class="n">VersionUnion</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Translates the `version` into a version set according to</span>
 <span class="sd">    the *wildcard-not-equal* (`!= *`) strategy.</span>
 
 <span class="sd">    This function returns the `(e, version) | (next_wildcard_breaking(version), w)` union</span>
-<span class="sd">    in most cases, except for when the version is `*`: then the `{}` empty set is returned.</span>
+<span class="sd">    in most cases, except for when the version is `*`; then the `{}` empty set is returned.</span>
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        version: The version to translate.</span>

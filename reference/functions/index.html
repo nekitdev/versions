@@ -673,7 +673,7 @@
           <td>
                 <code><a class="autorefs autorefs-internal" title="versions.version.Version" href="../version/#versions.version.Version">Version</a></code>
           </td>
-          <td><p>A newly parsed <a class="autorefs autorefs-internal" href="../version/#versions.version.Version"><code>Version</code></a>.</p></td>
+          <td><p>The newly parsed <a class="autorefs autorefs-internal" href="../version/#versions.version.Version"><code>Version</code></a>.</p></td>
         </tr>
     </tbody>
   </table>
@@ -698,7 +698,7 @@
 <span class="sd">        version_type: The version type to use in conversion.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        A newly parsed [`Version`][versions.version.Version].</span>
+<span class="sd">        The newly parsed [`Version`][versions.version.Version].</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">VersionParser</span><span class="p">(</span><span class="n">version_type</span><span class="p">)</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -768,7 +768,7 @@
           <td>
                 <code><a class="autorefs autorefs-internal" title="versions.specifiers.Specifier" href="../specifiers/#versions.specifiers.Specifier">Specifier</a></code>
           </td>
-          <td><p>A newly parsed <a class="autorefs autorefs-internal" href="../specifiers/#versions.specifiers.Specifier"><code>Specifier</code></a>.</p></td>
+          <td><p>The newly parsed <a class="autorefs autorefs-internal" href="../specifiers/#versions.specifiers.Specifier"><code>Specifier</code></a>.</p></td>
         </tr>
     </tbody>
   </table>
@@ -793,7 +793,7 @@
 <span class="sd">        version_type: The version type to use in conversion.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        A newly parsed [`Specifier`][versions.specifiers.Specifier].</span>
+<span class="sd">        The newly parsed [`Specifier`][versions.specifiers.Specifier].</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">SpecifierParser</span><span class="p">(</span><span class="n">VersionParser</span><span class="p">(</span><span class="n">version_type</span><span class="p">))</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -863,7 +863,7 @@
           <td>
                 <code><a class="autorefs autorefs-internal" title="versions.version_sets.VersionSet" href="../version_sets/#versions.version_sets.VersionSet">VersionSet</a></code>
           </td>
-          <td><p>A newly parsed <a class="autorefs autorefs-internal" href="../specifiers/#versions.specifiers.Specifier"><code>Specifier</code></a>.</p></td>
+          <td><p>The newly parsed <a class="autorefs autorefs-internal" href="../version_sets/#versions.version_sets.VersionSet"><code>VersionSet</code></a>.</p></td>
         </tr>
     </tbody>
   </table>
@@ -888,7 +888,7 @@
 <span class="sd">        version_type: The version type to use in conversion.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        A newly parsed [`Specifier`][versions.specifiers.Specifier].</span>
+<span class="sd">        The newly parsed [`VersionSet`][versions.version_sets.VersionSet].</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">VersionSetParser</span><span class="p">(</span><span class="n">SpecifierParser</span><span class="p">(</span><span class="n">VersionParser</span><span class="p">(</span><span class="n">version_type</span><span class="p">)))</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
