@@ -152,7 +152,7 @@ S = TypeVar("S", bound="VersionSet")
 
 @frozen(repr=False, order=False)
 class VersionEmpty(Representation, ToString, VersionSetProtocol):
-    """Represents version empty sets (`{}`)."""
+    """Represents empty version sets (`{}`)."""
 
     def is_empty(self) -> Literal[True]:
         return True
