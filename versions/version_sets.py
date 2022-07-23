@@ -883,7 +883,7 @@ class VersionUnion(Representation, ToString, Specification):
                     if is_version_item(result):
                         set_last(merged, result)
 
-                    else:
+                    else:  # pragma: no cover
                         raise InternalError  # TODO: message?
 
                 else:

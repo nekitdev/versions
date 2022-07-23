@@ -135,7 +135,7 @@ def version_set_to_specifier(version_set: VersionSet) -> Specifier:
 
         specifier = min_specifier or max_specifier
 
-        if specifier is None:
+        if specifier is None:  # pragma: no cover
             raise InternalError  # TODO: message?
 
         return specifier

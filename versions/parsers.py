@@ -70,8 +70,8 @@ class TagParser(Parser[T]):
 
         phase = match.group(PHASE)
 
-        if phase is None:
-            phase = tag_type.DEFAULT_PHASE
+        if phase is None:  # pragma: no cover
+            raise InternalError  # TODO: message?
 
         value_string = match.group(VALUE)
 
@@ -179,14 +179,14 @@ class SpecifierParser(Generic[V], Parser[Specifier]):
 
         operator_string = match.group(OPERATOR_NAME)
 
-        if operator_string is None:
+        if operator_string is None:  # pragma: no cover
             raise InternalError  # TODO: message?
 
         operator_type = OperatorType(operator_string)
 
         version_string = match.group(VERSION_NAME)
 
-        if version_string is None:
+        if version_string is None:  # pragma: no cover
             raise InternalError  # TODO: message?
 
         version = self.version_parser.parse(version_string)
@@ -209,7 +209,7 @@ class SpecifierParser(Generic[V], Parser[Specifier]):
 
         version_string = match.group(VERSION_NAME)
 
-        if version_string is None:
+        if version_string is None:  # pragma: no cover
             raise InternalError  # TODO: message?
 
         version = self.version_parser.parse(version_string)
@@ -232,7 +232,7 @@ class SpecifierParser(Generic[V], Parser[Specifier]):
 
         version_string = match.group(VERSION_NAME)
 
-        if version_string is None:
+        if version_string is None:  # pragma: no cover
             raise InternalError  # TODO: message?
 
         version = self.version_parser.parse(version_string.replace(STAR, ZERO))
