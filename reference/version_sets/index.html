@@ -682,7 +682,7 @@
         Bases: <code><span title="versions.representation.Representation">Representation</span></code>, <code><span title="versions.string.ToString">ToString</span></code>, <code><span title="versions.version_sets.VersionSetProtocol">VersionSetProtocol</span></code></p>
 
   
-      <p>Represents version empty sets (<code>{}</code>).</p>
+      <p>Represents empty version sets (<code>{}</code>).</p>
 
 
         <details class="quote">
@@ -724,7 +724,7 @@
 <span class="normal">187</span>
 <span class="normal">188</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">VersionEmpty</span><span class="p">(</span><span class="n">Representation</span><span class="p">,</span> <span class="n">ToString</span><span class="p">,</span> <span class="n">VersionSetProtocol</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Represents version empty sets (`{}`).&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Represents empty version sets (`{}`).&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">True</span><span class="p">]:</span>
         <span class="k">return</span> <span class="kc">True</span>
