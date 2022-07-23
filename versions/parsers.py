@@ -30,7 +30,7 @@ from versions.patterns import (
     VERSION_NAME,
     WILDCARD_SPECIFICATION,
 )
-from versions.specifiers import Specifier, SpecifierAll, SpecifierAny, SpecifierSingle
+from versions.specifiers import Specifier, SpecifierAll, SpecifierAny, SpecifierFalse, SpecifierSingle, SpecifierTrue
 from versions.string import clear_whitespace, split_comma, split_pipes
 from versions.typing import get_name
 from versions.version_sets import VersionSet
@@ -65,7 +65,7 @@ class TagParser(Parser[T]):
 
         match = TAG.fullmatch(string)
 
-        if match is None:
+        if match is None:  # pragma: no cover
             raise ParseTagError(CAN_NOT_PARSE.format(string, get_name(tag_type)))
 
         phase = match.group(PHASE)
@@ -202,7 +202,7 @@ class SpecifierParser(Generic[V], Parser[Specifier]):
         operator_string = match.group(OPERATOR_NAME)
 
         if operator_string is None:
-            operator_type = OperatorType.DOUBLE_EQUAL
+            operator_type = OperatorType.EQUAL
 
         else:
             operator_type = OperatorType(operator_string)
@@ -225,7 +225,7 @@ class SpecifierParser(Generic[V], Parser[Specifier]):
         operator_string = match.group(OPERATOR_NAME)
 
         if operator_string is None:
-            operator_type = OperatorType.WILDCARD_DOUBLE_EQUAL
+            operator_type = OperatorType.WILDCARD_EQUAL
 
         else:
             operator_type = OperatorType(operator_string + STAR)
@@ -234,6 +234,12 @@ class SpecifierParser(Generic[V], Parser[Specifier]):
 
         if version_string is None:  # pragma: no cover
             raise InternalError  # TODO: message?
+
+        if version_string == STAR:
+            if operator_type == OperatorType.WILDCARD_NOT_EQUAL:
+                return SpecifierFalse()
+
+            return SpecifierTrue()
 
         version = self.version_parser.parse(version_string.replace(STAR, ZERO))
 

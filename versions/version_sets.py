@@ -212,24 +212,6 @@ class VersionRangeProtocol(Protocol):
         return not self.include_max
 
     @property
-    def checked_min(self) -> Version:
-        min = self.min
-
-        if min is None:
-            raise ValueError  # TODO: message?
-
-        return min
-
-    @property
-    def checked_max(self) -> Version:
-        max = self.max
-
-        if max is None:
-            raise ValueError  # TODO: message?
-
-        return max
-
-    @property
     def comparable_min(self) -> Union[Version, NegativeInfinity]:
         min = self.min
 
@@ -618,7 +600,7 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
                 before = None
 
             elif self.min == version_set.min:
-                before = VersionPoint(self.checked_min)
+                before = VersionPoint(self.min)  # type: ignore
 
             else:
                 before = evolve(self, max=version_set.min, include_max=version_set.exclude_min)
@@ -629,7 +611,7 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
                 after = None
 
             elif self.max == version_set.max:
-                after = VersionPoint(self.checked_max)
+                after = VersionPoint(self.max)  # type: ignore
 
             else:
                 after = evolve(self, min=version_set.max, include_min=version_set.exclude_max)
