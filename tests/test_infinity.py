@@ -9,7 +9,7 @@ def test_negation() -> None:
 
 
 @given(strategies.integers())
-def test_infinity(value: int) -> None:
+def test_infinity(value: int) -> None:  # type: ignore
     assert infinity != value
     assert infinity > value
     assert infinity >= value
@@ -28,7 +28,7 @@ def test_infinity_with_infinity() -> None:
 
 
 @given(strategies.integers())
-def test_negative_infinity(value: int) -> None:
+def test_negative_infinity(value: int) -> None:  # type: ignore
     assert negative_infinity != value
     assert negative_infinity < value
     assert negative_infinity <= value
