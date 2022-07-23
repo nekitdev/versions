@@ -183,5 +183,5 @@ If you are interested in contributing to `versions`, make sure to take a look at
 [Test Badge]: https://github.com/nekitdev/versions/workflows/test/badge.svg
 [Coverage Badge]: https://codecov.io/gh/nekitdev/versions/branch/main/graph/badge.svg
 
-[versions.functions.parse_version]: https://nekitdev.github.io/versions/reference#wraps.parse_version
-[versions.functions.parse_version_set]: https://nekitdev.github.io/versions/reference#wraps.parse_version_set
+[versions.functions.parse_version]: https://nekitdev.github.io/versions/reference/functions#versions.functions.parse_version
+[versions.functions.parse_version_set]: https://nekitdev.github.io/versions/reference/functions#versions.functions.parse_version_set
