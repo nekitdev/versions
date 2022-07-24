@@ -268,7 +268,8 @@ def is_version_empty(item: Any) -> TypeGuard[VersionEmpty]:
     """Checks if an `item` is an instance of [`VersionEmpty`][versions.version_sets.VersionEmpty].
 
     Returns:
-        Whether an `item` is an instance of [`VersionEmpty`][versions.version_sets.VersionEmpty].
+        Whether the `item` provided is an instance
+        of [`VersionEmpty`][versions.version_sets.VersionEmpty].
     """
     return is_instance(item, VersionEmpty)
 
@@ -277,7 +278,8 @@ def is_version_point(item: Any) -> TypeGuard[VersionPoint]:
     """Checks if an `item` is an instance of [`VersionPoint`][versions.version_sets.VersionPoint].
 
     Returns:
-        Whether an `item` is an instance of [`VersionPoint`][versions.version_sets.VersionPoint].
+        Whether the `item` provided is an instance
+        of [`VersionPoint`][versions.version_sets.VersionPoint].
     """
     return is_instance(item, VersionPoint)
 
@@ -286,7 +288,8 @@ def is_version_range(item: Any) -> TypeGuard[VersionRange]:
     """Checks if an `item` is an instance of [`VersionRange`][versions.version_sets.VersionRange].
 
     Returns:
-        Whether an `item` is an instance of [`VersionRange`][versions.version_sets.VersionRange].
+        Whether the `item` provided is an instance
+        of [`VersionRange`][versions.version_sets.VersionRange].
     """
     return is_instance(item, VersionRange)
 
@@ -295,7 +298,8 @@ def is_version_union(item: Any) -> TypeGuard[VersionUnion]:
     """Checks if an `item` is an instance of [`VersionUnion`][versions.version_sets.VersionUnion].
 
     Returns:
-        Whether an `item` is an instance of [`VersionUnion`][versions.version_sets.VersionUnion].
+        Whether the `item` provided is an instance
+        of [`VersionUnion`][versions.version_sets.VersionUnion].
     """
     return is_instance(item, VersionUnion)
 
@@ -304,7 +308,8 @@ def is_version_item(item: Any) -> TypeGuard[VersionItem]:
     """Checks if an `item` is an instance of [`VersionItem`][versions.version_sets.VersionItem].
 
     Returns:
-        Whether an `item` is an instance of [`VersionItem`][versions.version_sets.VersionItem].
+        Whether the `item` provided is an instance
+        of [`VersionItem`][versions.version_sets.VersionItem].
     """
     return is_instance(item, VersionItemTypes)
 
@@ -313,7 +318,8 @@ def is_version_set(item: Any) -> TypeGuard[VersionSet]:
     """Checks if an `item` is an instance of [`VersionSet`][versions.version_sets.VersionSet].
 
     Returns:
-        Whether an `item` is an instance of [`VersionSet`][versions.version_sets.VersionSet].
+        Whether the `item` provided is an instance
+        of [`VersionSet`][versions.version_sets.VersionSet].
     """
     return is_instance(item, VersionSetTypes)
 

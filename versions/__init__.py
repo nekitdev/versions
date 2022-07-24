@@ -42,6 +42,12 @@ from versions.specifiers import (
     SpecifierFalse,
     SpecifierSingle,
     SpecifierTrue,
+    is_specifier,
+    is_specifier_all,
+    is_specifier_any,
+    is_specifier_false,
+    is_specifier_single,
+    is_specifier_true,
 )
 from versions.version import Version
 from versions.version_sets import (
@@ -51,6 +57,12 @@ from versions.version_sets import (
     VersionRange,
     VersionSet,
     VersionUnion,
+    is_version_empty,
+    is_version_item,
+    is_version_point,
+    is_version_range,
+    is_version_set,
+    is_version_union,
 )
 
 __all__ = (
@@ -76,6 +88,13 @@ __all__ = (
     "SpecifierSingle",
     "SpecifierAll",
     "SpecifierAny",
+    # specifiers type guards
+    "is_specifier",
+    "is_specifier_false",
+    "is_specifier_true",
+    "is_specifier_single",
+    "is_specifier_all",
+    "is_specifier_any",
     # version sets
     "VersionEmpty",
     "VersionPoint",
@@ -83,6 +102,13 @@ __all__ = (
     "VersionUnion",
     "VersionItem",
     "VersionSet",
+    # version sets type guards
+    "is_version_empty",
+    "is_version_point",
+    "is_version_range",
+    "is_version_union",
+    "is_version_item",
+    "is_version_set",
     # errors
     "ParseError",
     "ParseSpecificationError",
