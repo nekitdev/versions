@@ -45,7 +45,7 @@ from versions.functions import parse_version
             "1.0.0-post.0",
             "1.1.1-dev.1",
         ),
-    )
+    ),
 )
 def test_comparison(strings: Iterable[str]) -> None:
     versions = list(map(parse_version, strings))

@@ -1,6 +1,6 @@
 import pytest
-from versions.segments import DevTag, Epoch, Local, PostTag, PreTag
 
+from versions.segments import DevTag, Epoch, Local, PostTag, PreTag
 from versions.version import Version
 
 
@@ -279,9 +279,7 @@ def test_is_unstable(
     assert not v100build1.is_unstable()
 
 
-def test_is_stable(
-    v100dev1: Version, v100rc1: Version, v100: Version, v100build1: Version
-) -> None:
+def test_is_stable(v100dev1: Version, v100rc1: Version, v100: Version, v100build1: Version) -> None:
     assert not v100dev1.is_stable()
     assert not v100rc1.is_stable()
     assert v100.is_stable()

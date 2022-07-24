@@ -3,9 +3,7 @@ import pytest
 from versions.errors import ParseSpecificationError
 from versions.functions import parse_version_set
 from versions.version import Version
-from versions.version_sets import (
-    VersionEmpty, VersionPoint, VersionRange, VersionSet, VersionUnion
-)
+from versions.version_sets import VersionEmpty, VersionPoint, VersionRange, VersionSet, VersionUnion
 
 
 @pytest.mark.parametrize(
@@ -76,7 +74,7 @@ from versions.version_sets import (
                 min=Version.from_parts(7, 7),
                 max=Version.from_parts(7, 8),
                 include_min=True,
-                include_max=False
+                include_max=False,
             ),
         ),
         (

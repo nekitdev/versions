@@ -4,7 +4,12 @@ from versions.errors import ParseSpecificationError
 from versions.functions import parse_specifier
 from versions.operators import OperatorType
 from versions.specifiers import (
-    Specifier, SpecifierAll, SpecifierAny, SpecifierFalse, SpecifierSingle, SpecifierTrue
+    Specifier,
+    SpecifierAll,
+    SpecifierAny,
+    SpecifierFalse,
+    SpecifierSingle,
+    SpecifierTrue,
 )
 from versions.version import Version
 
@@ -41,7 +46,7 @@ from versions.version import Version
             SpecifierAny.of(
                 SpecifierSingle(OperatorType.CARET, Version.from_parts(2, 7)),
                 SpecifierSingle(OperatorType.CARET, Version.from_parts(3, 7)),
-            )
+            ),
         ),
     ),
 )

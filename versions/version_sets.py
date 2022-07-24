@@ -51,98 +51,270 @@ T = TypeVar("T")
 class VersionSetProtocol(Specification, Protocol):
     @abstractmethod
     def is_empty(self) -> bool:
+        """Checks if the set is *empty*.
+
+        Returns:
+            Whether the set is *empty*.
+        """
         ...
 
     @abstractmethod
     def is_universe(self) -> bool:
+        """Checks if the set is the *universal*.
+
+        Returns:
+            Whether the set is *universal*."""
         ...
 
     @abstractmethod
     def includes(self, version_set: VersionSet) -> bool:
+        """Checks if the set includes `version_set`.
+
+        Returns:
+            Whether the set includes `version_set`.
+        """
         ...
 
     @abstractmethod
     def intersects(self, version_set: VersionSet) -> bool:
+        """Checks if the set intersects `version_set`.
+
+        Returns:
+            Whether the set intersects `version_set`.
+        """
         ...
 
     @abstractmethod
     def contains(self, version: Version) -> bool:
+        """Checks if the set contains some `version`.
+
+        Returns:
+            Whether the `version` is contained within the set.
+        """
         ...
 
     def accepts(self, version: Version) -> bool:
+        """Checks if the set contains some `version`.
+
+        This is an implementation of the [`accepts`][versions.specification.Specification.accepts]
+        method of [`Specification`][versions.specification.Specification] protocol, equivalent to
+        [`self.contains(version)`][versions.version_sets.VersionSetProtocol.contains].
+
+        Returns:
+            Whether the `version` is accepted by the set.
+        """
         return self.contains(version)
 
     @abstractmethod
     def intersection(self, version_set: VersionSet) -> VersionSet:
+        """Computes the *intersection* of `self` and `version_set`.
+
+        Returns:
+            The set representing the *intersection* of `self` and `version_set`.
+        """
         ...
 
     @abstractmethod
     def union(self, version_set: VersionSet) -> VersionSet:
+        """Computes the *union* of `self` and `version_set`.
+
+        Returns:
+            The set representing the *union* of `self` and `version_set`.
+        """
         ...
 
     @abstractmethod
     def difference(self, version_set: VersionSet) -> VersionSet:
+        """Computes the *difference* of `self` and `version_set`.
+
+        Returns:
+            The set representing the *difference* of `self` and `version_set`.
+        """
         ...
 
     @abstractmethod
     def complement(self) -> VersionSet:
+        """Computes the *complement* of `self`.
+
+        Returns:
+            The set representing the *complement* of `self`.
+        """
         ...
 
     def symmetric_difference(self, version_set: VersionSet) -> VersionSet:
+        """Computes the *symmetric difference* of `self` and `version_set`.
+
+        Equivalent to [`self.union(version_set).difference(self.intersection(version_set))`]
+        [versions.version_sets.VersionSetProtocol.difference].
+
+        Returns:
+            The set representing the *symmetric difference* of `self` and `version_set`.
+        """
         return self.union(version_set).difference(self.intersection(version_set))
 
     def __contains__(self, version: Version) -> bool:
+        """Checks if the set contains some `version` via the *contains* (`in`) operation.
+
+        Returns:
+            Whether the `version` is contained within the set.
+        """
         return self.contains(version)
 
     def __and__(self, version_set: VersionSet) -> VersionSet:
+        """Computes the *intersection* of `self` and `version_set` via the *and* (`&`) operation.
+
+        This is equivalent to [`self.intersection(version_set)`]
+        [versions.version_sets.VersionSetProtocol.intersection].
+
+        Returns:
+            The set representing the *intersection* of `self` and `version_set`.
+        """
         return self.intersection(version_set)
 
     def __iand__(self, version_set: VersionSet) -> VersionSet:
+        """Computes the *intersection* of `self` and `version_set` via the *and-assign*
+        (`&=`) operation.
+
+        This is equivalent to [`self.intersection(version_set)`]
+        [versions.version_sets.VersionSetProtocol.intersection].
+
+        Returns:
+            The set representing the *intersection* of `self` and `version_set`.
+        """
         return self.intersection(version_set)
 
     def __or__(self, version_set: VersionSet) -> VersionSet:
+        """Computes the *union* of `self` and `version_set` via the *or* (`|`) operation.
+
+        This is equivalent to [`self.union(version_set)`]
+        [versions.version_sets.VersionSetProtocol.union].
+
+        Returns:
+            The set representing the *union* of `self` and `version_set`.
+        """
         return self.union(version_set)
 
     def __ior__(self, version_set: VersionSet) -> VersionSet:
+        """Computes the *union* of `self` and `version_set` via the *or-assign* (`|=`) operation.
+
+        This is equivalent to [`self.union(version_set)`]
+        [versions.version_sets.VersionSetProtocol.union].
+
+        Returns:
+            The set representing the *union* of `self` and `version_set`.
+        """
         return self.union(version_set)
 
     def __sub__(self, version_set: VersionSet) -> VersionSet:
+        """Computes the *difference* of `self` and `version_set` via the *sub* (`-`) operation.
+
+        This is equivalent to [`self.difference(version_set)`]
+        [versions.version_sets.VersionSetProtocol.difference].
+
+        Returns:
+            The set representing the *difference* of `self` and `version_set`.
+        """
         return self.difference(version_set)
 
     def __isub__(self, version_set: VersionSet) -> VersionSet:
+        """Computes the *difference* of `self` and `version_set` via the *sub-assign*
+        (`-=`) operation.
+
+        This is equivalent to [`self.difference(version_set)`]
+        [versions.version_sets.VersionSetProtocol.difference].
+
+        Returns:
+            The set representing the *difference* of `self` and `version_set`.
+        """
         return self.difference(version_set)
 
     def __xor__(self, version_set: VersionSet) -> VersionSet:
+        """Computes the *symmetric difference* of `self` and `version_set` via the *xor*
+        (`^`) operation.
+
+        This is equivalent to [`self.symmetric_difference(version_set)`]
+        [versions.version_sets.VersionSetProtocol.symmetric_difference].
+
+        Returns:
+            The set representing the *symmetric difference* of `self` and `version_set`.
+        """
         return self.symmetric_difference(version_set)
 
     def __ixor__(self, version_set: VersionSet) -> VersionSet:
+        """Computes the *symmetric difference* of `self` and `version_set` via the *xor-assign*
+        (`^=`) operation.
+
+        This is equivalent to [`self.symmetric_difference(version_set)`]
+        [versions.version_sets.VersionSetProtocol.symmetric_difference].
+
+        Returns:
+            The set representing the *symmetric difference* of `self` and `version_set`.
+        """
         return self.symmetric_difference(version_set)
 
     def __negate__(self) -> VersionSet:
+        """Computes the *complement* of `self` via the *negate* (`~`) operation.
+
+        This is equivalent to [`self.complement()`]
+        [versions.version_sets.VersionSetProtocol.complement].
+
+        Returns:
+            The set representing the *complement* of `self`.
+        """
         return self.complement()
 
 
 def is_version_empty(item: Any) -> TypeGuard[VersionEmpty]:
+    """Checks if an `item` is an instance of [`VersionEmpty`][versions.version_sets.VersionEmpty].
+
+    Returns:
+        Whether an `item` is an instance of [`VersionEmpty`][versions.version_sets.VersionEmpty].
+    """
     return is_instance(item, VersionEmpty)
 
 
 def is_version_point(item: Any) -> TypeGuard[VersionPoint]:
+    """Checks if an `item` is an instance of [`VersionPoint`][versions.version_sets.VersionPoint].
+
+    Returns:
+        Whether an `item` is an instance of [`VersionPoint`][versions.version_sets.VersionPoint].
+    """
     return is_instance(item, VersionPoint)
 
 
 def is_version_range(item: Any) -> TypeGuard[VersionRange]:
+    """Checks if an `item` is an instance of [`VersionRange`][versions.version_sets.VersionRange].
+
+    Returns:
+        Whether an `item` is an instance of [`VersionRange`][versions.version_sets.VersionRange].
+    """
     return is_instance(item, VersionRange)
 
 
 def is_version_union(item: Any) -> TypeGuard[VersionUnion]:
+    """Checks if an `item` is an instance of [`VersionUnion`][versions.version_sets.VersionUnion].
+
+    Returns:
+        Whether an `item` is an instance of [`VersionUnion`][versions.version_sets.VersionUnion].
+    """
     return is_instance(item, VersionUnion)
 
 
 def is_version_item(item: Any) -> TypeGuard[VersionItem]:
+    """Checks if an `item` is an instance of [`VersionItem`][versions.version_sets.VersionItem].
+
+    Returns:
+        Whether an `item` is an instance of [`VersionItem`][versions.version_sets.VersionItem].
+    """
     return is_instance(item, VersionItemTypes)
 
 
 def is_version_set(item: Any) -> TypeGuard[VersionSet]:
+    """Checks if an `item` is an instance of [`VersionSet`][versions.version_sets.VersionSet].
+
+    Returns:
+        Whether an `item` is an instance of [`VersionSet`][versions.version_sets.VersionSet].
+    """
     return is_instance(item, VersionSetTypes)
 
 
@@ -1119,9 +1291,14 @@ VersionSet = Union[VersionEmpty, VersionPoint, VersionRange, VersionUnion]
 - [`VersionRange`][versions.version_sets.VersionRange]
 - [`VersionUnion`][versions.version_sets.VersionUnion]
 """
+
 VersionSetTypes = (VersionEmpty, VersionPoint, VersionRange, VersionUnion)
 
 VersionItem = Union[VersionPoint, VersionRange]
+"""The union of [`VersionPoint`][versions.version_sets.VersionPoint]
+and [`VersionRange`][versions.version_sets.VersionRange].
+"""
+
 VersionItemTypes = (VersionPoint, VersionRange)
 
 VersionItems = DynamicTuple[VersionItem]

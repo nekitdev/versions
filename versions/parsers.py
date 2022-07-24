@@ -30,7 +30,14 @@ from versions.patterns import (
     VERSION_NAME,
     WILDCARD_SPECIFICATION,
 )
-from versions.specifiers import Specifier, SpecifierAll, SpecifierAny, SpecifierFalse, SpecifierSingle, SpecifierTrue
+from versions.specifiers import (
+    Specifier,
+    SpecifierAll,
+    SpecifierAny,
+    SpecifierFalse,
+    SpecifierSingle,
+    SpecifierTrue,
+)
 from versions.string import clear_whitespace, split_comma, split_pipes
 from versions.typing import get_name
 from versions.version_sets import VersionSet
