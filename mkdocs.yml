@@ -61,6 +61,7 @@ plugins:
         python:
           options:
             members_order: source
+            show_signature_annotations: true
 
           paths: [versions]
 
