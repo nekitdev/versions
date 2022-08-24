@@ -1257,7 +1257,7 @@
 
 
 <h3 id="versions.operators.OperatorType.is_wildcard" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_wildcard</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">is_wildcard</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -1310,7 +1310,7 @@
 
 
 <h3 id="versions.operators.OperatorType.is_unary" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_unary</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">is_unary</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -1602,7 +1602,7 @@
 
 
 <h3 id="versions.operators.Operator.is_unary" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_unary</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">is_unary</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -1655,7 +1655,7 @@
 
 
 <h3 id="versions.operators.Operator.is_wildcard" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_wildcard</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">is_wildcard</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -1708,7 +1708,7 @@
 
 
 <h3 id="versions.operators.Operator.matches" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">matches</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">matches</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Matches</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
@@ -1745,7 +1745,7 @@
 
 
 <h3 id="versions.operators.Operator.translate" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">translate</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">translate</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Translate</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
@@ -1782,7 +1782,7 @@
 
 
 <h3 id="versions.operators.Operator.partial_matches" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">partial_matches</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">partial_matches</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">PartialMatches</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
@@ -1815,7 +1815,7 @@
 
 
 <h3 id="versions.operators.Operator.to_string" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">to_string</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">to_string</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span></code>
 
 </h3>
 
@@ -1884,7 +1884,7 @@
 
 
 <h3 id="versions.operators.Operator.to_short_string" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">to_short_string</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">to_short_string</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span></code>
 
 </h3>
 
@@ -1956,7 +1956,7 @@
 
 
 <h2 id="versions.operators.next_caret_breaking" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">next_caret_breaking</span><span class="p">(</span><span class="n">version</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">next_caret_breaking</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">V</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h2>
 
@@ -2079,7 +2079,7 @@
 
 
 <h2 id="versions.operators.next_tilde_equal_breaking" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">next_tilde_equal_breaking</span><span class="p">(</span><span class="n">version</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">next_tilde_equal_breaking</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">V</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h2>
 
@@ -2207,7 +2207,7 @@
 
 
 <h2 id="versions.operators.next_tilde_breaking" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">next_tilde_breaking</span><span class="p">(</span><span class="n">version</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">next_tilde_breaking</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">V</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h2>
 
@@ -2334,7 +2334,7 @@ if it is present, otherwise the major part is bumped.</p>
 
 
 <h2 id="versions.operators.next_wildcard_breaking" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">next_wildcard_breaking</span><span class="p">(</span><span class="n">version</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">next_wildcard_breaking</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">V</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">V</span><span class="p">]</span></code>
 
 </h2>
 
@@ -2553,7 +2553,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 
 <h2 id="versions.operators.matches_caret" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">matches_caret</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="n">against</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">matches_caret</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h2>
 
@@ -2663,7 +2663,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 
 <h2 id="versions.operators.matches_tilde_equal" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">matches_tilde_equal</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="n">against</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">matches_tilde_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h2>
 
@@ -2773,7 +2773,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 
 <h2 id="versions.operators.matches_tilde" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">matches_tilde</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="n">against</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">matches_tilde</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h2>
 
@@ -2883,7 +2883,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 
 <h2 id="versions.operators.matches_equal" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">matches_equal</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="n">against</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">matches_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h2>
 
@@ -2993,7 +2993,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 
 <h2 id="versions.operators.matches_not_equal" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">matches_not_equal</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="n">against</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">matches_not_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h2>
 
@@ -3103,7 +3103,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 
 <h2 id="versions.operators.matches_less" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">matches_less</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="n">against</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">matches_less</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h2>
 
@@ -3215,7 +3215,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 
 <h2 id="versions.operators.matches_less_or_equal" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">matches_less_or_equal</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="n">against</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">matches_less_or_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h2>
 
@@ -3325,7 +3325,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 
 <h2 id="versions.operators.matches_greater" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">matches_greater</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="n">against</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">matches_greater</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h2>
 
@@ -3435,7 +3435,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 
 <h2 id="versions.operators.matches_greater_or_equal" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">matches_greater_or_equal</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="n">against</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">matches_greater_or_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h2>
 
@@ -3545,7 +3545,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 
 <h2 id="versions.operators.matches_wildcard_equal" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">matches_wildcard_equal</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="n">against</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">matches_wildcard_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h2>
 
@@ -3671,7 +3671,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 
 <h2 id="versions.operators.matches_wildcard_not_equal" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">matches_wildcard_not_equal</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="n">against</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">matches_wildcard_not_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">,</span> <span class="n">against</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h2>
 
@@ -3787,7 +3787,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 
 <h2 id="versions.operators.translate_caret" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">translate_caret</span><span class="p">(</span><span class="n">version</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">translate_caret</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span></code>
 
 </h2>
 
@@ -3885,7 +3885,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 
 <h2 id="versions.operators.translate_tilde_equal" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">translate_tilde_equal</span><span class="p">(</span><span class="n">version</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">translate_tilde_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span></code>
 
 </h2>
 
@@ -3983,7 +3983,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 
 <h2 id="versions.operators.translate_tilde" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">translate_tilde</span><span class="p">(</span><span class="n">version</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">translate_tilde</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span></code>
 
 </h2>
 
@@ -4081,7 +4081,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 
 <h2 id="versions.operators.translate_equal" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">translate_equal</span><span class="p">(</span><span class="n">version</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">translate_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionPoint</span></code>
 
 </h2>
 
@@ -4169,7 +4169,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 
 <h2 id="versions.operators.translate_not_equal" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">translate_not_equal</span><span class="p">(</span><span class="n">version</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">translate_not_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionUnion</span></code>
 
 </h2>
 
@@ -4267,7 +4267,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 
 <h2 id="versions.operators.translate_less" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">translate_less</span><span class="p">(</span><span class="n">version</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">translate_less</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span></code>
 
 </h2>
 
@@ -4355,7 +4355,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 
 <h2 id="versions.operators.translate_less_or_equal" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">translate_less_or_equal</span><span class="p">(</span><span class="n">version</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">translate_less_or_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span></code>
 
 </h2>
 
@@ -4443,7 +4443,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 
 <h2 id="versions.operators.translate_greater" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">translate_greater</span><span class="p">(</span><span class="n">version</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">translate_greater</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span></code>
 
 </h2>
 
@@ -4531,7 +4531,7 @@ to the <code>version</code>, or <a class="autorefs autorefs-external" href="http
 
 
 <h2 id="versions.operators.translate_greater_or_equal" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">translate_greater_or_equal</span><span class="p">(</span><span class="n">version</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">translate_greater_or_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span></code>
 
 </h2>
 
@@ -4622,7 +4622,7 @@ the <em>greater-or-equal</em> (<code>&gt;=</code>) strategy.</p>
 
 
 <h2 id="versions.operators.translate_wildcard_equal" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">translate_wildcard_equal</span><span class="p">(</span><span class="n">version</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">translate_wildcard_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionRange</span></code>
 
 </h2>
 
@@ -4726,7 +4726,7 @@ except for when the version is <code>*</code>; then the <code>(e, w)</code> rang
 
 
 <h2 id="versions.operators.translate_wildcard_not_equal" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">translate_wildcard_not_equal</span><span class="p">(</span><span class="n">version</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">translate_wildcard_not_equal</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">VersionEmpty</span><span class="p">,</span> <span class="n">VersionUnion</span><span class="p">]</span></code>
 
 </h2>
 

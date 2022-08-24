@@ -1574,7 +1574,7 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 
 
 <h3 id="versions.version_sets.VersionSetProtocol.is_empty" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_empty</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">is_empty</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
@@ -1633,7 +1633,7 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 
 
 <h3 id="versions.version_sets.VersionSetProtocol.is_universe" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_universe</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">is_universe</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
@@ -1690,7 +1690,7 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 
 
 <h3 id="versions.version_sets.VersionSetProtocol.includes" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">includes</span><span class="p">(</span><span class="n">version_set</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">includes</span><span class="p">(</span><span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
@@ -1749,7 +1749,7 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 
 
 <h3 id="versions.version_sets.VersionSetProtocol.intersects" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">intersects</span><span class="p">(</span><span class="n">version_set</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">intersects</span><span class="p">(</span><span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
@@ -1808,7 +1808,7 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 
 
 <h3 id="versions.version_sets.VersionSetProtocol.contains" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">contains</span><span class="p">(</span><span class="n">version</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">contains</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
@@ -1867,7 +1867,7 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 
 
 <h3 id="versions.version_sets.VersionSetProtocol.accepts" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">accepts</span><span class="p">(</span><span class="n">version</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">accepts</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -1931,7 +1931,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
 
 <h3 id="versions.version_sets.VersionSetProtocol.intersection" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">intersection</span><span class="p">(</span><span class="n">version_set</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">intersection</span><span class="p">(</span><span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
@@ -1990,7 +1990,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
 
 <h3 id="versions.version_sets.VersionSetProtocol.union" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">union</span><span class="p">(</span><span class="n">version_set</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">union</span><span class="p">(</span><span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
@@ -2049,7 +2049,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
 
 <h3 id="versions.version_sets.VersionSetProtocol.difference" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">difference</span><span class="p">(</span><span class="n">version_set</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">difference</span><span class="p">(</span><span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
@@ -2108,7 +2108,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
 
 <h3 id="versions.version_sets.VersionSetProtocol.complement" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">complement</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">complement</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
@@ -2167,7 +2167,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
 
 <h3 id="versions.version_sets.VersionSetProtocol.symmetric_difference" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">symmetric_difference</span><span class="p">(</span><span class="n">version_set</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">symmetric_difference</span><span class="p">(</span><span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span></code>
 
 </h3>
 
@@ -2227,7 +2227,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
 
 <h3 id="versions.version_sets.VersionSetProtocol.__contains__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__contains__</span><span class="p">(</span><span class="n">version</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="fm">__contains__</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -2280,7 +2280,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
 
 <h3 id="versions.version_sets.VersionSetProtocol.__and__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__and__</span><span class="p">(</span><span class="n">version_set</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="fm">__and__</span><span class="p">(</span><span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span></code>
 
 </h3>
 
@@ -2340,7 +2340,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
 
 <h3 id="versions.version_sets.VersionSetProtocol.__iand__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__iand__</span><span class="p">(</span><span class="n">version_set</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="fm">__iand__</span><span class="p">(</span><span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span></code>
 
 </h3>
 
@@ -2403,7 +2403,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
 
 <h3 id="versions.version_sets.VersionSetProtocol.__or__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__or__</span><span class="p">(</span><span class="n">version_set</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="fm">__or__</span><span class="p">(</span><span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span></code>
 
 </h3>
 
@@ -2463,7 +2463,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
 
 <h3 id="versions.version_sets.VersionSetProtocol.__ior__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__ior__</span><span class="p">(</span><span class="n">version_set</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="fm">__ior__</span><span class="p">(</span><span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span></code>
 
 </h3>
 
@@ -2523,7 +2523,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
 
 <h3 id="versions.version_sets.VersionSetProtocol.__sub__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__sub__</span><span class="p">(</span><span class="n">version_set</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="fm">__sub__</span><span class="p">(</span><span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span></code>
 
 </h3>
 
@@ -2583,7 +2583,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
 
 <h3 id="versions.version_sets.VersionSetProtocol.__isub__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__isub__</span><span class="p">(</span><span class="n">version_set</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="fm">__isub__</span><span class="p">(</span><span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span></code>
 
 </h3>
 
@@ -2646,7 +2646,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
 
 <h3 id="versions.version_sets.VersionSetProtocol.__xor__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__xor__</span><span class="p">(</span><span class="n">version_set</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="fm">__xor__</span><span class="p">(</span><span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span></code>
 
 </h3>
 
@@ -2709,7 +2709,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
 
 <h3 id="versions.version_sets.VersionSetProtocol.__ixor__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__ixor__</span><span class="p">(</span><span class="n">version_set</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="fm">__ixor__</span><span class="p">(</span><span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span></code>
 
 </h3>
 
@@ -2772,7 +2772,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
 
 <h3 id="versions.version_sets.VersionSetProtocol.__negate__" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">__negate__</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">__negate__</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span></code>
 
 </h3>
 
@@ -4273,7 +4273,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
 
 <h2 id="versions.version_sets.is_version_empty" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_version_empty</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">is_version_empty</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">VersionEmpty</span><span class="p">]</span></code>
 
 </h2>
 
@@ -4334,7 +4334,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
 
 <h2 id="versions.version_sets.is_version_point" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_version_point</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">is_version_point</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">VersionPoint</span><span class="p">]</span></code>
 
 </h2>
 
@@ -4395,7 +4395,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
 
 <h2 id="versions.version_sets.is_version_range" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_version_range</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">is_version_range</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">VersionRange</span><span class="p">]</span></code>
 
 </h2>
 
@@ -4456,7 +4456,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
 
 <h2 id="versions.version_sets.is_version_union" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_version_union</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">is_version_union</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">VersionUnion</span><span class="p">]</span></code>
 
 </h2>
 
@@ -4517,7 +4517,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
 
 <h2 id="versions.version_sets.is_version_item" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_version_item</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">is_version_item</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">VersionItem</span><span class="p">]</span></code>
 
 </h2>
 
@@ -4578,7 +4578,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
 
 <h2 id="versions.version_sets.is_version_set" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_version_set</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">is_version_set</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">VersionSet</span><span class="p">]</span></code>
 
 </h2>
 

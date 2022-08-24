@@ -3375,7 +3375,7 @@
 
 
 <h3 id="versions.version.Version.from_string" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">from_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">from_string</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
@@ -3464,7 +3464,7 @@
 
 
 <h3 id="versions.version.Version.to_string" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">to_string</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">to_string</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span></code>
 
 </h3>
 
@@ -3517,7 +3517,7 @@
 
 
 <h3 id="versions.version.Version.to_short_string" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">to_short_string</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">to_short_string</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span></code>
 
 </h3>
 
@@ -3570,7 +3570,7 @@
 
 
 <h3 id="versions.version.Version.precision" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">precision</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">precision</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
@@ -3603,7 +3603,7 @@
 
 
 <h3 id="versions.version.Version.last_index" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">last_index</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">last_index</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
@@ -3636,7 +3636,7 @@
 
 
 <h3 id="versions.version.Version.major" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">major</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">major</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
@@ -3669,7 +3669,7 @@
 
 
 <h3 id="versions.version.Version.minor" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">minor</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">minor</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
@@ -3702,7 +3702,7 @@
 
 
 <h3 id="versions.version.Version.micro" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">micro</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">micro</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
@@ -3735,7 +3735,7 @@
 
 
 <h3 id="versions.version.Version.patch" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">patch</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">patch</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
@@ -3775,7 +3775,7 @@
 
 
 <h3 id="versions.version.Version.extra" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">extra</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">extra</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Extra</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
@@ -3808,7 +3808,7 @@
 
 
 <h3 id="versions.version.Version.get_at" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">get_at</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">DEFAULT_VALUE</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">get_at</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">DEFAULT_VALUE</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span></code>
 
 </h3>
 
@@ -3906,7 +3906,7 @@ defaulting to <code>default</code>.</p>
 
 
 <h3 id="versions.version.Version.get_at_unchecked" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">get_at_unchecked</span><span class="p">(</span><span class="n">index</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">get_at_unchecked</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span></code>
 
 </h3>
 
@@ -4013,7 +4013,7 @@ defaulting to <code>default</code>.</p>
 
 
 <h3 id="versions.version.Version.is_semantic" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_semantic</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">is_semantic</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -4069,7 +4069,7 @@ matches the <em>semantic versioning</em> schema.</p>
 
 
 <h3 id="versions.version.Version.to_semantic" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">to_semantic</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">to_semantic</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -4125,7 +4125,7 @@ to match the <a href="https://semver.org/"><code>semver</code></a> schema.</p>
 
 
 <h3 id="versions.version.Version.set_major" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">set_major</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">set_major</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -4208,7 +4208,7 @@ to match the <a href="https://semver.org/"><code>semver</code></a> schema.</p>
 
 
 <h3 id="versions.version.Version.set_minor" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">set_minor</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">set_minor</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -4291,7 +4291,7 @@ to match the <a href="https://semver.org/"><code>semver</code></a> schema.</p>
 
 
 <h3 id="versions.version.Version.set_micro" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">set_micro</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">set_micro</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -4374,7 +4374,7 @@ to match the <a href="https://semver.org/"><code>semver</code></a> schema.</p>
 
 
 <h3 id="versions.version.Version.set_patch" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">set_patch</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">set_patch</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -4462,7 +4462,7 @@ to match the <a href="https://semver.org/"><code>semver</code></a> schema.</p>
 
 
 <h3 id="versions.version.Version.set_at" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">set_at</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">set_at</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -4557,7 +4557,7 @@ to match the <a href="https://semver.org/"><code>semver</code></a> schema.</p>
 
 
 <h3 id="versions.version.Version.set_at_unchecked" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">set_at_unchecked</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">set_at_unchecked</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -4676,7 +4676,7 @@ to match the <a href="https://semver.org/"><code>semver</code></a> schema.</p>
 
 
 <h3 id="versions.version.Version.next_major" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">next_major</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">next_major</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -4742,7 +4742,7 @@ if the version is stable, otherwise converts the version to be stable.</p>
 
 
 <h3 id="versions.version.Version.next_minor" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">next_minor</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">next_minor</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -4808,7 +4808,7 @@ if the version is stable, otherwise converts the version to be stable.</p>
 
 
 <h3 id="versions.version.Version.next_micro" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">next_micro</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">next_micro</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -4874,7 +4874,7 @@ if the version is stable, otherwise converts the version to be stable.</p>
 
 
 <h3 id="versions.version.Version.next_patch" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">next_patch</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">next_patch</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -4945,7 +4945,7 @@ if the version is stable, otherwise converts the version to be stable.</p>
 
 
 <h3 id="versions.version.Version.next_at" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">next_at</span><span class="p">(</span><span class="n">index</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">next_at</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -5041,7 +5041,7 @@ if the version is stable, otherwise converts the version to be stable.</p>
 
 
 <h3 id="versions.version.Version.has_major" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">has_major</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">has_major</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -5094,7 +5094,7 @@ if the version is stable, otherwise converts the version to be stable.</p>
 
 
 <h3 id="versions.version.Version.has_minor" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">has_minor</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">has_minor</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -5147,7 +5147,7 @@ if the version is stable, otherwise converts the version to be stable.</p>
 
 
 <h3 id="versions.version.Version.has_micro" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">has_micro</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">has_micro</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -5200,7 +5200,7 @@ if the version is stable, otherwise converts the version to be stable.</p>
 
 
 <h3 id="versions.version.Version.has_patch" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">has_patch</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">has_patch</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -5258,7 +5258,7 @@ if the version is stable, otherwise converts the version to be stable.</p>
 
 
 <h3 id="versions.version.Version.has_extra" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">has_extra</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">has_extra</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -5311,7 +5311,7 @@ if the version is stable, otherwise converts the version to be stable.</p>
 
 
 <h3 id="versions.version.Version.has_at" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">has_at</span><span class="p">(</span><span class="n">index</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">has_at</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -5364,7 +5364,7 @@ if the version is stable, otherwise converts the version to be stable.</p>
 
 
 <h3 id="versions.version.Version.pad_to" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">pad_to</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="n">DEFAULT_PADDING</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">pad_to</span><span class="p">(</span><span class="n">length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">padding</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">DEFAULT_PADDING</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -5459,7 +5459,7 @@ if the version is stable, otherwise converts the version to be stable.</p>
 
 
 <h3 id="versions.version.Version.pad_to_index" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">pad_to_index</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="n">DEFAULT_PADDING</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">pad_to_index</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">padding</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">DEFAULT_PADDING</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -5554,7 +5554,7 @@ if the version is stable, otherwise converts the version to be stable.</p>
 
 
 <h3 id="versions.version.Version.pad_to_next" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">pad_to_next</span><span class="p">(</span><span class="n">padding</span><span class="o">=</span><span class="n">DEFAULT_PADDING</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">pad_to_next</span><span class="p">(</span><span class="n">padding</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">DEFAULT_PADDING</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -5637,7 +5637,7 @@ if the version is stable, otherwise converts the version to be stable.</p>
 
 
 <h3 id="versions.version.Version.is_pre_release" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_pre_release</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">is_pre_release</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -5690,7 +5690,7 @@ if the version is stable, otherwise converts the version to be stable.</p>
 
 
 <h3 id="versions.version.Version.is_post_release" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_post_release</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">is_post_release</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -5743,7 +5743,7 @@ if the version is stable, otherwise converts the version to be stable.</p>
 
 
 <h3 id="versions.version.Version.is_dev_release" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_dev_release</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">is_dev_release</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -5796,7 +5796,7 @@ if the version is stable, otherwise converts the version to be stable.</p>
 
 
 <h3 id="versions.version.Version.is_local" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_local</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">is_local</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -5849,7 +5849,7 @@ if the version is stable, otherwise converts the version to be stable.</p>
 
 
 <h3 id="versions.version.Version.is_unstable" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_unstable</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">is_unstable</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -5902,7 +5902,7 @@ if the version is stable, otherwise converts the version to be stable.</p>
 
 
 <h3 id="versions.version.Version.is_stable" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_stable</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">is_stable</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -5955,7 +5955,7 @@ if the version is stable, otherwise converts the version to be stable.</p>
 
 
 <h3 id="versions.version.Version.next_pre" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">next_pre</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">next_pre</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -6027,7 +6027,7 @@ otherwise adds one to the version.</p>
 
 
 <h3 id="versions.version.Version.next_pre_phase" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">next_pre_phase</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">next_pre_phase</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">V</span><span class="p">]</span></code>
 
 </h3>
 
@@ -6105,7 +6105,7 @@ otherwise adds one to the version.</p>
 
 
 <h3 id="versions.version.Version.next_post" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">next_post</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">next_post</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -6177,7 +6177,7 @@ otherwise adds one to the version.</p>
 
 
 <h3 id="versions.version.Version.next_dev" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">next_dev</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">next_dev</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -6249,7 +6249,7 @@ otherwise adds one to the version.</p>
 
 
 <h3 id="versions.version.Version.with_pre" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">with_pre</span><span class="p">(</span><span class="n">pre</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">with_pre</span><span class="p">(</span><span class="n">pre</span><span class="p">:</span> <span class="n">PreTag</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -6332,7 +6332,7 @@ otherwise adds one to the version.</p>
 
 
 <h3 id="versions.version.Version.with_post" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">with_post</span><span class="p">(</span><span class="n">post</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">with_post</span><span class="p">(</span><span class="n">post</span><span class="p">:</span> <span class="n">PostTag</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -6415,7 +6415,7 @@ otherwise adds one to the version.</p>
 
 
 <h3 id="versions.version.Version.with_dev" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">with_dev</span><span class="p">(</span><span class="n">dev</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">with_dev</span><span class="p">(</span><span class="n">dev</span><span class="p">:</span> <span class="n">DevTag</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -6498,7 +6498,7 @@ otherwise adds one to the version.</p>
 
 
 <h3 id="versions.version.Version.with_local" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">with_local</span><span class="p">(</span><span class="n">local</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">with_local</span><span class="p">(</span><span class="n">local</span><span class="p">:</span> <span class="n">Local</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -6581,7 +6581,7 @@ otherwise adds one to the version.</p>
 
 
 <h3 id="versions.version.Version.without_pre" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">without_pre</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">without_pre</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -6634,7 +6634,7 @@ otherwise adds one to the version.</p>
 
 
 <h3 id="versions.version.Version.without_post" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">without_post</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">without_post</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -6687,7 +6687,7 @@ otherwise adds one to the version.</p>
 
 
 <h3 id="versions.version.Version.without_dev" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">without_dev</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">without_dev</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -6740,7 +6740,7 @@ otherwise adds one to the version.</p>
 
 
 <h3 id="versions.version.Version.without_local" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">without_local</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">without_local</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -6793,7 +6793,7 @@ otherwise adds one to the version.</p>
 
 
 <h3 id="versions.version.Version.update" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">changes</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">changes</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -6876,7 +6876,7 @@ otherwise adds one to the version.</p>
 
 
 <h3 id="versions.version.Version.weaken" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">weaken</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">weaken</span><span class="p">(</span><span class="n">other</span><span class="p">:</span> <span class="n">W</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">W</span></code>
 
 </h3>
 
@@ -6971,7 +6971,7 @@ otherwise adds one to the version.</p>
 
 
 <h3 id="versions.version.Version.to_stable" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">to_stable</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">to_stable</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -7024,7 +7024,7 @@ otherwise adds one to the version.</p>
 
 
 <h3 id="versions.version.Version.next_breaking" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">next_breaking</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">next_breaking</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -7170,7 +7170,7 @@ otherwise adds one to the version.</p>
 
 
 <h3 id="versions.version.Version.normalize" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">normalize</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">normalize</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
 
 </h3>
 
@@ -7253,7 +7253,7 @@ otherwise adds one to the version.</p>
 
 
 <h3 id="versions.version.Version.create" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">create</span><span class="p">(</span><span class="n">epoch</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">release</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">post</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dev</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">create</span><span class="p">(</span><span class="n">epoch</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Epoch</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">release</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Release</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">pre</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PreTag</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">post</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PostTag</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dev</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DevTag</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">local</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Local</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
@@ -7433,7 +7433,7 @@ otherwise adds one to the version.</p>
 
 
 <h3 id="versions.version.Version.from_parts" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">from_parts</span><span class="p">(</span><span class="n">major</span><span class="o">=</span><span class="n">DEFAULT_VALUE</span><span class="p">,</span> <span class="n">minor</span><span class="o">=</span><span class="n">DEFAULT_VALUE</span><span class="p">,</span> <span class="n">micro</span><span class="o">=</span><span class="n">DEFAULT_VALUE</span><span class="p">,</span> <span class="o">*</span><span class="n">extra</span><span class="p">,</span> <span class="n">epoch</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">post</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dev</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">from_parts</span><span class="p">(</span><span class="n">major</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">DEFAULT_VALUE</span><span class="p">,</span> <span class="n">minor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">DEFAULT_VALUE</span><span class="p">,</span> <span class="n">micro</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">DEFAULT_VALUE</span><span class="p">,</span> <span class="o">*</span><span class="n">extra</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">epoch</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Epoch</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">pre</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PreTag</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">post</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PostTag</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dev</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DevTag</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">local</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Local</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
@@ -7647,7 +7647,7 @@ and <code>extra</code> parts; <code>epoch</code>, <code>pre</code>, <code>post</
 
 
 <h3 id="versions.version.Version.matches" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">matches</span><span class="p">(</span><span class="n">specification</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">matches</span><span class="p">(</span><span class="n">specification</span><span class="p">:</span> <span class="n">Specification</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 

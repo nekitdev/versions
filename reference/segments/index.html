@@ -1817,7 +1817,7 @@
 
 
 <h3 id="versions.segments.Epoch.create" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">create</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">DEFAULT_VALUE</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">create</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">DEFAULT_VALUE</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">E</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
@@ -1906,7 +1906,7 @@
 
 
 <h3 id="versions.segments.Epoch.from_string" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">from_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">from_string</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">E</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
@@ -1995,7 +1995,7 @@
 
 
 <h3 id="versions.segments.Epoch.to_string" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">to_string</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">to_string</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span></code>
 
 </h3>
 
@@ -2892,7 +2892,7 @@
 
 
 <h3 id="versions.segments.Release.create" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">create</span><span class="p">(</span><span class="n">parts</span><span class="o">=</span><span class="n">DEFAULT_PARTS</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">create</span><span class="p">(</span><span class="n">parts</span><span class="p">:</span> <span class="n">Parts</span> <span class="o">=</span> <span class="n">DEFAULT_PARTS</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
@@ -2981,7 +2981,7 @@
 
 
 <h3 id="versions.segments.Release.from_iterable" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">from_iterable</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">from_iterable</span><span class="p">(</span><span class="n">iterable</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">R</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
@@ -3070,7 +3070,7 @@
 
 
 <h3 id="versions.segments.Release.from_parts" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">from_parts</span><span class="p">(</span><span class="o">*</span><span class="n">parts</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">from_parts</span><span class="p">(</span><span class="o">*</span><span class="n">parts</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
@@ -3159,7 +3159,7 @@
 
 
 <h3 id="versions.segments.Release.into_parts" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">into_parts</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">into_parts</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Parts</span></code>
 
 </h3>
 
@@ -3212,7 +3212,7 @@
 
 
 <h3 id="versions.segments.Release.precision" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">precision</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">precision</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
@@ -3245,7 +3245,7 @@
 
 
 <h3 id="versions.segments.Release.last_index" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">last_index</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">last_index</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
@@ -3278,7 +3278,7 @@
 
 
 <h3 id="versions.segments.Release.major" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">major</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">major</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
@@ -3311,7 +3311,7 @@
 
 
 <h3 id="versions.segments.Release.minor" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">minor</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">minor</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
@@ -3344,7 +3344,7 @@
 
 
 <h3 id="versions.segments.Release.micro" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">micro</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">micro</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
@@ -3377,7 +3377,7 @@
 
 
 <h3 id="versions.segments.Release.patch" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">patch</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">patch</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
@@ -3417,7 +3417,7 @@
 
 
 <h3 id="versions.segments.Release.extra" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">extra</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">extra</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Extra</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
@@ -3450,7 +3450,7 @@
 
 
 <h3 id="versions.segments.Release.get_at" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">get_at</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">DEFAULT_VALUE</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">get_at</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">DEFAULT_VALUE</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span></code>
 
 </h3>
 
@@ -3545,7 +3545,7 @@
 
 
 <h3 id="versions.segments.Release.get_at_unchecked" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">get_at_unchecked</span><span class="p">(</span><span class="n">index</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">get_at_unchecked</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span></code>
 
 </h3>
 
@@ -3652,7 +3652,7 @@
 
 
 <h3 id="versions.segments.Release.is_semantic" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_semantic</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">is_semantic</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -3705,7 +3705,7 @@
 
 
 <h3 id="versions.segments.Release.to_semantic" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">to_semantic</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">to_semantic</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">R</span></code>
 
 </h3>
 
@@ -3764,7 +3764,7 @@
 
 
 <h3 id="versions.segments.Release.set_major" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">set_major</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">set_major</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R</span></code>
 
 </h3>
 
@@ -3847,7 +3847,7 @@
 
 
 <h3 id="versions.segments.Release.set_minor" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">set_minor</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">set_minor</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R</span></code>
 
 </h3>
 
@@ -3930,7 +3930,7 @@
 
 
 <h3 id="versions.segments.Release.set_micro" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">set_micro</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">set_micro</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R</span></code>
 
 </h3>
 
@@ -4013,7 +4013,7 @@
 
 
 <h3 id="versions.segments.Release.set_patch" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">set_patch</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">set_patch</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R</span></code>
 
 </h3>
 
@@ -4101,7 +4101,7 @@
 
 
 <h3 id="versions.segments.Release.set_at" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">set_at</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">set_at</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R</span></code>
 
 </h3>
 
@@ -4196,7 +4196,7 @@
 
 
 <h3 id="versions.segments.Release.set_at_unchecked" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">set_at_unchecked</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">set_at_unchecked</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R</span></code>
 
 </h3>
 
@@ -4321,7 +4321,7 @@
 
 
 <h3 id="versions.segments.Release.next_major" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">next_major</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">next_major</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">R</span></code>
 
 </h3>
 
@@ -4374,7 +4374,7 @@
 
 
 <h3 id="versions.segments.Release.next_minor" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">next_minor</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">next_minor</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">R</span></code>
 
 </h3>
 
@@ -4427,7 +4427,7 @@
 
 
 <h3 id="versions.segments.Release.next_micro" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">next_micro</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">next_micro</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">R</span></code>
 
 </h3>
 
@@ -4480,7 +4480,7 @@
 
 
 <h3 id="versions.segments.Release.next_patch" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">next_patch</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">next_patch</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">R</span></code>
 
 </h3>
 
@@ -4538,7 +4538,7 @@
 
 
 <h3 id="versions.segments.Release.next_at" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">next_at</span><span class="p">(</span><span class="n">index</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">next_at</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R</span></code>
 
 </h3>
 
@@ -4625,7 +4625,7 @@
 
 
 <h3 id="versions.segments.Release.has_major" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">has_major</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">has_major</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -4678,7 +4678,7 @@
 
 
 <h3 id="versions.segments.Release.has_minor" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">has_minor</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">has_minor</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -4731,7 +4731,7 @@
 
 
 <h3 id="versions.segments.Release.has_micro" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">has_micro</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">has_micro</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -4784,7 +4784,7 @@
 
 
 <h3 id="versions.segments.Release.has_patch" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">has_patch</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">has_patch</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -4842,7 +4842,7 @@
 
 
 <h3 id="versions.segments.Release.has_extra" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">has_extra</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">has_extra</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -4895,7 +4895,7 @@
 
 
 <h3 id="versions.segments.Release.has_at" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">has_at</span><span class="p">(</span><span class="n">index</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">has_at</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
 
 </h3>
 
@@ -4948,7 +4948,7 @@
 
 
 <h3 id="versions.segments.Release.pad_to" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">pad_to</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="n">DEFAULT_PADDING</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">pad_to</span><span class="p">(</span><span class="n">length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">padding</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">DEFAULT_PADDING</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R</span></code>
 
 </h3>
 
@@ -5049,7 +5049,7 @@
 
 
 <h3 id="versions.segments.Release.pad_to_index" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">pad_to_index</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="n">DEFAULT_PADDING</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">pad_to_index</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">padding</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">DEFAULT_PADDING</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R</span></code>
 
 </h3>
 
@@ -5144,7 +5144,7 @@
 
 
 <h3 id="versions.segments.Release.pad_to_next" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">pad_to_next</span><span class="p">(</span><span class="n">padding</span><span class="o">=</span><span class="n">DEFAULT_PADDING</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">pad_to_next</span><span class="p">(</span><span class="n">padding</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">DEFAULT_PADDING</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R</span></code>
 
 </h3>
 
@@ -5227,7 +5227,7 @@
 
 
 <h3 id="versions.segments.Release.from_string" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">from_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">from_string</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
@@ -5316,7 +5316,7 @@
 
 
 <h3 id="versions.segments.Release.to_string" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">to_string</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">to_string</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span></code>
 
 </h3>
 
@@ -5710,7 +5710,7 @@
 
 
 <h3 id="versions.segments.Tag.create" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">create</span><span class="p">(</span><span class="n">phase</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">DEFAULT_VALUE</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">create</span><span class="p">(</span><span class="n">phase</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">DEFAULT_VALUE</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
@@ -5817,7 +5817,7 @@
 
 
 <h3 id="versions.segments.Tag.default_phase_with_value" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">default_phase_with_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">default_phase_with_value</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
@@ -5906,7 +5906,7 @@
 
 
 <h3 id="versions.segments.Tag.short" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">short</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">short</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
@@ -5939,7 +5939,7 @@
 
 
 <h3 id="versions.segments.Tag.normal" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">normal</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">normal</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
@@ -5972,7 +5972,7 @@
 
 
 <h3 id="versions.segments.Tag.normalize" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">normalize</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">normalize</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">T</span></code>
 
 </h3>
 
@@ -6025,7 +6025,7 @@
 
 
 <h3 id="versions.segments.Tag.next" class="doc doc-heading">
-<code class="highlight language-python"><span class="nb">next</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="nb">next</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">T</span></code>
 
 </h3>
 
@@ -6078,7 +6078,7 @@
 
 
 <h3 id="versions.segments.Tag.next_phase" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">next_phase</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">next_phase</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">T</span><span class="p">]</span></code>
 
 </h3>
 
@@ -6135,7 +6135,7 @@
 
 
 <h3 id="versions.segments.Tag.from_string" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">from_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">from_string</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
@@ -6224,7 +6224,7 @@
 
 
 <h3 id="versions.segments.Tag.to_string" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">to_string</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">to_string</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span></code>
 
 </h3>
 
@@ -6277,7 +6277,7 @@
 
 
 <h3 id="versions.segments.Tag.to_short_string" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">to_short_string</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">to_short_string</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span></code>
 
 </h3>
 
@@ -6735,7 +6735,7 @@
 
 
 <h3 id="versions.segments.Local.create" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">create</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">create</span><span class="p">(</span><span class="n">parts</span><span class="p">:</span> <span class="n">LocalParts</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">L</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
@@ -6824,7 +6824,7 @@
 
 
 <h3 id="versions.segments.Local.from_iterable" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">from_iterable</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">from_iterable</span><span class="p">(</span><span class="n">iterable</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">LocalPart</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">L</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
@@ -6913,7 +6913,7 @@
 
 
 <h3 id="versions.segments.Local.from_parts" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">from_parts</span><span class="p">(</span><span class="o">*</span><span class="n">parts</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">from_parts</span><span class="p">(</span><span class="o">*</span><span class="n">parts</span><span class="p">:</span> <span class="n">LocalPart</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">L</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
@@ -7002,7 +7002,7 @@
 
 
 <h3 id="versions.segments.Local.into_parts" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">into_parts</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">into_parts</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">LocalParts</span></code>
 
 </h3>
 
@@ -7055,7 +7055,7 @@
 
 
 <h3 id="versions.segments.Local.from_string" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">from_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">from_string</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">L</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
@@ -7144,7 +7144,7 @@
 
 
 <h3 id="versions.segments.Local.to_string" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">to_string</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">to_string</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span></code>
 
 </h3>
 
