@@ -10,8 +10,7 @@
 >>> version_set = parse_version_set("^1.0.0")
 >>> version_set
 <VersionRange (>= 1.0.0, < 2.0.0)>
->>> version.matches(version_set)
-True
+>>> assert version.matches(version_set)
 ```
 """
 
@@ -21,7 +20,7 @@ __url__ = "https://github.com/nekitdev/versions"
 __title__ = "versions"
 __author__ = "nekitdev"
 __license__ = "MIT"
-__version__ = "1.1.0"
+__version__ = "1.2.0"
 
 from versions.converters import (
     simplify,
@@ -32,6 +31,7 @@ from versions.converters import (
 )
 from versions.errors import ParseError, ParseSpecificationError, ParseVersionError
 from versions.functions import parse_specifier, parse_version, parse_version_set
+from versions.meta import python_version_info, version_info
 from versions.operators import Operator, OperatorType
 from versions.segments import DevTag, Epoch, Local, PostTag, PreTag, Release, Tag
 from versions.specification import Specification
@@ -125,6 +125,5 @@ __all__ = (
     "parse_version_set",
     # meta
     "version_info",
+    "python_version_info",
 )
-
-version_info = parse_version(__version__)
