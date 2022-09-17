@@ -2,6 +2,10 @@
 
 <!-- changelogging: start -->
 
+## 1.2.1 (2022-09-17)
+
+No significant changes.
+
 ## 1.2.0 (2022-09-17)
 
 ### Features

@@ -15,10 +15,10 @@ FINAL: Final[str] = "final"
 
 python_major, python_minor, python_micro, python_phase, python_value = python_version_tuple
 
-if python_phase == FINAL:
+if python_phase == FINAL:  # pragma: no cover
     python_version_info = Version.from_parts(python_major, python_minor, python_micro)
 
-else:
+else:  # pragma: no cover
     python_version_info = Version.from_parts(
         python_major, python_minor, python_micro, pre=PreTag(python_phase, python_value).normalize()
     )
