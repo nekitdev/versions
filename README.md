@@ -110,7 +110,7 @@ True
 
 ### Specification
 
-`versions` also supports specifying version requirements and matching version against them:
+`versions` also supports specifying version requirements and matching version against them.
 
 Since versions support total ordering, they can be checked using version sets
 (via [`parse_version_set`][versions.functions.parse_version_set]):
