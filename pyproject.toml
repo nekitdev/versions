@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "versions"
-version = "1.1.0"
+version = "1.2.0"
 description = "Parsing, inspecting and specifying versions."
 authors = ["nekitdev"]
 license = "MIT"
@@ -128,7 +128,7 @@ warn_unused_ignores = false  # compatibility
 
 [tool.changelogging]
 name = "versions"
-version = "1.1.0"
+version = "1.2.0"
 url = "https://github.com/nekitdev/versions"
 directory = "changes"
 output = "CHANGELOG.md"
@@ -145,5 +145,5 @@ wrap_size = 100
 display = ["feature", "change", "fix", "security", "deprecation", "removal", "internal"]
 
 [build-system]
-requires = ["poetry-core >= 1.1.0rc3"]
+requires = ["poetry-core >= 1.1.0"]
 build-backend = "poetry.core.masonry.api"
