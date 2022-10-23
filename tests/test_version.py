@@ -1,5 +1,6 @@
 import pytest
 
+from versions.functions import parse_version
 from versions.segments import DevTag, Epoch, Local, PostTag, PreTag
 from versions.version import Version
 
@@ -52,6 +53,19 @@ def v100post0() -> Version:
 @pytest.fixture()
 def v100post1() -> Version:
     return Version.from_parts(1, 0, 0, post=PostTag("post", 1))
+
+
+# weird ones
+
+
+@pytest.fixture()
+def v100c0r0dev0() -> Version:
+    return Version.from_parts(1, 0, 0, pre=PreTag("c", 0), post=PostTag("r", 0), dev=DevTag("dev", 0))
+
+
+@pytest.fixture()
+def v100rc0post0dev0() -> Version:
+    return Version.from_parts(1, 0, 0, pre=PreTag("rc", 0), post=PostTag("post", 0), dev=DevTag("dev", 0))
 
 
 @pytest.fixture()
@@ -230,6 +244,11 @@ def test_has_major_minor_micro_extra(v1234: Version) -> None:
     assert v1234.has_extra()
 
 
+def test_has_at(v100: Version) -> None:
+    assert v100.has_at(0)
+    assert not v100.has_at(3)
+
+
 def test_has_patch_is_has_micro(v200: Version) -> None:
     assert v200.has_patch() == v200.has_micro()
 
@@ -350,3 +369,24 @@ def test_to_stable(
 
     assert v100build1.to_stable() == v100build1
     assert v100post1.to_stable() == v100post1
+
+
+@pytest.mark.parametrize(
+    ("version", "next_breaking"),
+    (
+        ("1.2.3", "2.0.0"),
+        ("1.2.0", "2.0.0"),
+        ("1.0.0", "2.0.0"),
+        ("0.2.3", "0.3.0"),
+        ("0.0.3", "0.0.4"),
+        ("0.0.0", "0.0.1"),
+        ("0.0", "0.1.0"),
+        ("0", "1.0.0"),
+    ),
+)
+def test_next_breaking(version: str, next_breaking: str) -> None:
+    assert parse_version(version).next_breaking() == parse_version(next_breaking)
+
+
+def test_normalize(v100c0r0dev0: Version, v100rc0post0dev0: Version) -> None:
+    assert v100c0r0dev0.normalize() == v100rc0post0dev0

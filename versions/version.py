@@ -488,7 +488,7 @@ class Version(Representation, FromString, ToString):
         Returns:
             Whether the part at the `index` is present.
         """
-        return self.has_at(index)
+        return self.release.has_at(index)
 
     def pad_to(self: V, length: int, padding: int = DEFAULT_PADDING) -> V:
         """Pads the [`Release`][versions.segments.Release] to the `length` with `padding`.
