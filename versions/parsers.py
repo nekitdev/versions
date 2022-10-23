@@ -63,6 +63,9 @@ class Parser(Protocol[R]):
         raise NotImplementedError
 
 
+PHASE_IS_NONE = "the tag was matched but the `phase` is `None`"
+
+
 @frozen()
 class TagParser(Parser[T]):
     tag_type: Type[T]
@@ -78,7 +81,7 @@ class TagParser(Parser[T]):
         phase = match.group(PHASE)
 
         if phase is None:  # pragma: no cover
-            raise InternalError  # TODO: message?
+            raise InternalError(PHASE_IS_NONE)
 
         value_string = match.group(VALUE)
 
@@ -141,6 +144,12 @@ class VersionParser(Parser[V]):
         )
 
 
+SPECIFICATION = "specification"
+
+OPERATOR_IS_NONE = "specification was matched but `operator` is `None`"
+VERSION_IS_NONE = "specification was matched but `version` is `None`"
+
+
 @frozen()
 class SpecifierParser(Generic[V], Parser[Specifier]):
     version_parser: VersionParser[V]
@@ -167,7 +176,7 @@ class SpecifierParser(Generic[V], Parser[Specifier]):
             if specifier:
                 return specifier
 
-        raise ParseSpecificationError  # TODO: message?
+        raise ParseSpecificationError(CAN_NOT_PARSE.format(string, SPECIFICATION))
 
     def try_parse_caret(self, string: str) -> Optional[Specifier]:
         return self.try_parse_with(CARET_SPECIFICATION, string)
@@ -187,14 +196,14 @@ class SpecifierParser(Generic[V], Parser[Specifier]):
         operator_string = match.group(OPERATOR_NAME)
 
         if operator_string is None:  # pragma: no cover
-            raise InternalError  # TODO: message?
+            raise InternalError(OPERATOR_IS_NONE)
 
         operator_type = OperatorType(operator_string)
 
         version_string = match.group(VERSION_NAME)
 
         if version_string is None:  # pragma: no cover
-            raise InternalError  # TODO: message?
+            raise InternalError(VERSION_IS_NONE)
 
         version = self.version_parser.parse(version_string)
 
@@ -217,7 +226,7 @@ class SpecifierParser(Generic[V], Parser[Specifier]):
         version_string = match.group(VERSION_NAME)
 
         if version_string is None:  # pragma: no cover
-            raise InternalError  # TODO: message?
+            raise InternalError(VERSION_IS_NONE)
 
         version = self.version_parser.parse(version_string)
 
@@ -240,7 +249,7 @@ class SpecifierParser(Generic[V], Parser[Specifier]):
         version_string = match.group(VERSION_NAME)
 
         if version_string is None:  # pragma: no cover
-            raise InternalError  # TODO: message?
+            raise InternalError(VERSION_IS_NONE)
 
         if version_string == STAR:
             if operator_type == OperatorType.WILDCARD_NOT_EQUAL:

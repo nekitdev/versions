@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import TYPE_CHECKING, Mapping, Optional, Tuple, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Mapping, Optional, Tuple, TypeVar, Union
 
 from attrs import frozen
 
@@ -25,7 +25,7 @@ from versions.constants import (
 from versions.errors import InternalError
 from versions.representation import Representation
 from versions.string import ToString, concat_dot_args, concat_empty_args, concat_space_args
-from versions.typing import Binary, Unary
+from versions.typing import Binary, Unary, is_same_type
 
 if TYPE_CHECKING:
     from versions.version import Version
@@ -112,16 +112,16 @@ CAN_NOT_USE_TILDE_EQUAL = "`~=` can not be used with with a single version segme
 def next_tilde_equal_breaking(version: V) -> V:
     """Returns the next breaking version according to the *tilde-equal* (`~=`) strategy.
 
-    This function simply bumps the last part of the release.
+    This function simply bumps the second to last part of the release.
 
     Example:
         ```python
         >>> from versions import next_tilde_equal_breaking, parse_version
-        >>> version = parse_version("1.2.2")
+        >>> version = parse_version("1.2.0")
         >>> version
-        <Version (1.2.2)>
+        <Version (1.2.0)>
         >>> next_tilde_equal_breaking(version)
-        <Version (1.2.3)>
+        <Version (1.3.0)>
         ```
 
         ```python
@@ -540,6 +540,9 @@ def translate_equal(version: Version) -> VersionPoint:
     return VersionPoint(version)
 
 
+UNEXPECTED_EQUAL_COMPLEMENT = "unexpected equal complement"
+
+
 def translate_not_equal(version: Version) -> VersionUnion:
     """Translates the `version` into a version set according to the *not-equal* (`!=`) strategy.
 
@@ -556,7 +559,7 @@ def translate_not_equal(version: Version) -> VersionUnion:
     if is_version_union(result):
         return result
 
-    raise InternalError  # TODO: message?  # pragma: no cover
+    raise InternalError(UNEXPECTED_EQUAL_COMPLEMENT)
 
 
 def translate_less(version: Version) -> VersionRange:
@@ -637,6 +640,9 @@ def translate_wildcard_equal(version: Version) -> VersionRange:
     return VersionRange(min=version, max=wildcard, include_min=True, include_max=False)
 
 
+UNEXPECTED_WILDCARD_EQUAL_COMPLEMENT = "unexpected wildcard-equal complement"
+
+
 def translate_wildcard_not_equal(version: Version) -> Union[VersionEmpty, VersionUnion]:
     """Translates the `version` into a version set according to
     the *wildcard-not-equal* (`!= *`) strategy.
@@ -655,7 +661,7 @@ def translate_wildcard_not_equal(version: Version) -> Union[VersionEmpty, Versio
     if is_version_empty(result) or is_version_union(result):
         return result
 
-    raise InternalError  # TODO: message?  # pragma: no cover
+    raise InternalError(UNEXPECTED_WILDCARD_EQUAL_COMPLEMENT)
 
 
 class OperatorType(Enum):
@@ -699,6 +705,14 @@ class OperatorType(Enum):
         """
         return self in WILDCARD
 
+    def is_equals(self) -> bool:
+        """Checks if an operator is *equals*.
+
+        Returns:
+            Whether the operator is *equals*.
+        """
+        return self in EQUALS
+
     def is_unary(self) -> bool:
         """Checks if an operator is *unary*.
 
@@ -707,10 +721,21 @@ class OperatorType(Enum):
         """
         return self in UNARY
 
+    def __eq__(self, other: Any) -> bool:
+        if is_same_type(other, self):
+            return (self.is_equals() and other.is_equals()) or super().__eq__(other)
+
+        return NotImplemented
+
+    def __hash__(self) -> int:
+        return super().__hash__()
+
     @property
     def string(self) -> str:
         return wildcard_type(self.value)
 
+
+EQUALS = {OperatorType.DOUBLE_EQUAL, OperatorType.EQUAL}
 
 UNARY = {OperatorType.CARET, OperatorType.TILDE}
 

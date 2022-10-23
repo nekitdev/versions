@@ -47,3 +47,7 @@ def is_named(item: Any) -> TypeGuard[Named]:
 
 def is_int(item: Any) -> TypeGuard[int]:
     return is_instance(item, int)
+
+
+def is_same_type(item: Any, other: T) -> TypeGuard[T]:
+    return is_instance(item, type(other))

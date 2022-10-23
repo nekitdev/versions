@@ -548,6 +548,11 @@ class VersionRangeProtocol(Protocol):
         return Ordering.EQUAL
 
 
+MIN_MAX_CONSTRAINT = "version ranges expect min <= max, got min > max"
+RANGE_NOT_POINT = "version range is not a point"
+UNEXPECTED_VERSION_SET = "unexpected version set provided: {}"
+
+
 @frozen(repr=False, eq=False, order=False)
 class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetProtocol):
     """Represents version ranges (`(x, y)`, `(x, y]`, `[x, y)` and `[x, y]`)."""
@@ -565,7 +570,7 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
             evolve_in_place(self, include_max=False)
 
         if self.comparable_min > self.comparable_max:
-            raise ValueError  # TODO: message?
+            raise ValueError(MIN_MAX_CONSTRAINT)
 
     def is_empty(self) -> bool:
         return self.is_empty_or_point() and not self.is_closed()
@@ -581,12 +586,12 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
         version = self.min or self.max
 
         if version is None:
-            raise ValueError  # TODO: message?
+            raise ValueError(RANGE_NOT_POINT)
 
         if self.is_point():
             return version
 
-        raise ValueError  # TODO: message?
+        raise ValueError(RANGE_NOT_POINT)
 
     def contains(self, version: Version) -> bool:
         comparable_min = self.comparable_min
@@ -621,7 +626,7 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
         if is_version_union(version_set):
             return all(self.includes(item) for item in version_set.items)
 
-        raise TypeError  # TODO: message?
+        raise TypeError(UNEXPECTED_VERSION_SET.format(repr(version_set)))
 
     def intersects(self, version_set: VersionSet) -> bool:
         if is_version_empty(version_set):
@@ -636,7 +641,7 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
         if is_version_union(version_set):
             return any(self.intersects(item) for item in version_set.items)
 
-        raise TypeError  # TODO: message?
+        raise TypeError(UNEXPECTED_VERSION_SET.format(repr(version_set)))
 
     def intersects_range(self, range: VersionRange) -> bool:
         return not range.is_strictly_lower(self) and not range.is_strictly_higher(self)
@@ -687,7 +692,7 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
         if is_version_union(version_set):
             return version_set.intersection(self)
 
-        raise TypeError  # TODO: message
+        raise TypeError(UNEXPECTED_VERSION_SET.format(repr(version_set)))
 
     def union(self, version_set: VersionSet) -> VersionSet:
         if is_version_empty(version_set):
@@ -737,7 +742,7 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
         if is_version_union(version_set):
             return version_set.union(self)
 
-        raise TypeError  # TODO: message
+        raise TypeError(UNEXPECTED_VERSION_SET.format(repr(version_set)))
 
     def difference(self, version_set: VersionSet) -> VersionSet:
         if is_version_empty(version_set):
@@ -806,7 +811,7 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
         if is_version_union(version_set):
             return VersionUnion.of_iterable(self.difference_iterator(version_set))
 
-        raise TypeError  # TODO: message?
+        raise TypeError(UNEXPECTED_VERSION_SET.format(repr(version_set)))
 
     def difference_iterator(self, version_union: VersionUnion) -> Iterator[VersionItem]:
         current: VersionItem = self
@@ -962,7 +967,7 @@ class VersionPoint(Representation, ToString, VersionRangeProtocol, VersionSetPro
         if is_version_range(version_set) or is_version_union(version_set):
             return VersionUnion.of(self, version_set)
 
-        raise TypeError  # TODO: message?
+        raise TypeError(UNEXPECTED_VERSION_SET.format(repr(version_set)))
 
     def difference(self, version_set: VersionSet) -> VersionSet:
         return VersionEmpty() if version_set.contains(self.version) else self
@@ -989,6 +994,9 @@ def check_items(items: VersionItems) -> None:
         raise ValueError(ONE_ITEM)
 
 
+UNEXPECTED_UNION = "the union of adjacent or intersecting ranges must be a range"
+
+
 @frozen(repr=False, order=False)
 class VersionUnion(Representation, ToString, Specification):
     """Represents version unions."""
@@ -1004,11 +1012,8 @@ class VersionUnion(Representation, ToString, Specification):
         if is_version_union(version_set):
             yield from version_set.items
 
-        elif is_version_item(version_set):
+        if is_version_item(version_set):
             yield version_set
-
-        else:
-            raise TypeError  # TODO: message?
 
     @classmethod
     def of(cls, *version_sets: VersionSet) -> VersionSet:
@@ -1042,7 +1047,7 @@ class VersionUnion(Representation, ToString, Specification):
                         set_last(merged, result)
 
                     else:  # pragma: no cover
-                        raise InternalError  # TODO: message?
+                        raise InternalError(UNEXPECTED_UNION)
 
                 else:
                     merged.append(item)
@@ -1268,7 +1273,7 @@ class ItemsDifference:
             else:
                 return self.next_current()
 
-        raise TypeError  # TODO: message?
+        raise TypeError(UNEXPECTED_VERSION_SET.format(repr(difference)))
 
     def loop(self) -> None:
         # print("prepared", self)

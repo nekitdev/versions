@@ -4,7 +4,9 @@
 
 ## 1.3.0 (2022-10-23)
 
-No significant changes.
+### Changes
+
+- `OperatorType.DOUBLE_EQUAL` and `OperatorType.EQUAL` are now considered equal.
 
 ## 1.2.1 (2022-09-17)
 

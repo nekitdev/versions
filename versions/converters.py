@@ -56,6 +56,9 @@ def simplify(specifier: Specifier) -> Specifier:
     return specifier_from_version_set(specifier_to_version_set(specifier))
 
 
+UNEXPECTED_SPECIFIER = "unexpected specifier provided: {}"
+
+
 def specifier_to_version_set(specifier: Specifier) -> VersionSet:
     """Converts a [`Specifier`][versions.specifiers.Specifier]
     to [`VersionSet`][versions.version_sets.VersionSet].
@@ -81,11 +84,16 @@ def specifier_to_version_set(specifier: Specifier) -> VersionSet:
     if is_specifier_any(specifier):
         return reduce(union, map(specifier_to_version_set, specifier.specifiers))
 
-    raise TypeError  # TODO: message?
+    raise TypeError(UNEXPECTED_SPECIFIER.format(repr(specifier)))
 
 
 version_set_from_specifier = specifier_to_version_set
 """An alias of [`specifier_to_version_set`][versions.converters.specifier_to_version_set]."""
+
+
+UNEXPECTED_VERSION_SET = "unexpected version set provided: {}"
+
+EXPECTED_MIN_OR_MAX = "expected either `min` or `max` to be different from `None`"
 
 
 def version_set_to_specifier(version_set: VersionSet) -> Specifier:
@@ -136,7 +144,7 @@ def version_set_to_specifier(version_set: VersionSet) -> Specifier:
         specifier = min_specifier or max_specifier
 
         if specifier is None:  # pragma: no cover
-            raise InternalError  # TODO: message?
+            raise InternalError(EXPECTED_MIN_OR_MAX)
 
         return specifier
 
@@ -148,7 +156,7 @@ def version_set_to_specifier(version_set: VersionSet) -> Specifier:
 
         return SpecifierAny.of_iterable(map(version_set_to_specifier, version_set.items))
 
-    raise TypeError  # TODO: message?
+    raise TypeError(UNEXPECTED_VERSION_SET.format(repr(version_set)))
 
 
 specifier_from_version_set = version_set_to_specifier
