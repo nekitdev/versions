@@ -728,7 +728,7 @@ class OperatorType(Enum):
         return NotImplemented
 
     def __hash__(self) -> int:
-        return super().__hash__()
+        return super().__hash__()  # type: ignore
 
     @property
     def string(self) -> str:
