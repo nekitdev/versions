@@ -13,12 +13,14 @@ nav:
   - Reference:
     - Functions: "reference/functions.md"
     - Version: "reference/version.md"
+    - Meta: "reference/meta.md"
     - Segments: "reference/segments.md"
     - Specification: "reference/specification.md"
     - Version Sets: "reference/version_sets.md"
     - Specifiers: "reference/specifiers.md"
     - Converters: "reference/converters.md"
     - Operators: "reference/operators.md"
+    - Types: "reference/types.md"
     - Errors: "reference/errors.md"
 
   - Changelog: "changelog.md"

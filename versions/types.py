@@ -23,38 +23,92 @@ __all__ = (
     "AnyInfinity",
     # checks
     "is_infinity",
-    "is_not_infinity",
     "is_negative_infinity",
-    "is_not_negative_infinity",
     "is_any_infinity",
-    "is_not_any_infinity",
 )
 
 T = TypeVar("T")
 
 
 class Ordering(Enum):
+    """Represents ordering."""
+
     LESS = -1
+    """The left item is *less* than the right item."""
     EQUAL = 0
+    """The left item is *equal* to the right item."""
     GREATER = 1
+    """The left item is *greater* than the right item."""
 
     def is_less(self) -> bool:
+        """Checks if the ordering is [`LESS`][versions.types.Ordering.LESS].
+
+        Returns:
+            Whether the ordering is [`LESS`][versions.types.Ordering.LESS].
+        """
         return self is type(self).LESS
 
     def is_equal(self) -> bool:
+        """Checks if the ordering is [`EQUAL`][versions.types.Ordering.EQUAL].
+
+        Returns:
+            Whether the ordering is [`EQUAL`][versions.types.Ordering.EQUAL].
+        """
         return self is type(self).EQUAL
 
     def is_greater(self) -> bool:
+        """Checks if the ordering is [`GREATER`][versions.types.Ordering.GREATER].
+
+        Returns:
+            Whether the ordering is [`GREATER`][versions.types.Ordering.GREATER].
+        """
         return self is type(self).GREATER
 
     def is_less_or_equal(self) -> bool:
+        """Checks if the ordering is [`LESS`][versions.types.Ordering.LESS] or
+        [`EQUAL`][versions.types.Ordering.EQUAL].
+
+        This is equivalent to:
+
+        ```python
+        ordering.is_less() or ordering.is_equal()
+        ```
+
+        Returns:
+            Whether the ordering is [`LESS`][versions.types.Ordering.LESS]
+                or [`EQUAL`][versions.types.Ordering.EQUAL].
+        """
         return self.is_less() or self.is_equal()
 
-    def is_greater_or_equal(self) -> bool:
-        return self.is_greater() or self.is_equal()
-
     def is_not_equal(self) -> bool:
+        """Checks if the ordering is not [`EQUAL`][versions.types.Ordering.EQUAL].
+
+        This is equivalent to:
+
+        ```python
+        not ordering.is_equal()
+        ```
+
+        Returns:
+            Whether the ordering is not [`EQUAL`][versions.types.Ordering.EQUAL].
+        """
         return not self.is_equal()
+
+    def is_greater_or_equal(self) -> bool:
+        """Checks if the ordering is [`GREATER`][versions.types.Ordering.GREATER] or
+        [`EQUAL`][versions.types.Ordering.EQUAL].
+
+        This is equivalent to:
+
+        ```python
+        ordering.is_greater() or ordering.is_equal()
+        ```
+
+        Returns:
+            Whether the ordering is [`GREATER`][versions.types.Ordering.GREATER]
+                or [`EQUAL`][versions.types.Ordering.EQUAL].
+        """
+        return self.is_greater() or self.is_equal()
 
 
 S = TypeVar("S")
@@ -90,6 +144,8 @@ NEGATIVE_INFINITY = NEGATIVE + INFINITY
 
 
 class Infinity(Singleton):
+    """Represents the positive infinity."""
+
     def __repr__(self) -> str:
         return INFINITY
 
@@ -116,17 +172,21 @@ class Infinity(Singleton):
 
 
 infinity = Infinity()
+"""The singleton instance of [`Infinity`][versions.types.Infinity]."""
 
 
-def is_infinity(item: Union[Infinity, Any]) -> TypeGuard[Infinity]:
+def is_infinity(item: Any) -> TypeGuard[Infinity]:
+    """Checks if an `item` is an instance of [`Infinity`][versions.types.Infinity].
+
+    Returns:
+        Whether the `item` is an instance of [`Infinity`][versions.types.Infinity].
+    """
     return item is infinity
 
 
-def is_not_infinity(item: Union[Infinity, T]) -> TypeGuard[T]:
-    return not is_infinity(item)
-
-
 class NegativeInfinity(Singleton):
+    """Represents the negative infinity."""
+
     def __repr__(self) -> str:
         return NEGATIVE_INFINITY
 
@@ -153,24 +213,28 @@ class NegativeInfinity(Singleton):
 
 
 negative_infinity = NegativeInfinity()
+"""The singleton instance of [`NegativeInfinity`][versions.types.NegativeInfinity]."""
 
 
-def is_negative_infinity(item: Union[NegativeInfinity, Any]) -> TypeGuard[NegativeInfinity]:
+def is_negative_infinity(item: Any) -> TypeGuard[NegativeInfinity]:
+    """Checks if an `item` is an instance of [`NegativeInfinity`][versions.types.NegativeInfinity].
+
+    Returns:
+        Whether the `item` is an instance of [`NegativeInfinity`][versions.types.NegativeInfinity].
+    """
     return item is negative_infinity
 
 
-def is_not_negative_infinity(item: Union[NegativeInfinity, T]) -> TypeGuard[T]:
-    return not is_negative_infinity(item)
-
-
 AnyInfinity = Union[Infinity, NegativeInfinity]
+"""The union of [`Infinity`][versions.types.Infinity] and
+[`NegativeInfinity`][versions.types.NegativeInfinity].
+"""
 
-A = TypeVar("A", bound=AnyInfinity)
 
+def is_any_infinity(item: Any) -> TypeGuard[AnyInfinity]:
+    """Checks if an `item` is an instance of [`AnyInfinity`][versions.types.AnyInfinity].
 
-def is_any_infinity(item: Union[A, Any]) -> TypeGuard[A]:
+    Returns:
+        Whether the `item` is an instance of [`AnyInfinity`][versions.types.AnyInfinity].
+    """
     return item is infinity or item is negative_infinity
-
-
-def is_not_any_infinity(item: Union[Any, T]) -> TypeGuard[T]:
-    return not is_any_infinity(item)  # type: ignore

@@ -34,7 +34,7 @@ from versions.string import (
 )
 from versions.types import NegativeInfinity, negative_infinity
 from versions.typing import DynamicTuple, get_name, is_int
-from versions.utils import count_leading_zeros, evolve_in_place, pad_to_length
+from versions.utils import count_leading_zeros, evolve_in_place, fix_to_length
 
 __all__ = (
     # default values
@@ -471,7 +471,7 @@ class Release(Representation, FromString, ToString):
             The padded release.
         """
         if self.precision < length:
-            return self.from_iterable(pad_to_length(length, padding, self.parts))
+            return self.from_iterable(fix_to_length(length, padding, self.parts))
 
         return self
 

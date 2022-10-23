@@ -49,7 +49,7 @@ Specifiers = DynamicTuple[Specifier]
 
 @frozen(repr=False)
 class SpecifierFalse(Specifier):
-    """Represents specifiers that do not accept any version."""
+    """Represents specifiers that do not accept any versions."""
 
     def accepts(self, version: Version) -> Literal[False]:
         return False

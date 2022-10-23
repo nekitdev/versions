@@ -10,7 +10,7 @@ __all__ = (
     "next_or_none",
     "contains_only_item",
     "evolve_in_place",
-    "pad_to_length",
+    "fix_to_length",
     "count_leading_zeros",
 )
 
@@ -20,16 +20,20 @@ T = TypeVar("T")
 set_attribute_directly = object.__setattr__
 
 
+FIRST = 0
+LAST = ~0
+
+
 def first(sequence: Sequence[T]) -> T:
-    return sequence[0]
+    return sequence[FIRST]
 
 
 def last(sequence: Sequence[T]) -> T:
-    return sequence[~0]
+    return sequence[LAST]
 
 
 def set_last(sequence: MutableSequence[T], item: T) -> None:
-    sequence[~0] = item
+    sequence[LAST] = item
 
 
 def next_or_none(iterator: Iterator[T]) -> Optional[T]:
@@ -47,7 +51,7 @@ def evolve_in_place(instance: A, **changes: Any) -> A:
     return instance
 
 
-def pad_to_length(length: int, padding: T, iterable: Iterable[T]) -> Iterator[T]:
+def fix_to_length(length: int, padding: T, iterable: Iterable[T]) -> Iterator[T]:
     return iter_slice(chain(iterable, repeat(padding)), length)
 
 

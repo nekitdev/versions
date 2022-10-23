@@ -56,15 +56,16 @@ class VersionSetProtocol(Specification, Protocol):
         Returns:
             Whether the set is *empty*.
         """
-        ...
+        raise NotImplementedError
 
     @abstractmethod
     def is_universe(self) -> bool:
         """Checks if the set is the *universal*.
 
         Returns:
-            Whether the set is *universal*."""
-        ...
+            Whether the set is *universal*.
+        """
+        raise NotImplementedError
 
     @abstractmethod
     def includes(self, version_set: VersionSet) -> bool:
@@ -73,7 +74,7 @@ class VersionSetProtocol(Specification, Protocol):
         Returns:
             Whether the set includes `version_set`.
         """
-        ...
+        raise NotImplementedError
 
     @abstractmethod
     def intersects(self, version_set: VersionSet) -> bool:
@@ -82,7 +83,7 @@ class VersionSetProtocol(Specification, Protocol):
         Returns:
             Whether the set intersects `version_set`.
         """
-        ...
+        raise NotImplementedError
 
     @abstractmethod
     def contains(self, version: Version) -> bool:
@@ -91,7 +92,7 @@ class VersionSetProtocol(Specification, Protocol):
         Returns:
             Whether the `version` is contained within the set.
         """
-        ...
+        raise NotImplementedError
 
     def accepts(self, version: Version) -> bool:
         """Checks if the set contains some `version`.
@@ -112,7 +113,7 @@ class VersionSetProtocol(Specification, Protocol):
         Returns:
             The set representing the *intersection* of `self` and `version_set`.
         """
-        ...
+        raise NotImplementedError
 
     @abstractmethod
     def union(self, version_set: VersionSet) -> VersionSet:
@@ -121,7 +122,7 @@ class VersionSetProtocol(Specification, Protocol):
         Returns:
             The set representing the *union* of `self` and `version_set`.
         """
-        ...
+        raise NotImplementedError
 
     @abstractmethod
     def difference(self, version_set: VersionSet) -> VersionSet:
@@ -130,7 +131,7 @@ class VersionSetProtocol(Specification, Protocol):
         Returns:
             The set representing the *difference* of `self` and `version_set`.
         """
-        ...
+        raise NotImplementedError
 
     @abstractmethod
     def complement(self) -> VersionSet:
@@ -139,7 +140,7 @@ class VersionSetProtocol(Specification, Protocol):
         Returns:
             The set representing the *complement* of `self`.
         """
-        ...
+        raise NotImplementedError
 
     def symmetric_difference(self, version_set: VersionSet) -> VersionSet:
         """Computes the *symmetric difference* of `self` and `version_set`.
@@ -269,7 +270,7 @@ def is_version_empty(item: Any) -> TypeGuard[VersionEmpty]:
 
     Returns:
         Whether the `item` provided is an instance
-        of [`VersionEmpty`][versions.version_sets.VersionEmpty].
+            of [`VersionEmpty`][versions.version_sets.VersionEmpty].
     """
     return is_instance(item, VersionEmpty)
 
@@ -279,7 +280,7 @@ def is_version_point(item: Any) -> TypeGuard[VersionPoint]:
 
     Returns:
         Whether the `item` provided is an instance
-        of [`VersionPoint`][versions.version_sets.VersionPoint].
+            of [`VersionPoint`][versions.version_sets.VersionPoint].
     """
     return is_instance(item, VersionPoint)
 
@@ -289,7 +290,7 @@ def is_version_range(item: Any) -> TypeGuard[VersionRange]:
 
     Returns:
         Whether the `item` provided is an instance
-        of [`VersionRange`][versions.version_sets.VersionRange].
+            of [`VersionRange`][versions.version_sets.VersionRange].
     """
     return is_instance(item, VersionRange)
 
@@ -299,7 +300,7 @@ def is_version_union(item: Any) -> TypeGuard[VersionUnion]:
 
     Returns:
         Whether the `item` provided is an instance
-        of [`VersionUnion`][versions.version_sets.VersionUnion].
+            of [`VersionUnion`][versions.version_sets.VersionUnion].
     """
     return is_instance(item, VersionUnion)
 
@@ -309,7 +310,7 @@ def is_version_item(item: Any) -> TypeGuard[VersionItem]:
 
     Returns:
         Whether the `item` provided is an instance
-        of [`VersionItem`][versions.version_sets.VersionItem].
+            of [`VersionItem`][versions.version_sets.VersionItem].
     """
     return is_instance(item, VersionItemTypes)
 
@@ -319,7 +320,7 @@ def is_version_set(item: Any) -> TypeGuard[VersionSet]:
 
     Returns:
         Whether the `item` provided is an instance
-        of [`VersionSet`][versions.version_sets.VersionSet].
+            of [`VersionSet`][versions.version_sets.VersionSet].
     """
     return is_instance(item, VersionSetTypes)
 
@@ -590,9 +591,6 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
     def contains(self, version: Version) -> bool:
         comparable_min = self.comparable_min
         comparable_max = self.comparable_max
-
-        # if is_not_infinity(comparable_max):
-        #     version = comparable_max.weaken(version)
 
         if version < comparable_min:
             return False

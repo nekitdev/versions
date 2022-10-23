@@ -96,19 +96,19 @@ class VersionParser(Parser[V]):
 
     @staticmethod
     def parse_epoch_optional(string: Optional[str]) -> Epoch:
-        return Epoch() if string is None else Epoch.from_string(string)
+        return Epoch() if string is None else Epoch.parse(string)
 
     @staticmethod
     def parse_release_optional(string: Optional[str]) -> Release:
-        return Release() if string is None else Release.from_string(string)
+        return Release() if string is None else Release.parse(string)
 
     @staticmethod
     def parse_pre_optional(string: Optional[str]) -> Optional[PreTag]:
-        return None if string is None else PreTag.from_string(string)
+        return None if string is None else PreTag.parse(string)
 
     @staticmethod
     def parse_post_optional(string: Optional[str]) -> Optional[PostTag]:
-        return None if string is None else PostTag.from_string(string)
+        return None if string is None else PostTag.parse(string)
 
     @staticmethod
     def parse_post_implicit_optional(string: Optional[str]) -> Optional[PostTag]:
@@ -116,11 +116,11 @@ class VersionParser(Parser[V]):
 
     @staticmethod
     def parse_dev_optional(string: Optional[str]) -> Optional[DevTag]:
-        return None if string is None else DevTag.from_string(string)
+        return None if string is None else DevTag.parse(string)
 
     @staticmethod
     def parse_local_optional(string: Optional[str]) -> Optional[Local]:
-        return None if string is None else Local.from_string(string)
+        return None if string is None else Local.parse(string)
 
     def parse(self, string: str) -> V:
         match = VERSION.fullmatch(string)

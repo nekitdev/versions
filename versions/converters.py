@@ -45,7 +45,7 @@ def union(left: VersionSet, right: VersionSet) -> VersionSet:
 def simplify(specifier: Specifier) -> Specifier:
     """Simplifies a [`Specifier`][versions.specifiers.Specifier].
 
-    Simplification is accomplished through converting to the version set and back.
+    The simplification is accomplished through converting to the version set and back.
 
     Arguments:
         specifier: The version specifier to simplify.

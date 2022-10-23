@@ -103,7 +103,7 @@ SPACE = " "
 ZERO = "0"
 
 # empty and universe
-EMPTY_VERSION = "empty"
+EMPTY_VERSION = "∅"
 UNIVERSE_VERSION = "*"
 
 # some punctuation
