@@ -861,10 +861,7 @@ to <a class="autorefs autorefs-internal" href="../version_sets/#versions.version
 
       <details class="quote">
         <summary>Source code in <code>versions/converters.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">62</span>
 <span class="normal">63</span>
 <span class="normal">64</span>
 <span class="normal">65</span>
@@ -886,7 +883,10 @@ to <a class="autorefs autorefs-internal" href="../version_sets/#versions.version
 <span class="normal">81</span>
 <span class="normal">82</span>
 <span class="normal">83</span>
-<span class="normal">84</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">specifier_to_version_set</span><span class="p">(</span><span class="n">specifier</span><span class="p">:</span> <span class="n">Specifier</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">specifier_to_version_set</span><span class="p">(</span><span class="n">specifier</span><span class="p">:</span> <span class="n">Specifier</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Converts a [`Specifier`][versions.specifiers.Specifier]</span>
 <span class="sd">    to [`VersionSet`][versions.version_sets.VersionSet].</span>
 
@@ -911,7 +911,7 @@ to <a class="autorefs autorefs-internal" href="../version_sets/#versions.version
     <span class="k">if</span> <span class="n">is_specifier_any</span><span class="p">(</span><span class="n">specifier</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="n">union</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">specifier_to_version_set</span><span class="p">,</span> <span class="n">specifier</span><span class="o">.</span><span class="n">specifiers</span><span class="p">))</span>
 
-    <span class="k">raise</span> <span class="ne">TypeError</span>  <span class="c1"># TODO: message?</span>
+    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">UNEXPECTED_SPECIFIER</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">specifier</span><span class="p">)))</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -977,15 +977,7 @@ to <a class="autorefs autorefs-internal" href="../specifiers/#versions.specifier
 
       <details class="quote">
         <summary>Source code in <code>versions/converters.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 91</span>
-<span class="normal"> 92</span>
-<span class="normal"> 93</span>
-<span class="normal"> 94</span>
-<span class="normal"> 95</span>
-<span class="normal"> 96</span>
-<span class="normal"> 97</span>
-<span class="normal"> 98</span>
-<span class="normal"> 99</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 99</span>
 <span class="normal">100</span>
 <span class="normal">101</span>
 <span class="normal">102</span>
@@ -1037,7 +1029,15 @@ to <a class="autorefs autorefs-internal" href="../specifiers/#versions.specifier
 <span class="normal">148</span>
 <span class="normal">149</span>
 <span class="normal">150</span>
-<span class="normal">151</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">version_set_to_specifier</span><span class="p">(</span><span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Specifier</span><span class="p">:</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">version_set_to_specifier</span><span class="p">(</span><span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Specifier</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Converts a [`VersionSet`][versions.version_sets.VersionSet]</span>
 <span class="sd">    to [`Specifier`][versions.specifiers.Specifier].</span>
 
@@ -1085,7 +1085,7 @@ to <a class="autorefs autorefs-internal" href="../specifiers/#versions.specifier
         <span class="n">specifier</span> <span class="o">=</span> <span class="n">min_specifier</span> <span class="ow">or</span> <span class="n">max_specifier</span>
 
         <span class="k">if</span> <span class="n">specifier</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
-            <span class="k">raise</span> <span class="n">InternalError</span>  <span class="c1"># TODO: message?</span>
+            <span class="k">raise</span> <span class="n">InternalError</span><span class="p">(</span><span class="n">EXPECTED_MIN_OR_MAX</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">specifier</span>
 
@@ -1097,7 +1097,7 @@ to <a class="autorefs autorefs-internal" href="../specifiers/#versions.specifier
 
         <span class="k">return</span> <span class="n">SpecifierAny</span><span class="o">.</span><span class="n">of_iterable</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">version_set_to_specifier</span><span class="p">,</span> <span class="n">version_set</span><span class="o">.</span><span class="n">items</span><span class="p">))</span>
 
-    <span class="k">raise</span> <span class="ne">TypeError</span>  <span class="c1"># TODO: message?</span>
+    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">UNEXPECTED_VERSION_SET</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">version_set</span><span class="p">)))</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
