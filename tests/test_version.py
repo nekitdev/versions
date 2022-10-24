@@ -397,7 +397,7 @@ def test_normalize(v100c0r0dev0: Version, v100rc0post0dev0: Version) -> None:
 
 
 V1E100A1POST1DEV1 = "1!1.0.0-alpha.1-post.1-dev.1"
-V1E100A1POST1DEV1_SHORT = "1!1.0.0a1post1dev1"
+V1E100A1POST1DEV1_SHORT = "1!1.0.0a1.post1.dev1"
 
 
 def test_to_string(v1e100a1post1dev1: Version) -> None:
