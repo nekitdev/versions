@@ -11,7 +11,7 @@ homepage = "https://github.com/nekitdev/versions"
 repository = "https://github.com/nekitdev/versions"
 documentation = "https://nekitdev.github.io/versions"
 
-keywords = ["python", "semver", "version", "versions"]
+keywords = ["python", "semver", "version"]
 
 classifiers = [
     "Development Status :: 5 - Production/Stable",
