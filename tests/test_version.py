@@ -10,66 +10,102 @@ def v100() -> Version:
     return Version.from_parts(1, 0, 0)
 
 
+DEV = "dev"
+
+
 @pytest.fixture()
 def v100dev0() -> Version:
-    return Version.from_parts(1, 0, 0, dev=DevTag("dev", 0))
+    return Version.from_parts(1, 0, 0, dev=DevTag(DEV, 0))
 
 
 @pytest.fixture()
 def v100dev1() -> Version:
-    return Version.from_parts(1, 0, 0, dev=DevTag("dev", 1))
+    return Version.from_parts(1, 0, 0, dev=DevTag(DEV, 1))
+
+
+ALPHA = "alpha"
 
 
 @pytest.fixture()
 def v100alpha0() -> Version:
-    return Version.from_parts(1, 0, 0, pre=PreTag("alpha", 0))
+    return Version.from_parts(1, 0, 0, pre=PreTag(ALPHA, 0))
+
+
+BETA = "beta"
 
 
 @pytest.fixture()
 def v100beta1() -> Version:
-    return Version.from_parts(1, 0, 0, pre=PreTag("beta", 1))
+    return Version.from_parts(1, 0, 0, pre=PreTag(BETA, 1))
+
+
+RC = "rc"
 
 
 @pytest.fixture()
 def v100rc0() -> Version:
-    return Version.from_parts(1, 0, 0, pre=PreTag("rc", 0))
+    return Version.from_parts(1, 0, 0, pre=PreTag(RC, 0))
 
 
 @pytest.fixture()
 def v100rc1() -> Version:
-    return Version.from_parts(1, 0, 0, pre=PreTag("rc", 1))
+    return Version.from_parts(1, 0, 0, pre=PreTag(RC, 1))
+
+
+BUILD = "build"
 
 
 @pytest.fixture()
 def v100build1() -> Version:
-    return Version.from_parts(1, 0, 0, local=Local.from_parts("build", 1))
+    return Version.from_parts(1, 0, 0, local=Local.from_parts(BUILD, 1))
+
+
+POST = "post"
 
 
 @pytest.fixture()
 def v100post0() -> Version:
-    return Version.from_parts(1, 0, 0, post=PostTag("post", 0))
+    return Version.from_parts(1, 0, 0, post=PostTag(POST, 0))
 
 
 @pytest.fixture()
 def v100post1() -> Version:
-    return Version.from_parts(1, 0, 0, post=PostTag("post", 1))
+    return Version.from_parts(1, 0, 0, post=PostTag(POST, 1))
 
 
 # weird ones
 
+
 @pytest.fixture()
-def v1e100a1post1dev1() -> Version:
-    return Version.from_parts(1, 0, 0, epoch=Epoch(1), pre=PreTag("a", 1), post=PostTag("post", 1), dev=DevTag("dev", 1))
+def v1e100alpha1post1dev1build1() -> Version:
+    return Version.from_parts(
+        1,
+        0,
+        0,
+        epoch=Epoch(1),
+        pre=PreTag(ALPHA, 1),
+        post=PostTag(POST, 1),
+        dev=DevTag(DEV, 1),
+        local=Local.from_parts(BUILD, 1),
+    )
+
+
+CANDIDATE = "candidate"
+REV = "rev"
 
 
 @pytest.fixture()
-def v100c0r0dev0() -> Version:
-    return Version.from_parts(1, 0, 0, pre=PreTag("c", 0), post=PostTag("r", 0), dev=DevTag("dev", 0))
+def v100candidate0rev0dev0() -> Version:
+    return Version.from_parts(
+        1, 0, 0, pre=PreTag(CANDIDATE, 0), post=PostTag(REV, 0), dev=DevTag(DEV, 0)
+    )
 
 
 @pytest.fixture()
 def v100rc0post0dev0() -> Version:
-    return Version.from_parts(1, 0, 0, pre=PreTag("rc", 0), post=PostTag("post", 0), dev=DevTag("dev", 0))
+    return Version.from_parts(
+        1, 0, 0, pre=PreTag(RC, 0), post=PostTag(POST, 0), dev=DevTag(DEV, 0)
+    )
 
 
 @pytest.fixture()
@@ -114,22 +150,22 @@ def v1e100() -> Version:
 
 @pytest.fixture()
 def dev1() -> DevTag:
-    return DevTag("dev", 1)
+    return DevTag(DEV, 1)
 
 
 @pytest.fixture()
 def rc1() -> PreTag:
-    return PreTag("rc", 1)
+    return PreTag(RC, 1)
 
 
 @pytest.fixture()
 def post1() -> PostTag:
-    return PostTag("post", 1)
+    return PostTag(POST, 1)
 
 
 @pytest.fixture()
 def build1() -> Local:
-    return Local.from_parts("build", 1)
+    return Local.from_parts(BUILD, 1)
 
 
 def test_epoch(v100: Version, v1e100: Version) -> None:
@@ -377,32 +413,32 @@ def test_to_stable(
 
 @pytest.mark.parametrize(
     ("version", "next_breaking"),
-    (
-        ("1.2.3", "2.0.0"),
-        ("1.2.0", "2.0.0"),
-        ("1.0.0", "2.0.0"),
-        ("0.2.3", "0.3.0"),
-        ("0.0.3", "0.0.4"),
-        ("0.0.0", "0.0.1"),
-        ("0.0", "0.1.0"),
-        ("0", "1.0.0"),
+    (  # taken from the `next_breaking` table
+        (Version.from_parts(1, 2, 3), Version.from_parts(2, 0, 0)),
+        (Version.from_parts(1, 2, 0), Version.from_parts(2, 0, 0)),
+        (Version.from_parts(1, 0, 0), Version.from_parts(2, 0, 0)),
+        (Version.from_parts(0, 2, 3), Version.from_parts(0, 3, 0)),
+        (Version.from_parts(0, 0, 3), Version.from_parts(0, 0, 4)),
+        (Version.from_parts(0, 0, 0), Version.from_parts(0, 0, 1)),
+        (Version.from_parts(0, 0), Version.from_parts(0, 1, 0)),
+        (Version.from_parts(0), Version.from_parts(1, 0, 0)),
     ),
 )
-def test_next_breaking(version: str, next_breaking: str) -> None:
-    assert parse_version(version).next_breaking() == parse_version(next_breaking)
+def test_next_breaking(version: Version, next_breaking: Version) -> None:
+    assert version.next_breaking() == next_breaking
 
 
-def test_normalize(v100c0r0dev0: Version, v100rc0post0dev0: Version) -> None:
-    assert v100c0r0dev0.normalize() == v100rc0post0dev0
+def test_normalize(v100candidate0rev0dev0: Version, v100rc0post0dev0: Version) -> None:
+    assert v100candidate0rev0dev0.normalize() == v100rc0post0dev0
 
 
-V1E100A1POST1DEV1 = "1!1.0.0-alpha.1-post.1-dev.1"
-V1E100A1POST1DEV1_SHORT = "1!1.0.0a1.post1.dev1"
+V1E100A1POST1DEV1BUILD1 = "1!1.0.0-alpha.1-post.1-dev.1+build.1"
+V1E100A1POST1DEV1BUILD1_SHORT = "1!1.0.0a1.post1.dev1+build.1"
 
 
-def test_to_string(v1e100a1post1dev1: Version) -> None:
-    assert v1e100a1post1dev1.to_string() == V1E100A1POST1DEV1
+def test_to_string(v1e100alpha1post1dev1build1: Version) -> None:
+    assert v1e100alpha1post1dev1build1.to_string() == V1E100A1POST1DEV1BUILD1
 
 
-def test_to_short_string(v1e100a1post1dev1: Version) -> None:
-    assert v1e100a1post1dev1.to_short_string() == V1E100A1POST1DEV1_SHORT
+def test_to_short_string(v1e100alpha1post1dev1build1: Version) -> None:
+    assert v1e100alpha1post1dev1build1.to_short_string() == V1E100A1POST1DEV1BUILD1_SHORT

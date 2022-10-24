@@ -140,7 +140,7 @@ class Release(Representation, FromString, ToString):
     parts: Parts = field(default=DEFAULT_PARTS, eq=False, order=False)
     """The parts of the release."""
 
-    compare_parts: Parts = field(repr=False, init=False, eq=True, order=True)
+    compare_parts: Parts = field(repr=False, init=False, eq=True, order=True, hash=False)
 
     @parts.validator
     def check_parts(self, attribute: Attribute[Parts], value: Parts) -> None:
@@ -710,7 +710,7 @@ class Local(Representation, FromString, ToString):
     parts: LocalParts = field(eq=False, order=False)
     """The local segment parts."""
 
-    compare_parts: CompareLocalParts = field(repr=False, init=False, eq=True, order=True)
+    compare_parts: CompareLocalParts = field(repr=False, init=False, eq=True, order=True, hash=False)
 
     @parts.validator
     def check_parts(self, attribute: Attribute[LocalParts], value: LocalParts) -> None:

@@ -1,5 +1,9 @@
 from versions.types import (
-    infinity, is_any_infinity, is_infinity, is_negative_infinity, negative_infinity
+    infinity,
+    is_any_infinity,
+    is_infinity,
+    is_negative_infinity,
+    negative_infinity,
 )
 
 

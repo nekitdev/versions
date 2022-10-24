@@ -65,7 +65,7 @@ class Version(Representation, FromString, ToString):
     local: Optional[Local] = field(default=None, eq=False, order=False)
     """The *local* segment of the version."""
 
-    compare_key: CompareKey = field(repr=False, init=False, eq=True, order=True)
+    compare_key: CompareKey = field(repr=False, init=False, eq=True, order=True, hash=False)
 
     def __attrs_post_init__(self) -> None:
         evolve_in_place(self, compare_key=self.compute_compare_key())
@@ -847,24 +847,18 @@ class Version(Representation, FromString, ToString):
     @classmethod
     def from_parts(
         cls: Type[V],
-        major: int = DEFAULT_VALUE,
-        minor: int = DEFAULT_VALUE,
-        micro: int = DEFAULT_VALUE,
-        *extra: int,
+        *parts: int,
         epoch: Optional[Epoch] = None,
         pre: Optional[PreTag] = None,
         post: Optional[PostTag] = None,
         dev: Optional[DevTag] = None,
         local: Optional[Local] = None,
     ) -> V:
-        """Creates a [`Version`][versions.version.Version] from `major`, `minor`, `micro`
-        and `extra` parts; `epoch`, `pre`, `post`, `dev` and `local`.
+        """Creates a [`Version`][versions.version.Version] from `parts`,
+        `epoch`, `pre`, `post`, `dev` and `local`.
 
         Arguments:
-            major: The *major* part to use.
-            minor: The *minor* part to use.
-            micro: The *micro* part to use.
-            *extra: The *extra* parts to use.
+            *parts: The parts of the *release* to use.
             epoch: The *epoch* to use.
             pre: The *pre-release* tag to use.
             post: The *post-release* tag to use.
@@ -874,7 +868,7 @@ class Version(Representation, FromString, ToString):
         Returns:
             The newly created [`Version`][versions.version.Version].
         """
-        release = Release.from_parts(major, minor, micro, *extra)
+        release = Release(parts)
 
         return cls.create(epoch, release, pre, post, dev, local)
 

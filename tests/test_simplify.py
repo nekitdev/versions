@@ -2,7 +2,14 @@ import pytest
 
 from versions.converters import simplify
 from versions.operators import OperatorType
-from versions.specifiers import Specifier, SpecifierAll, SpecifierAny, SpecifierFalse, SpecifierSingle, SpecifierTrue
+from versions.specifiers import (
+    Specifier,
+    SpecifierAll,
+    SpecifierAny,
+    SpecifierFalse,
+    SpecifierSingle,
+    SpecifierTrue,
+)
 from versions.version import Version
 
 
@@ -13,32 +20,32 @@ from versions.version import Version
             SpecifierAll.of(
                 SpecifierAll.of(
                     SpecifierSingle(OperatorType.GREATER_OR_EQUAL, Version.from_parts(1, 0, 0)),
-                    SpecifierSingle(OperatorType.LESS_OR_EQUAL, Version.from_parts(3, 0, 0))
+                    SpecifierSingle(OperatorType.LESS_OR_EQUAL, Version.from_parts(3, 0, 0)),
                 ),
                 SpecifierAll.of(
                     SpecifierSingle(OperatorType.GREATER_OR_EQUAL, Version.from_parts(2, 0, 0)),
-                    SpecifierSingle(OperatorType.LESS_OR_EQUAL, Version.from_parts(4, 0, 0))
+                    SpecifierSingle(OperatorType.LESS_OR_EQUAL, Version.from_parts(4, 0, 0)),
                 ),
             ),
             SpecifierAll.of(
                 SpecifierSingle(OperatorType.GREATER_OR_EQUAL, Version.from_parts(2, 0, 0)),
-                SpecifierSingle(OperatorType.LESS_OR_EQUAL, Version.from_parts(3, 0, 0))
+                SpecifierSingle(OperatorType.LESS_OR_EQUAL, Version.from_parts(3, 0, 0)),
             ),
         ),
         (
             SpecifierAny.of(
                 SpecifierAll.of(
                     SpecifierSingle(OperatorType.GREATER_OR_EQUAL, Version.from_parts(1, 0, 0)),
-                    SpecifierSingle(OperatorType.LESS_OR_EQUAL, Version.from_parts(3, 0, 0))
+                    SpecifierSingle(OperatorType.LESS_OR_EQUAL, Version.from_parts(3, 0, 0)),
                 ),
                 SpecifierAll.of(
                     SpecifierSingle(OperatorType.GREATER_OR_EQUAL, Version.from_parts(2, 0, 0)),
-                    SpecifierSingle(OperatorType.LESS_OR_EQUAL, Version.from_parts(4, 0, 0))
+                    SpecifierSingle(OperatorType.LESS_OR_EQUAL, Version.from_parts(4, 0, 0)),
                 ),
             ),
             SpecifierAll.of(
                 SpecifierSingle(OperatorType.GREATER_OR_EQUAL, Version.from_parts(1, 0, 0)),
-                SpecifierSingle(OperatorType.LESS_OR_EQUAL, Version.from_parts(4, 0, 0))
+                SpecifierSingle(OperatorType.LESS_OR_EQUAL, Version.from_parts(4, 0, 0)),
             ),
         ),
         (
