@@ -710,7 +710,9 @@ class Local(Representation, FromString, ToString):
     parts: LocalParts = field(eq=False, order=False)
     """The local segment parts."""
 
-    compare_parts: CompareLocalParts = field(repr=False, init=False, eq=True, order=True, hash=False)
+    compare_parts: CompareLocalParts = field(
+        repr=False, init=False, eq=True, order=True, hash=False
+    )
 
     @parts.validator
     def check_parts(self, attribute: Attribute[LocalParts], value: LocalParts) -> None:

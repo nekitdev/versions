@@ -1,6 +1,5 @@
 import pytest
 
-from versions.functions import parse_version
 from versions.segments import DevTag, Epoch, Local, PostTag, PreTag
 from versions.version import Version
 
@@ -103,9 +102,7 @@ def v100candidate0rev0dev0() -> Version:
 
 @pytest.fixture()
 def v100rc0post0dev0() -> Version:
-    return Version.from_parts(
-        1, 0, 0, pre=PreTag(RC, 0), post=PostTag(POST, 0), dev=DevTag(DEV, 0)
-    )
+    return Version.from_parts(1, 0, 0, pre=PreTag(RC, 0), post=PostTag(POST, 0), dev=DevTag(DEV, 0))
 
 
 @pytest.fixture()

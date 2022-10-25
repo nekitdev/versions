@@ -2,7 +2,14 @@ import pytest
 
 from versions.converters import specifier_to_version_set, version_set_to_specifier
 from versions.operators import OperatorType
-from versions.specifiers import Specifier, SpecifierAll, SpecifierAny, SpecifierFalse, SpecifierSingle, SpecifierTrue
+from versions.specifiers import (
+    Specifier,
+    SpecifierAll,
+    SpecifierAny,
+    SpecifierFalse,
+    SpecifierSingle,
+    SpecifierTrue,
+)
 from versions.version import Version
 from versions.version_sets import VersionEmpty, VersionPoint, VersionRange, VersionSet, VersionUnion
 
@@ -91,7 +98,7 @@ from versions.version_sets import VersionEmpty, VersionPoint, VersionRange, Vers
                 ),
             ),
         ),
-    )
+    ),
 )
 def test_conversion(
     version_set: VersionSet, specifier: Specifier, resulting_version_set: VersionSet
