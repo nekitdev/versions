@@ -555,7 +555,7 @@ UNEXPECTED_VERSION_SET = "unexpected version set provided: {}"
 
 @frozen(repr=False, eq=False, order=False)
 class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetProtocol):
-    """Represents version ranges (`(x, y)`, `(x, y]`, `[x, y)` and `[x, y]`)."""
+    """Represents version ranges (`(v, w)`, `(v, w]`, `[v, w)` and `[v, w]`)."""
 
     min: Optional[Version] = None
     max: Optional[Version] = None
@@ -905,7 +905,7 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
 
 @frozen(repr=False, eq=False, order=False)
 class VersionPoint(Representation, ToString, VersionRangeProtocol, VersionSetProtocol):
-    """Represents version points (`[v, v]` aka `{v}`)."""
+    """Represents version points (`[v, v]`, also known as `{v}`)."""
 
     version: Version
 
