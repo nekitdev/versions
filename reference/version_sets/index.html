@@ -3002,7 +3002,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
         Bases: <code><span title="versions.representation.Representation">Representation</span></code>, <code><span title="versions.string.ToString">ToString</span></code>, <code><span title="versions.version_sets.VersionRangeProtocol">VersionRangeProtocol</span></code>, <code><a class="autorefs autorefs-internal" title="versions.version_sets.VersionSetProtocol" href="#versions.version_sets.VersionSetProtocol">VersionSetProtocol</a></code></p>
 
   
-      <p>Represents version ranges (<code>(x, y)</code>, <code>(x, y]</code>, <code>[x, y)</code> and <code>[x, y]</code>).</p>
+      <p>Represents version ranges (<code>(v, w)</code>, <code>(v, w]</code>, <code>[v, w)</code> and <code>[v, w]</code>).</p>
 
 
         <details class="quote">
@@ -3356,7 +3356,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 <span class="normal">902</span>
 <span class="normal">903</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">eq</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">VersionRange</span><span class="p">(</span><span class="n">Representation</span><span class="p">,</span> <span class="n">ToString</span><span class="p">,</span> <span class="n">VersionRangeProtocol</span><span class="p">,</span> <span class="n">VersionSetProtocol</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Represents version ranges (`(x, y)`, `(x, y]`, `[x, y)` and `[x, y]`).&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Represents version ranges (`(v, w)`, `(v, w]`, `[v, w)` and `[v, w]`).&quot;&quot;&quot;</span>
 
     <span class="nb">min</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Version</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="nb">max</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Version</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -3741,7 +3741,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
         Bases: <code><span title="versions.representation.Representation">Representation</span></code>, <code><span title="versions.string.ToString">ToString</span></code>, <code><span title="versions.version_sets.VersionRangeProtocol">VersionRangeProtocol</span></code>, <code><a class="autorefs autorefs-internal" title="versions.version_sets.VersionSetProtocol" href="#versions.version_sets.VersionSetProtocol">VersionSetProtocol</a></code></p>
 
   
-      <p>Represents version points (<code>[v, v]</code> aka <code>{v}</code>).</p>
+      <p>Represents version points (<code>[v, v]</code>, also known as <code>{v}</code>).</p>
 
 
         <details class="quote">
@@ -3824,7 +3824,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 <span class="normal">981</span>
 <span class="normal">982</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">eq</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">VersionPoint</span><span class="p">(</span><span class="n">Representation</span><span class="p">,</span> <span class="n">ToString</span><span class="p">,</span> <span class="n">VersionRangeProtocol</span><span class="p">,</span> <span class="n">VersionSetProtocol</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Represents version points (`[v, v]` aka `{v}`).&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Represents version points (`[v, v]`, also known as `{v}`).&quot;&quot;&quot;</span>
 
     <span class="n">version</span><span class="p">:</span> <span class="n">Version</span>
 
