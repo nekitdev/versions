@@ -41,7 +41,7 @@ def get_name(item: Named) -> str:
     return item.__name__
 
 
-def is_named(item: Any) -> TypeGuard[Named]:
+def is_named(item: Any) -> TypeGuard[Named]:  # pragma: no cover  # not used anywhere
     return has_attribute(item, NAME)
 
 

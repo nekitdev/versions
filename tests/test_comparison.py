@@ -52,9 +52,9 @@ def test_comparison(strings: Iterable[str]) -> None:
 
     for i, v in enumerate(versions):
         for j, w in enumerate(versions):
-            assert (i == j) == (v == w)
-            assert (i != j) == (v != w)
-            assert (i <= j) == (v <= w)
-            assert (i >= j) == (v >= w)
-            assert (i < j) == (v < w)
-            assert (i > j) == (v > w)
+            assert (i == j) is (v == w)
+            assert (i != j) is (v != w)
+            assert (i <= j) is (v <= w)
+            assert (i >= j) is (v >= w)
+            assert (i < j) is (v < w)
+            assert (i > j) is (v > w)
