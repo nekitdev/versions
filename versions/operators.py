@@ -1,13 +1,13 @@
 from __future__ import annotations
 
 from enum import Enum
+from string import digits
 from typing import TYPE_CHECKING, Any, Mapping, Optional, Tuple, TypeVar, Union
 
 from attrs import frozen
 
 from versions.constants import (
     CARET,
-    DOT,
     DOUBLE_EQUAL,
     EQUAL,
     GREATER,
@@ -24,7 +24,7 @@ from versions.constants import (
 )
 from versions.errors import InternalError
 from versions.representation import Representation
-from versions.string import ToString, concat_dot_args, concat_empty_args, concat_space_args
+from versions.string import ToString, concat_empty_args, concat_space_args
 from versions.typing import Binary, Unary, is_same_type
 
 if TYPE_CHECKING:
@@ -234,9 +234,7 @@ def next_wildcard_breaking(version: V) -> Optional[V]:
 
 
 def wildcard_string(string: str, wildcard: str = STAR) -> str:
-    string, _dot, _last = string.rpartition(DOT)
-
-    return concat_dot_args(string, wildcard)
+    return concat_empty_args(string.rstrip(digits), wildcard)
 
 
 def wildcard_type(string: str, wildcard: str = STAR) -> str:
@@ -308,7 +306,7 @@ def matches_tilde(version: Version, against: Version) -> bool:
 
 
 def matches_equal(version: Version, against: Version) -> bool:
-    """Checks if the `version` matches the *equal* (`==`) specification.
+    """Checks if the `version` matches the *equal* (`=`) specification.
 
     This is equivalent to:
 
@@ -423,7 +421,7 @@ def matches_greater_or_equal(version: Version, against: Version) -> bool:
 
 
 def matches_wildcard_equal(version: Version, against: Version) -> bool:
-    """Checks if the `version` matches the *wildcard-equal* (`== *`) specification.
+    """Checks if the `version` matches the *wildcard-equal* (`=*`) specification.
 
     This is equivalent to:
 
@@ -449,7 +447,7 @@ def matches_wildcard_equal(version: Version, against: Version) -> bool:
 
 
 def matches_wildcard_not_equal(version: Version, against: Version) -> bool:
-    """Checks if the `version` matches the *wildcard-not-equal* (`!= *`) specification.
+    """Checks if the `version` matches the *wildcard-not-equal* (`!=*`) specification.
 
     This is equivalent to:
 
@@ -527,7 +525,7 @@ def translate_tilde(version: Version) -> VersionRange:
 
 
 def translate_equal(version: Version) -> VersionPoint:
-    """Translates the `version` into a version set according to the *equal* (`==`) strategy.
+    """Translates the `version` into a version set according to the *equal* (`=`) strategy.
 
     This function returns the `[version, version]` range (aka `version` point).
 
@@ -621,7 +619,7 @@ def translate_greater_or_equal(version: Version) -> VersionRange:
 
 def translate_wildcard_equal(version: Version) -> VersionRange:
     """Translates the `version` into a version set according to
-    the *wildcard-equal* (`== *`) strategy.
+    the *wildcard-equal* (`==*`) strategy.
 
     This function returns the `[version, next_wildcard_version(version))` range in most cases,
     except for when the version is `*`; then the `(ε, ω)` range is returned.
@@ -645,7 +643,7 @@ UNEXPECTED_WILDCARD_EQUAL_COMPLEMENT = "unexpected wildcard-equal complement"
 
 def translate_wildcard_not_equal(version: Version) -> Union[VersionEmpty, VersionUnion]:
     """Translates the `version` into a version set according to
-    the *wildcard-not-equal* (`!= *`) strategy.
+    the *wildcard-not-equal* (`!=*`) strategy.
 
     This function returns the `(ε, version) | (next_wildcard_breaking(version), ω)` union
     in most cases, except for when the version is `*`; then the `{}` empty set is returned.
@@ -706,12 +704,10 @@ class OperatorType(Enum):
         return self in WILDCARD
 
     def is_equals(self) -> bool:
-        """Checks if an operator is *equals*.
-
-        Returns:
-            Whether the operator is *equals*.
-        """
         return self in EQUALS
+
+    def is_wildcard_equals(self) -> bool:
+        return self in WILDCARD_EQUALS
 
     def is_unary(self) -> bool:
         """Checks if an operator is *unary*.
@@ -723,7 +719,11 @@ class OperatorType(Enum):
 
     def __eq__(self, other: Any) -> bool:
         if is_same_type(other, self):
-            return (self.is_equals() and other.is_equals()) or super().__eq__(other)
+            return (
+                (self.is_equals() and other.is_equals())
+                or (self.is_wildcard_equals() and other.is_wildcard_equals())
+                or super().__eq__(other)
+            )
 
         return NotImplemented
 
@@ -736,6 +736,8 @@ class OperatorType(Enum):
 
 
 EQUALS = {OperatorType.DOUBLE_EQUAL, OperatorType.EQUAL}
+
+WILDCARD_EQUALS = {OperatorType.WILDCARD_DOUBLE_EQUAL, OperatorType.WILDCARD_EQUAL}
 
 UNARY = {OperatorType.CARET, OperatorType.TILDE}
 
@@ -771,6 +773,10 @@ class Operator(Representation, ToString):
 
     version: Version
     """The operator version."""
+
+    def __attrs_post_init__(self) -> None:
+        if self.type is OperatorType.TILDE_EQUAL:
+            next_tilde_equal_breaking(self.version)  # check whether `~=` can be used
 
     def is_unary(self) -> bool:
         """Checks if an operator is *unary*.

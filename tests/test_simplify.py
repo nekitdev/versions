@@ -62,6 +62,8 @@ from versions.version import Version
                 SpecifierSingle(OperatorType.LESS, Version.from_parts(1, 1, 0)),
             ),
         ),
+        (SpecifierSingle(OperatorType.WILDCARD_EQUAL, Version.from_parts(0)), SpecifierTrue()),
+        (SpecifierSingle(OperatorType.WILDCARD_NOT_EQUAL, Version.from_parts(0)), SpecifierFalse()),
         (
             SpecifierSingle(OperatorType.TILDE_EQUAL, Version.from_parts(1, 0, 0)),
             SpecifierAll.of(

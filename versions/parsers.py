@@ -75,12 +75,12 @@ class TagParser(Parser[T]):
 
         match = TAG.fullmatch(string)
 
-        if match is None:  # pragma: no cover
+        if match is None:
             raise ParseTagError(CAN_NOT_PARSE.format(string, get_name(tag_type)))
 
         phase = match.group(PHASE)
 
-        if phase is None:  # pragma: no cover
+        if phase is None:
             raise InternalError(PHASE_IS_NONE)
 
         value_string = match.group(VALUE)
@@ -195,14 +195,14 @@ class SpecifierParser(Generic[V], Parser[Specifier]):
 
         operator_string = match.group(OPERATOR_NAME)
 
-        if operator_string is None:  # pragma: no cover
+        if operator_string is None:
             raise InternalError(OPERATOR_IS_NONE)
 
         operator_type = OperatorType(operator_string)
 
         version_string = match.group(VERSION_NAME)
 
-        if version_string is None:  # pragma: no cover
+        if version_string is None:
             raise InternalError(VERSION_IS_NONE)
 
         version = self.version_parser.parse(version_string)
@@ -225,7 +225,7 @@ class SpecifierParser(Generic[V], Parser[Specifier]):
 
         version_string = match.group(VERSION_NAME)
 
-        if version_string is None:  # pragma: no cover
+        if version_string is None:
             raise InternalError(VERSION_IS_NONE)
 
         version = self.version_parser.parse(version_string)
@@ -248,14 +248,8 @@ class SpecifierParser(Generic[V], Parser[Specifier]):
 
         version_string = match.group(VERSION_NAME)
 
-        if version_string is None:  # pragma: no cover
+        if version_string is None:
             raise InternalError(VERSION_IS_NONE)
-
-        if version_string == STAR:
-            if operator_type == OperatorType.WILDCARD_NOT_EQUAL:
-                return SpecifierFalse()
-
-            return SpecifierTrue()
 
         version = self.version_parser.parse(version_string.replace(STAR, ZERO))
 

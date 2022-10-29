@@ -27,13 +27,13 @@ from versions.version import Version
         ("^3.4", SpecifierSingle(OperatorType.CARET, Version.from_parts(3, 4))),
         ("~1.8", SpecifierSingle(OperatorType.TILDE, Version.from_parts(1, 8))),
         ("~7", SpecifierSingle(OperatorType.TILDE, Version.from_parts(7))),
-        ("=8.8", SpecifierSingle(OperatorType.EQUAL, Version.from_parts(8, 8))),
+        ("= 8.8", SpecifierSingle(OperatorType.EQUAL, Version.from_parts(8, 8))),
         ("1.0", SpecifierSingle(OperatorType.EQUAL, Version.from_parts(1, 0))),
         ("= 1.3.*", SpecifierSingle(OperatorType.WILDCARD_EQUAL, Version.from_parts(1, 3))),
         ("== 7.7.*", SpecifierSingle(OperatorType.WILDCARD_DOUBLE_EQUAL, Version.from_parts(7, 7))),
         ("!= 4.2.*", SpecifierSingle(OperatorType.WILDCARD_NOT_EQUAL, Version.from_parts(4, 2))),
-        ("*", SpecifierTrue()),
-        ("!= *", SpecifierFalse()),
+        ("*", SpecifierSingle(OperatorType.WILDCARD_EQUAL, Version.from_parts(0))),
+        ("!= *", SpecifierSingle(OperatorType.WILDCARD_NOT_EQUAL, Version.from_parts(0))),
         (
             ">= 3.7, < 4.0",
             SpecifierAll.of(

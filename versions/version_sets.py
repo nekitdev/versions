@@ -1046,7 +1046,7 @@ class VersionUnion(Representation, ToString, Specification):
                     if is_version_item(result):
                         set_last(merged, result)
 
-                    else:  # pragma: no cover
+                    else:
                         raise InternalError(UNEXPECTED_UNION)
 
                 else:

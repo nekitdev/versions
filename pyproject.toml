@@ -95,6 +95,7 @@ exclude_lines = [
     "@abstractmethod",
     "raise NotImplementedError",
     "raise AssertionError",
+    "raise InternalError",
     "def __repr__",
 ]
 
