@@ -57,7 +57,7 @@ from versions.version_sets import VersionEmpty, VersionPoint, VersionRange, Vers
                 include_max=False,
             ),
         ),
-        ("=8.8", VersionPoint(Version.from_parts(8, 8))),
+        ("= 8.8", VersionPoint(Version.from_parts(8, 8))),
         ("1.0", VersionPoint(Version.from_parts(1, 0))),
         (
             "= 1.3.*",

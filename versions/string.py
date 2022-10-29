@@ -131,7 +131,7 @@ def create_wrap_around(string: str, wrap: Iterable[str] = BRACKETS) -> str:
     try:
         left, right = wrap
 
-    except (ValueError, TypeError):
+    except (ValueError, TypeError):  # pragma: no cover  # not tested
         raise ValueError(EXPECTED_PAIR) from None
 
     return left + string + right

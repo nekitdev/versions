@@ -30,14 +30,7 @@ from versions.patterns import (
     VERSION_NAME,
     WILDCARD_SPECIFICATION,
 )
-from versions.specifiers import (
-    Specifier,
-    SpecifierAll,
-    SpecifierAny,
-    SpecifierFalse,
-    SpecifierSingle,
-    SpecifierTrue,
-)
+from versions.specifiers import Specifier, SpecifierAll, SpecifierAny, SpecifierSingle
 from versions.string import clear_whitespace, split_comma, split_pipes
 from versions.typing import get_name
 from versions.version_sets import VersionSet
@@ -75,7 +68,7 @@ class TagParser(Parser[T]):
 
         match = TAG.fullmatch(string)
 
-        if match is None:
+        if match is None:  # pragma: no cover  # not tested
             raise ParseTagError(CAN_NOT_PARSE.format(string, get_name(tag_type)))
 
         phase = match.group(PHASE)

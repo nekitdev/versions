@@ -3,14 +3,7 @@ import pytest
 from versions.errors import ParseSpecificationError
 from versions.functions import parse_specifier
 from versions.operators import OperatorType
-from versions.specifiers import (
-    Specifier,
-    SpecifierAll,
-    SpecifierAny,
-    SpecifierFalse,
-    SpecifierSingle,
-    SpecifierTrue,
-)
+from versions.specifiers import Specifier, SpecifierAll, SpecifierAny, SpecifierSingle
 from versions.version import Version
 
 
