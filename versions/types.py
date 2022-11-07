@@ -6,7 +6,7 @@ from typing import Any, Type, TypeVar, Union
 
 from typing_extensions import TypeGuard
 
-from versions.typing import get_name
+from versions.typing import get_type_name
 
 __all__ = (
     # ordering
@@ -132,7 +132,7 @@ class SingletonType(type):
 
 class Singleton(metaclass=SingletonType):
     def __repr__(self) -> str:
-        return get_name(type(self))
+        return get_type_name(self)
 
 
 singleton = Singleton()

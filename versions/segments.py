@@ -33,7 +33,7 @@ from versions.string import (
     split_separators,
 )
 from versions.types import NegativeInfinity, negative_infinity
-from versions.typing import DynamicTuple, get_name, is_int
+from versions.typing import DynamicTuple, get_type_name, is_int
 from versions.utils import count_leading_zeros, evolve_in_place, fix_to_length
 
 __all__ = (
@@ -551,7 +551,7 @@ class Tag(Representation, FromString, ToString):
     @phase.validator
     def check_phase(self, attribute: Attribute[str], value: str) -> None:
         if value not in self.PHASE_SET:
-            raise ValueError(PHASE_NOT_ALLOWED.format(value, get_name(type(self))))
+            raise ValueError(PHASE_NOT_ALLOWED.format(value, get_type_name(self)))
 
     def __attrs_post_init__(self) -> None:
         evolve_in_place(self, phase=self.expand(self.phase))

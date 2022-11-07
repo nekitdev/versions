@@ -12,6 +12,7 @@ __all__ = (
     "Binary",
     "Named",
     "get_name",
+    "get_type_name",
     "is_named",
     "is_int",
 )
@@ -39,6 +40,10 @@ class Named(Protocol):
 
 def get_name(item: Named) -> str:
     return item.__name__
+
+
+def get_type_name(item: Any) -> str:
+    return get_name(type(item))  # type: ignore
 
 
 def is_named(item: Any) -> TypeGuard[Named]:  # pragma: no cover  # not used anywhere

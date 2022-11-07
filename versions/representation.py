@@ -1,7 +1,7 @@
 from typing import ClassVar
 
 from versions.string import create_wrap_around
-from versions.typing import get_name
+from versions.typing import get_type_name
 
 __all__ = ("TEMPLATE", "Representation")
 
@@ -13,6 +13,6 @@ class Representation:
 
     def __repr__(self) -> str:
         return TEMPLATE.format(
-            name=get_name(type(self)),  # type: ignore
+            name=get_type_name(self),
             string=create_wrap_around(str(self)) if self.WRAP else str(self),
         )

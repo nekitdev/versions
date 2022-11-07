@@ -814,7 +814,9 @@ class Operator(Representation, ToString):
 
     @property
     def partial_matches(self) -> PartialMatches:
-        """The partial `matches` function with `self.version` as the `against` version."""
+        """The partial `matches` function with
+        [`self.version`][versions.operators.Operator.version] as the `against` version.
+        """
         return partial_matches(self.matches, self.version)
 
     def to_string(self) -> str:

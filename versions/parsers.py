@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, Generic, Optional, Pattern, Type, TypeVar
 from attrs import frozen
 from typing_extensions import Protocol, runtime_checkable
 
-from versions.constants import STAR, ZERO
+from versions.constants import STAR, X_LITERAL, ZERO
 from versions.converters import specifier_to_version_set
 from versions.errors import InternalError, ParseSpecificationError, ParseTagError, ParseVersionError
 from versions.operators import OperatorType
@@ -121,10 +121,12 @@ class VersionParser(Parser[V]):
     def parse(self, string: str) -> V:
         match = VERSION.fullmatch(string)
 
-        if match is None:
-            raise ParseVersionError(CAN_NOT_PARSE.format(string, get_name(self.version_type)))
+        version_type = self.version_type
 
-        return self.version_type(
+        if match is None:
+            raise ParseVersionError(CAN_NOT_PARSE.format(string, get_name(version_type)))
+
+        return version_type(
             epoch=self.parse_epoch_optional(match.group(EPOCH)),
             release=self.parse_release_optional(match.group(RELEASE)),
             pre=self.parse_pre_optional(match.group(PRE)),
@@ -244,7 +246,9 @@ class SpecifierParser(Generic[V], Parser[Specifier]):
         if version_string is None:
             raise InternalError(VERSION_IS_NONE)
 
-        version = self.version_parser.parse(version_string.replace(STAR, ZERO))
+        version = self.version_parser.parse(
+            version_string.replace(X_LITERAL, STAR).replace(STAR, ZERO)
+        )
 
         return SpecifierSingle(operator_type, version)
 

@@ -24,4 +24,4 @@ class ParseVersionError(ParseError):
 
 
 class InternalError(RuntimeError):
-    """An internal error has occured."""
+    """An internal error has occurred."""
