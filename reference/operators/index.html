@@ -2123,7 +2123,9 @@
 <span class="normal">844</span>
 <span class="normal">845</span>
 <span class="normal">846</span>
-<span class="normal">847</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="normal">847</span>
+<span class="normal">848</span>
+<span class="normal">849</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">Operator</span><span class="p">(</span><span class="n">Representation</span><span class="p">,</span> <span class="n">ToString</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Represents operators.&quot;&quot;&quot;</span>
 
@@ -2173,7 +2175,9 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">partial_matches</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PartialMatches</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The partial `matches` function with `self.version` as the `against` version.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;The partial `matches` function with</span>
+<span class="sd">        [`self.version`][versions.operators.Operator.version] as the `against` version.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">partial_matches</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matches</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -2457,16 +2461,21 @@
 
   <div class="doc doc-contents ">
   
-      <p>The partial <code>matches</code> function with <code>self.version</code> as the <code>against</code> version.</p>
+      <p>The partial <code>matches</code> function with
+<a class="autorefs autorefs-internal" href="#versions.operators.Operator.version"><code>self.version</code></a> as the <code>against</code> version.</p>
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
         <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">815</span>
 <span class="normal">816</span>
 <span class="normal">817</span>
-<span class="normal">818</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
+<span class="normal">818</span>
+<span class="normal">819</span>
+<span class="normal">820</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
 <span class="k">def</span> <span class="nf">partial_matches</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PartialMatches</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;The partial `matches` function with `self.version` as the `against` version.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;The partial `matches` function with</span>
+<span class="sd">    [`self.version`][versions.operators.Operator.version] as the `against` version.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">partial_matches</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matches</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
       </details>
@@ -2508,9 +2517,7 @@
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">820</span>
-<span class="normal">821</span>
-<span class="normal">822</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">822</span>
 <span class="normal">823</span>
 <span class="normal">824</span>
 <span class="normal">825</span>
@@ -2522,7 +2529,9 @@
 <span class="normal">831</span>
 <span class="normal">832</span>
 <span class="normal">833</span>
-<span class="normal">834</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">834</span>
+<span class="normal">835</span>
+<span class="normal">836</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Converts an [`Operator`][versions.operators.Operator] to its string representation.</span>
 
 <span class="sd">    Returns:</span>
@@ -2577,9 +2586,7 @@
 
       <details class="quote">
         <summary>Source code in <code>versions/operators.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">836</span>
-<span class="normal">837</span>
-<span class="normal">838</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">838</span>
 <span class="normal">839</span>
 <span class="normal">840</span>
 <span class="normal">841</span>
@@ -2588,7 +2595,9 @@
 <span class="normal">844</span>
 <span class="normal">845</span>
 <span class="normal">846</span>
-<span class="normal">847</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_short_string</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">847</span>
+<span class="normal">848</span>
+<span class="normal">849</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_short_string</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Converts an [`Operator`][versions.operators.Operator] to its *short* string representation.</span>
 
 <span class="sd">    Returns:</span>
