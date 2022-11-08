@@ -1,3 +1,5 @@
+from string import digits
+
 import pytest
 
 from versions.operators import OperatorType
@@ -65,7 +67,15 @@ class TestSpecifierTrue:
 
 CARET = "^"
 TILDE = "~"
+
 TILDE_EQUAL = "~="
+EQUAL = "="
+
+STAR = "*"
+
+
+def wildcard_string(string: str, wildcard: str = STAR) -> str:
+    return concat_empty_args(string.rstrip(digits), wildcard)
 
 
 class TestSpecifierSingle:
@@ -80,6 +90,11 @@ class TestSpecifierSingle:
 
         assert caret_specifier.to_string() == concat_empty_args(CARET, v100.to_string())
 
+    def test_caret_to_short_string(self, v100: Version) -> None:
+        caret_specifier = SpecifierSingle(OperatorType.CARET, v100)
+
+        assert caret_specifier.to_short_string() == concat_empty_args(CARET, v100.to_string())
+
     def test_tilde_accepts(self, v100: Version, v110: Version) -> None:
         tilde_specifier = SpecifierSingle(OperatorType.TILDE, v100)
 
@@ -91,6 +106,11 @@ class TestSpecifierSingle:
 
         assert tilde_specifier.to_string() == concat_empty_args(TILDE, v100.to_string())
 
+    def test_tilde_to_short_string(self, v100: Version) -> None:
+        tilde_specifier = SpecifierSingle(OperatorType.TILDE, v100)
+
+        assert tilde_specifier.to_short_string() == concat_empty_args(TILDE, v100.to_string())
+
     def test_tilde_equal_accepts(self, v100: Version, v110: Version) -> None:
         tilde_equal_specifier = SpecifierSingle(OperatorType.TILDE_EQUAL, v100)
 
@@ -101,6 +121,37 @@ class TestSpecifierSingle:
         tilde_equal_specifier = SpecifierSingle(OperatorType.TILDE_EQUAL, v100)
 
         assert tilde_equal_specifier.to_string() == concat_space_args(TILDE_EQUAL, v100.to_string())
+
+    def test_tilde_equal_to_short_string(self, v100: Version) -> None:
+        tilde_equal_specifier = SpecifierSingle(OperatorType.TILDE_EQUAL, v100)
+
+        assert tilde_equal_specifier.to_short_string() == concat_empty_args(TILDE_EQUAL, v100.to_string())
+
+    def test_wildcard_equal_accepts(self, v100: Version, v110: Version) -> None:
+        wildcard_equal_specifier = SpecifierSingle(OperatorType.WILDCARD_EQUAL, v100)
+
+        assert wildcard_equal_specifier.accepts(v100)
+        assert not wildcard_equal_specifier.accepts(v110)
+
+    def test_wildcard_equal_to_string(self, v100: Version) -> None:
+        wildcard_equal_specifier = SpecifierSingle(OperatorType.WILDCARD_EQUAL, v100)
+
+        assert wildcard_equal_specifier.to_string() == concat_space_args(
+            EQUAL, wildcard_string(v100.to_string())
+        )
+
+    def test_wildcard_equal_to_short_string(self, v100: Version) -> None:
+        wildcard_equal_specifier = SpecifierSingle(OperatorType.WILDCARD_EQUAL, v100)
+
+        assert wildcard_equal_specifier.to_short_string() == concat_empty_args(
+            EQUAL, wildcard_string(v100.to_short_string())
+        )
+
+    def test_wildcard_universe_accepts(self, v0: Version, v100: Version, v200: Version) -> None:
+        wildcard_universe_specifier = SpecifierSingle(OperatorType.WILDCARD_EQUAL, v0)
+
+        assert wildcard_universe_specifier.accepts(v100)
+        assert wildcard_universe_specifier.accepts(v200)
 
     def test_can_not_use_tilde_equal(self, v1: Version) -> None:
         with pytest.raises(ValueError):

@@ -725,7 +725,7 @@ class OperatorType(Enum):
                 or super().__eq__(other)
             )
 
-        return NotImplemented
+        return NotImplemented  # pragma: no cover  # not tested
 
     def __hash__(self) -> int:
         return super().__hash__()  # type: ignore
