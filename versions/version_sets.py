@@ -6,6 +6,7 @@ from itertools import chain
 from typing import TYPE_CHECKING, Any, Iterable, Iterator, List, Optional, Tuple, TypeVar, Union
 
 from attrs import Attribute, define, evolve, field, frozen
+from orderings import Ordering
 from typing_extensions import Literal, Protocol, TypeGuard, runtime_checkable
 
 from versions.constants import EMPTY_VERSION, UNIVERSE_VERSION
@@ -20,7 +21,7 @@ from versions.string import (
     concat_pipes,
     concat_pipes_spaced,
 )
-from versions.types import Infinity, NegativeInfinity, Ordering, infinity, negative_infinity
+from versions.types import Infinity, NegativeInfinity, infinity, negative_infinity
 from versions.typing import DynamicTuple
 from versions.utils import contains_only_item, evolve_in_place, first, last, next_or_none, set_last
 
