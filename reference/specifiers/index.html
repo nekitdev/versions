@@ -422,8 +422,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#versions.specifiers.SpecifierSingle" class="md-nav__link">
-    SpecifierSingle
+  <a href="#versions.specifiers.SpecifierOne" class="md-nav__link">
+    SpecifierOne
   </a>
   
 </li>
@@ -464,8 +464,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#versions.specifiers.is_specifier_single" class="md-nav__link">
-    is_specifier_single()
+  <a href="#versions.specifiers.is_specifier_one" class="md-nav__link">
+    is_specifier_one()
   </a>
   
 </li>
@@ -668,8 +668,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#versions.specifiers.SpecifierSingle" class="md-nav__link">
-    SpecifierSingle
+  <a href="#versions.specifiers.SpecifierOne" class="md-nav__link">
+    SpecifierOne
   </a>
   
 </li>
@@ -710,8 +710,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#versions.specifiers.is_specifier_single" class="md-nav__link">
-    is_specifier_single()
+  <a href="#versions.specifiers.is_specifier_one" class="md-nav__link">
+    is_specifier_one()
   </a>
   
 </li>
@@ -792,7 +792,7 @@
           <summary>Source code in <code>versions/specifiers.py</code></summary>
           <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">43</span>
 <span class="normal">44</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Specifier</span><span class="p">(</span><span class="n">Representation</span><span class="p">,</span> <span class="n">ToString</span><span class="p">,</span> <span class="n">Specification</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Represents all possible specifiers.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents all possible specifiers.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -831,7 +831,7 @@
 <span class="normal">57</span>
 <span class="normal">58</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">SpecifierFalse</span><span class="p">(</span><span class="n">Specifier</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Represents specifiers that do not accept any versions.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents specifiers that do not accept any versions.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">accepts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">False</span><span class="p">]:</span>
         <span class="k">return</span> <span class="kc">False</span>
@@ -892,7 +892,7 @@
 <span class="normal">68</span>
 <span class="normal">69</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">SpecifierTrue</span><span class="p">(</span><span class="n">Specifier</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Represents specifiers that accept all versions.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents specifiers that accept all versions.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">accepts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">True</span><span class="p">]:</span>
         <span class="k">return</span> <span class="kc">True</span>
@@ -926,8 +926,8 @@
 
 
 
-<h2 id="versions.specifiers.SpecifierSingle" class="doc doc-heading">
-        <code>SpecifierSingle</code>
+<h2 id="versions.specifiers.SpecifierOne" class="doc doc-heading">
+        <code>SpecifierOne</code>
 
 
 </h2>
@@ -952,8 +952,8 @@
 <span class="normal">77</span>
 <span class="normal">78</span>
 <span class="normal">79</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">SpecifierSingle</span><span class="p">(</span><span class="n">Operator</span><span class="p">,</span> <span class="n">Specifier</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Represents specifiers that accept versions according to the</span>
+<span class="k">class</span> <span class="nc">SpecifierOne</span><span class="p">(</span><span class="n">Operator</span><span class="p">,</span> <span class="n">Specifier</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents specifiers that accept versions according to the</span>
 <span class="sd">    [`Operator`][versions.operators.Operator] type.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -1049,7 +1049,7 @@ if <em>any</em> of the contained specifiers accept it.</p>
 <span class="normal">136</span>
 <span class="normal">137</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">SpecifierAny</span><span class="p">(</span><span class="n">Specifier</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Represents collections of two or more specifiers that accept versions</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents collections of two or more specifiers that accept versions</span>
 <span class="sd">    if *any* of the contained specifiers accept it.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -1181,7 +1181,7 @@ if and only if <em>all</em> of the contained specifiers accept it.</p>
 <span class="normal">182</span>
 <span class="normal">183</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">SpecifierAll</span><span class="p">(</span><span class="n">Specifier</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Represents collections of two or more specifiers that accept versions</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents collections of two or more specifiers that accept versions</span>
 <span class="sd">    if and only if *all* of the contained specifiers accept it.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -1315,7 +1315,7 @@ if and only if <em>all</em> of the contained specifiers accept it.</p>
 <span class="normal">193</span>
 <span class="normal">194</span>
 <span class="normal">195</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_specifier</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">Specifier</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Checks if an `item` is an instance of [`Specifier`][versions.specifiers.Specifier].</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if an `item` is an instance of [`Specifier`][versions.specifiers.Specifier].</span>
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        item: The item to check.</span>
@@ -1402,7 +1402,7 @@ if and only if <em>all</em> of the contained specifiers accept it.</p>
 <span class="normal">207</span>
 <span class="normal">208</span>
 <span class="normal">209</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_specifier_false</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">SpecifierFalse</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Checks if an `item` is an instance of</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if an `item` is an instance of</span>
 <span class="sd">    [`SpecifierFalse`][versions.specifiers.SpecifierFalse].</span>
 
 <span class="sd">    Arguments:</span>
@@ -1491,7 +1491,7 @@ if and only if <em>all</em> of the contained specifiers accept it.</p>
 <span class="normal">221</span>
 <span class="normal">222</span>
 <span class="normal">223</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_specifier_true</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">SpecifierTrue</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Checks if an `item` is an instance of</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if an `item` is an instance of</span>
 <span class="sd">    [`SpecifierTrue`][versions.specifiers.SpecifierTrue].</span>
 
 <span class="sd">    Arguments:</span>
@@ -1512,8 +1512,8 @@ if and only if <em>all</em> of the contained specifiers accept it.</p>
 
 
 
-<h2 id="versions.specifiers.is_specifier_single" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_specifier_single</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">SpecifierSingle</span><span class="p">]</span></code>
+<h2 id="versions.specifiers.is_specifier_one" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">is_specifier_one</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">SpecifierOne</span><span class="p">]</span></code>
 
 </h2>
 
@@ -1521,7 +1521,7 @@ if and only if <em>all</em> of the contained specifiers accept it.</p>
   <div class="doc doc-contents ">
   
       <p>Checks if an <code>item</code> is an instance of
-<a class="autorefs autorefs-internal" href="#versions.specifiers.SpecifierSingle"><code>SpecifierSingle</code></a>.</p>
+<a class="autorefs autorefs-internal" href="#versions.specifiers.SpecifierOne"><code>SpecifierOne</code></a>.</p>
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -1558,10 +1558,10 @@ if and only if <em>all</em> of the contained specifiers accept it.</p>
     <tbody>
         <tr>
           <td>
-                <code><span title="typing_extensions.TypeGuard">TypeGuard</span>[<a class="autorefs autorefs-internal" title="versions.specifiers.SpecifierSingle" href="#versions.specifiers.SpecifierSingle">SpecifierSingle</a>]</code>
+                <code><span title="typing_extensions.TypeGuard">TypeGuard</span>[<a class="autorefs autorefs-internal" title="versions.specifiers.SpecifierOne" href="#versions.specifiers.SpecifierOne">SpecifierOne</a>]</code>
           </td>
           <td><p>Whether the <code>item</code> provided is an instance of
-<a class="autorefs autorefs-internal" href="#versions.specifiers.SpecifierSingle"><code>SpecifierSingle</code></a>.</p></td>
+<a class="autorefs autorefs-internal" href="#versions.specifiers.SpecifierOne"><code>SpecifierOne</code></a>.</p></td>
         </tr>
     </tbody>
   </table>
@@ -1579,18 +1579,18 @@ if and only if <em>all</em> of the contained specifiers accept it.</p>
 <span class="normal">234</span>
 <span class="normal">235</span>
 <span class="normal">236</span>
-<span class="normal">237</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_specifier_single</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">SpecifierSingle</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Checks if an `item` is an instance of</span>
-<span class="sd">    [`SpecifierSingle`][versions.specifiers.SpecifierSingle].</span>
+<span class="normal">237</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_specifier_one</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">SpecifierOne</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if an `item` is an instance of</span>
+<span class="sd">    [`SpecifierOne`][versions.specifiers.SpecifierOne].</span>
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        item: The item to check.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Whether the `item` provided is an instance of</span>
-<span class="sd">            [`SpecifierSingle`][versions.specifiers.SpecifierSingle].</span>
+<span class="sd">            [`SpecifierOne`][versions.specifiers.SpecifierOne].</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">is_instance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">SpecifierSingle</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">is_instance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">SpecifierOne</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -1669,7 +1669,7 @@ if and only if <em>all</em> of the contained specifiers accept it.</p>
 <span class="normal">249</span>
 <span class="normal">250</span>
 <span class="normal">251</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_specifier_any</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">SpecifierAny</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Checks if an `item` is an instance of</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if an `item` is an instance of</span>
 <span class="sd">    [`SpecifierAny`][versions.specifiers.SpecifierAny].</span>
 
 <span class="sd">    Arguments:</span>
@@ -1758,7 +1758,7 @@ if and only if <em>all</em> of the contained specifiers accept it.</p>
 <span class="normal">263</span>
 <span class="normal">264</span>
 <span class="normal">265</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_specifier_all</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">SpecifierAll</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Checks if an `item` is an instance of</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if an `item` is an instance of</span>
 <span class="sd">    [`SpecifierAll`][versions.specifiers.SpecifierAll].</span>
 
 <span class="sd">    Arguments:</span>
