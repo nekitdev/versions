@@ -132,7 +132,7 @@ def version_set_to_specifier(version_set: VersionSet) -> Specifier:
             exclude_version = version_union.exclude_version
 
             if exclude_version:
-                return SpecifierOne(Operator.NOT_EQUAL, exclude_version)
+                return SpecifierOne(OperatorType.NOT_EQUAL, exclude_version)
 
             return SpecifierAny.of_iterable(map(version_set_to_specifier, version_items))
 
