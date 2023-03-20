@@ -7,7 +7,7 @@ from versions.specifiers import (
     SpecifierAll,
     SpecifierAny,
     SpecifierFalse,
-    SpecifierSingle,
+    SpecifierOne,
     SpecifierTrue,
 )
 from versions.version import Version
@@ -36,22 +36,22 @@ from versions.version_sets import VersionEmpty, VersionPoint, VersionRange, Vers
                 include_min=True,
                 include_max=True,
             ),
-            SpecifierSingle(OperatorType.DOUBLE_EQUAL, Version.from_parts(2, 0, 0)),
+            SpecifierOne(OperatorType.DOUBLE_EQUAL, Version.from_parts(2, 0, 0)),
             VersionPoint(Version.from_parts(2, 0, 0)),
         ),
         (
             VersionPoint(Version.from_parts(3, 0, 0)),
-            SpecifierSingle(OperatorType.DOUBLE_EQUAL, Version.from_parts(3, 0, 0)),
+            SpecifierOne(OperatorType.DOUBLE_EQUAL, Version.from_parts(3, 0, 0)),
             VersionPoint(Version.from_parts(3, 0, 0)),
         ),
         (
             VersionRange(min=Version.from_parts(4, 0, 0), include_min=True),
-            SpecifierSingle(OperatorType.GREATER_OR_EQUAL, Version.from_parts(4, 0, 0)),
+            SpecifierOne(OperatorType.GREATER_OR_EQUAL, Version.from_parts(4, 0, 0)),
             VersionRange(min=Version.from_parts(4, 0, 0), include_min=True),
         ),
         (
             VersionRange(max=Version.from_parts(5, 0, 0), include_max=True),
-            SpecifierSingle(OperatorType.LESS_OR_EQUAL, Version.from_parts(5, 0, 0)),
+            SpecifierOne(OperatorType.LESS_OR_EQUAL, Version.from_parts(5, 0, 0)),
             VersionRange(max=Version.from_parts(5, 0, 0), include_max=True),
         ),
         (
@@ -59,7 +59,7 @@ from versions.version_sets import VersionEmpty, VersionPoint, VersionRange, Vers
                 VersionRange(max=Version.from_parts(7, 0, 0), include_max=False),
                 VersionRange(min=Version.from_parts(7, 0, 0), include_min=False),
             ),
-            SpecifierSingle(OperatorType.NOT_EQUAL, Version.from_parts(7, 0, 0)),
+            SpecifierOne(OperatorType.NOT_EQUAL, Version.from_parts(7, 0, 0)),
             VersionUnion.of(
                 VersionRange(max=Version.from_parts(7, 0, 0), include_max=False),
                 VersionRange(min=Version.from_parts(7, 0, 0), include_min=False),
@@ -80,10 +80,10 @@ from versions.version_sets import VersionEmpty, VersionPoint, VersionRange, Vers
             ),
             SpecifierAny.of(
                 SpecifierAll.of(
-                    SpecifierSingle(OperatorType.GREATER_OR_EQUAL, Version.from_parts(8, 0, 0)),
-                    SpecifierSingle(OperatorType.LESS, Version.from_parts(9, 0, 0)),
+                    SpecifierOne(OperatorType.GREATER_OR_EQUAL, Version.from_parts(8, 0, 0)),
+                    SpecifierOne(OperatorType.LESS, Version.from_parts(9, 0, 0)),
                 ),
-                SpecifierSingle(OperatorType.GREATER_OR_EQUAL, Version.from_parts(10, 0, 0)),
+                SpecifierOne(OperatorType.GREATER_OR_EQUAL, Version.from_parts(10, 0, 0)),
             ),
             VersionUnion.of(
                 VersionRange(

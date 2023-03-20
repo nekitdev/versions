@@ -1,0 +1,163 @@
+from functools import reduce
+
+from versions.errors import InternalError
+from versions.operators import OperatorType
+from versions.specifiers import (
+    Specifier,
+    SpecifierAll,
+    SpecifierAny,
+    SpecifierFalse,
+    SpecifierOne,
+    SpecifierTrue,
+    is_specifier_all,
+    is_specifier_any,
+    is_specifier_false,
+    is_specifier_one,
+    is_specifier_true,
+)
+from versions.version_sets import (
+    VersionEmpty,
+    VersionRange,
+    VersionSet,
+    is_version_empty,
+    is_version_point,
+    is_version_range,
+    is_version_union,
+)
+
+__all__ = (
+    "simplify",
+    "specifier_from_version_set",
+    "specifier_to_version_set",
+    "version_set_from_specifier",
+    "version_set_to_specifier",
+)
+
+
+def intersection(left: VersionSet, right: VersionSet) -> VersionSet:
+    return left.intersection(right)
+
+
+def union(left: VersionSet, right: VersionSet) -> VersionSet:
+    return left.union(right)
+
+
+def simplify(specifier: Specifier) -> Specifier:
+    """Simplifies a [`Specifier`][versions.specifiers.Specifier].
+
+    The simplification is accomplished through converting to the version set and back.
+
+    Arguments:
+        specifier: The version specifier to simplify.
+
+    Returns:
+        The simplified specifier.
+    """
+    return specifier_from_version_set(specifier_to_version_set(specifier))
+
+
+UNEXPECTED_SPECIFIER = "unexpected specifier provided: {}"
+
+
+def specifier_to_version_set(specifier: Specifier) -> VersionSet:
+    """Converts a [`Specifier`][versions.specifiers.Specifier]
+    to [`VersionSet`][versions.version_sets.VersionSet].
+
+    Arguments:
+        specifier: The version specifier to convert.
+
+    Returns:
+        The converted version set.
+    """
+    if is_specifier_one(specifier):
+        return specifier.translate(specifier.version)
+
+    if is_specifier_false(specifier):
+        return VersionEmpty()
+
+    if is_specifier_true(specifier):
+        return VersionRange()
+
+    if is_specifier_all(specifier):
+        return reduce(intersection, map(specifier_to_version_set, specifier.specifiers))
+
+    if is_specifier_any(specifier):
+        return reduce(union, map(specifier_to_version_set, specifier.specifiers))
+
+    raise TypeError(UNEXPECTED_SPECIFIER.format(repr(specifier)))
+
+
+version_set_from_specifier = specifier_to_version_set
+"""An alias of [`specifier_to_version_set`][versions.converters.specifier_to_version_set]."""
+
+
+UNEXPECTED_VERSION_SET = "unexpected version set provided: {}"
+
+EXPECTED_MIN_OR_MAX = "expected either `min` or `max` to be different from `None`"
+
+
+def version_set_to_specifier(version_set: VersionSet) -> Specifier:
+    """Converts a [`VersionSet`][versions.version_sets.VersionSet]
+    to [`Specifier`][versions.specifiers.Specifier].
+
+    Arguments:
+        version_set: The version set to convert.
+
+    Returns:
+        The converted version specifier.
+    """
+    if is_version_empty(version_set):
+        return SpecifierFalse()
+
+    if is_version_point(version_set):
+        return SpecifierOne(OperatorType.DOUBLE_EQUAL, version_set.version)
+
+    if is_version_range(version_set):
+        if version_set.is_empty():
+            return SpecifierFalse()
+
+        if version_set.is_universe():
+            return SpecifierTrue()
+
+        if version_set.is_point():
+            return SpecifierOne(OperatorType.DOUBLE_EQUAL, version_set.version)
+
+        min = version_set.min
+        max = version_set.max
+
+        min_specifier = None
+        max_specifier = None
+
+        if min:
+            min_type = (
+                OperatorType.GREATER_OR_EQUAL if version_set.include_min else OperatorType.GREATER
+            )
+            min_specifier = SpecifierOne(min_type, min)
+
+        if max:
+            max_type = OperatorType.LESS_OR_EQUAL if version_set.include_max else OperatorType.LESS
+            max_specifier = SpecifierOne(max_type, max)
+
+        if min_specifier and max_specifier:
+            return SpecifierAll.of(min_specifier, max_specifier)
+
+        specifier = min_specifier or max_specifier
+
+        if specifier is None:
+            raise InternalError(EXPECTED_MIN_OR_MAX)
+
+        return specifier
+
+    if is_version_union(version_set):
+        exclude_version = version_set.exclude_version
+
+        if exclude_version:
+            return SpecifierOne(OperatorType.NOT_EQUAL, exclude_version)
+
+        return SpecifierAny.of_iterable(map(version_set_to_specifier, version_set.items))
+
+    raise TypeError(UNEXPECTED_VERSION_SET.format(repr(version_set)))
+
+
+specifier_from_version_set = version_set_to_specifier
+"""An alias of [`version_set_to_specifier`][versions.converters.version_set_to_specifier]."""

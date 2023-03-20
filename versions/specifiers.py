@@ -28,13 +28,13 @@ __all__ = (
     "Specifier",
     "SpecifierFalse",
     "SpecifierTrue",
-    "SpecifierSingle",
+    "SpecifierOne",
     "SpecifierAny",
     "SpecifierAll",
     "is_specifier",
     "is_specifier_false",
     "is_specifier_true",
-    "is_specifier_single",
+    "is_specifier_one",
     "is_specifier_any",
     "is_specifier_all",
 )
@@ -70,7 +70,7 @@ class SpecifierTrue(Specifier):
 
 
 @frozen(repr=False)
-class SpecifierSingle(Operator, Specifier):
+class SpecifierOne(Operator, Specifier):
     """Represents specifiers that accept versions according to the
     [`Operator`][versions.operators.Operator] type.
     """
@@ -223,18 +223,18 @@ def is_specifier_true(item: Any) -> TypeGuard[SpecifierTrue]:
     return is_instance(item, SpecifierTrue)
 
 
-def is_specifier_single(item: Any) -> TypeGuard[SpecifierSingle]:
+def is_specifier_one(item: Any) -> TypeGuard[SpecifierOne]:
     """Checks if an `item` is an instance of
-    [`SpecifierSingle`][versions.specifiers.SpecifierSingle].
+    [`SpecifierOne`][versions.specifiers.SpecifierOne].
 
     Arguments:
         item: The item to check.
 
     Returns:
         Whether the `item` provided is an instance of
-            [`SpecifierSingle`][versions.specifiers.SpecifierSingle].
+            [`SpecifierOne`][versions.specifiers.SpecifierOne].
     """
-    return is_instance(item, SpecifierSingle)
+    return is_instance(item, SpecifierOne)
 
 
 def is_specifier_any(item: Any) -> TypeGuard[SpecifierAny]:

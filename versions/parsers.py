@@ -30,7 +30,7 @@ from versions.patterns import (
     VERSION_NAME,
     WILDCARD_SPECIFICATION,
 )
-from versions.specifiers import Specifier, SpecifierAll, SpecifierAny, SpecifierSingle
+from versions.specifiers import Specifier, SpecifierAll, SpecifierAny, SpecifierOne
 from versions.string import clear_whitespace, split_comma, split_pipes
 from versions.typing import get_name
 from versions.version_sets import VersionSet
@@ -202,7 +202,7 @@ class SpecifierParser(Generic[V], Parser[Specifier]):
 
         version = self.version_parser.parse(version_string)
 
-        return SpecifierSingle(operator_type, version)
+        return SpecifierOne(operator_type, version)
 
     def try_parse_equal(self, string: str) -> Optional[Specifier]:
         match = EQUAL_SPECIFICATION.fullmatch(string)
@@ -225,7 +225,7 @@ class SpecifierParser(Generic[V], Parser[Specifier]):
 
         version = self.version_parser.parse(version_string)
 
-        return SpecifierSingle(operator_type, version)
+        return SpecifierOne(operator_type, version)
 
     def try_parse_wildcard(self, string: str) -> Optional[Specifier]:
         match = WILDCARD_SPECIFICATION.fullmatch(string)
@@ -250,7 +250,7 @@ class SpecifierParser(Generic[V], Parser[Specifier]):
             version_string.replace(X_LITERAL, STAR).replace(STAR, ZERO)
         )
 
-        return SpecifierSingle(operator_type, version)
+        return SpecifierOne(operator_type, version)
 
 
 @frozen()

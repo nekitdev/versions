@@ -40,13 +40,13 @@ from versions.specifiers import (
     SpecifierAll,
     SpecifierAny,
     SpecifierFalse,
-    SpecifierSingle,
+    SpecifierOne,
     SpecifierTrue,
     is_specifier,
     is_specifier_all,
     is_specifier_any,
     is_specifier_false,
-    is_specifier_single,
+    is_specifier_one,
     is_specifier_true,
 )
 from versions.version import Version
@@ -85,14 +85,14 @@ __all__ = (
     "Specifier",
     "SpecifierFalse",
     "SpecifierTrue",
-    "SpecifierSingle",
+    "SpecifierOne",
     "SpecifierAll",
     "SpecifierAny",
     # specifiers type guards
     "is_specifier",
     "is_specifier_false",
     "is_specifier_true",
-    "is_specifier_single",
+    "is_specifier_one",
     "is_specifier_all",
     "is_specifier_any",
     # version sets
