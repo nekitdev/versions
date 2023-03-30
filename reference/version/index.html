@@ -1564,7 +1564,7 @@
 
   <div class="doc doc-contents ">
       <p class="doc doc-class-bases">
-        Bases: <code><span title="versions.representation.Representation">Representation</span></code>, <code><span title="versions.string.FromString">FromString</span></code>, <code><span title="versions.string.ToString">ToString</span></code></p>
+        Bases: <code><span title="versions.representation.Representation">Representation</span></code>, <code><span title="versions.string.String">String</span></code></p>
 
   
       <p>Represents versions.</p>
@@ -2492,7 +2492,7 @@
 <span class="normal">963</span>
 <span class="normal">964</span>
 <span class="normal">965</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">eq</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">Version</span><span class="p">(</span><span class="n">Representation</span><span class="p">,</span> <span class="n">FromString</span><span class="p">,</span> <span class="n">ToString</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Version</span><span class="p">(</span><span class="n">Representation</span><span class="p">,</span> <span class="n">String</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents versions.&quot;&quot;&quot;</span>
 
     <span class="n">epoch</span><span class="p">:</span> <span class="n">Epoch</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">factory</span><span class="o">=</span><span class="n">Epoch</span><span class="p">,</span> <span class="n">eq</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
