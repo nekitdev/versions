@@ -18,7 +18,7 @@ from versions.segments import (
     Release,
 )
 from versions.specification import Specification
-from versions.string import FromString, ToString, concat_empty
+from versions.string import String, concat_empty
 from versions.types import AnyInfinity, Infinity, NegativeInfinity, infinity, negative_infinity
 
 __all__ = ("CompareKey", "Version")
@@ -44,7 +44,7 @@ W = TypeVar("W", bound="Version")
 
 
 @frozen(repr=False, eq=True, order=True)
-class Version(Representation, FromString, ToString):
+class Version(Representation, String):
     """Represents versions."""
 
     epoch: Epoch = field(factory=Epoch, eq=False, order=False)

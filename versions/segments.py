@@ -23,8 +23,7 @@ from versions.phases import (
 )
 from versions.representation import Representation
 from versions.string import (
-    FromString,
-    ToString,
+    String,
     check_int,
     concat_dot,
     concat_dot_args,
@@ -86,7 +85,7 @@ E = TypeVar("E", bound="Epoch")
 
 
 @frozen(repr=False, eq=True, order=True)
-class Epoch(Representation, FromString, ToString):
+class Epoch(Representation, String):
     """Represents the *epoch* segment of the version (`e!`)."""
 
     value: int = field(default=DEFAULT_VALUE)
@@ -140,7 +139,7 @@ R = TypeVar("R", bound="Release")
 
 
 @frozen(repr=False, eq=True, order=True)
-class Release(Representation, FromString, ToString):
+class Release(Representation, String):
     """Represents the *release* segment of the version (`x.y.z`)."""
 
     parts: Parts = field(default=DEFAULT_PARTS, eq=False, order=False)
@@ -543,7 +542,7 @@ def convert_phase(phase: str) -> str:
 
 
 @frozen(repr=False, eq=True, order=True)
-class Tag(Representation, FromString, ToString):
+class Tag(Representation, String):
     """Represents various version *tags* (`tag.n`)."""
 
     DEFAULT_PHASE: ClassVar[str] = PHASE_ALL_DEFAULT
@@ -710,7 +709,7 @@ def local_part(string: str) -> LocalPart:
 
 
 @frozen(repr=False, eq=True, order=True)
-class Local(Representation, FromString, ToString):
+class Local(Representation, String):
     """Represents the *local* segment of the version (`+abcdef.n`)"""
 
     parts: LocalParts = field(eq=False, order=False)
