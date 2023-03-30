@@ -416,8 +416,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#versions.version_sets.VersionSetProtocol.is_universe" class="md-nav__link">
-    is_universe()
+  <a href="#versions.version_sets.VersionSetProtocol.is_universal" class="md-nav__link">
+    is_universal()
   </a>
   
 </li>
@@ -836,8 +836,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#versions.version_sets.VersionSetProtocol.is_universe" class="md-nav__link">
-    is_universe()
+  <a href="#versions.version_sets.VersionSetProtocol.is_universal" class="md-nav__link">
+    is_universal()
   </a>
   
 </li>
@@ -1157,7 +1157,8 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 
         <details class="quote">
           <summary>Source code in <code>versions/version_sets.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 51</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 50</span>
+<span class="normal"> 51</span>
 <span class="normal"> 52</span>
 <span class="normal"> 53</span>
 <span class="normal"> 54</span>
@@ -1371,10 +1372,9 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 <span class="normal">262</span>
 <span class="normal">263</span>
 <span class="normal">264</span>
-<span class="normal">265</span>
-<span class="normal">266</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@runtime_checkable</span>
+<span class="normal">265</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@runtime_checkable</span>
 <span class="k">class</span> <span class="nc">VersionSetProtocol</span><span class="p">(</span><span class="n">Specification</span><span class="p">,</span> <span class="n">Protocol</span><span class="p">):</span>
-    <span class="nd">@abstractmethod</span>
+    <span class="nd">@required</span>
     <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks if the set is *empty*.</span>
 
@@ -1383,8 +1383,8 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
-    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">is_universe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="nd">@required</span>
+    <span class="k">def</span> <span class="nf">is_universal</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks if the set is the *universal*.</span>
 
 <span class="sd">        Returns:</span>
@@ -1392,7 +1392,7 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
-    <span class="nd">@abstractmethod</span>
+    <span class="nd">@required</span>
     <span class="k">def</span> <span class="nf">includes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks if the set includes `version_set`.</span>
 
@@ -1401,7 +1401,7 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
-    <span class="nd">@abstractmethod</span>
+    <span class="nd">@required</span>
     <span class="k">def</span> <span class="nf">intersects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks if the set intersects `version_set`.</span>
 
@@ -1410,7 +1410,7 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
-    <span class="nd">@abstractmethod</span>
+    <span class="nd">@required</span>
     <span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks if the set contains some `version`.</span>
 
@@ -1431,7 +1431,7 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
 
-    <span class="nd">@abstractmethod</span>
+    <span class="nd">@required</span>
     <span class="k">def</span> <span class="nf">intersection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Computes the *intersection* of `self` and `version_set`.</span>
 
@@ -1440,7 +1440,7 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
-    <span class="nd">@abstractmethod</span>
+    <span class="nd">@required</span>
     <span class="k">def</span> <span class="nf">union</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Computes the *union* of `self` and `version_set`.</span>
 
@@ -1449,7 +1449,7 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
-    <span class="nd">@abstractmethod</span>
+    <span class="nd">@required</span>
     <span class="k">def</span> <span class="nf">difference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Computes the *difference* of `self` and `version_set`.</span>
 
@@ -1458,7 +1458,7 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
-    <span class="nd">@abstractmethod</span>
+    <span class="nd">@required</span>
     <span class="k">def</span> <span class="nf">complement</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Computes the *complement* of `self`.</span>
 
@@ -1641,14 +1641,14 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">53</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">52</span>
+<span class="normal">53</span>
 <span class="normal">54</span>
 <span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@required</span>
 <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if the set is *empty*.</span>
 
@@ -1666,8 +1666,8 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 
 
 
-<h3 id="versions.version_sets.VersionSetProtocol.is_universe" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">is_universe</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
+<h3 id="versions.version_sets.VersionSetProtocol.is_universal" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">is_universal</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
@@ -1700,15 +1700,15 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">62</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">61</span>
+<span class="normal">62</span>
 <span class="normal">63</span>
 <span class="normal">64</span>
 <span class="normal">65</span>
 <span class="normal">66</span>
 <span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
-<span class="k">def</span> <span class="nf">is_universe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="normal">68</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@required</span>
+<span class="k">def</span> <span class="nf">is_universal</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if the set is the *universal*.</span>
 
 <span class="sd">    Returns:</span>
@@ -1759,14 +1759,14 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">71</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">70</span>
+<span class="normal">71</span>
 <span class="normal">72</span>
 <span class="normal">73</span>
 <span class="normal">74</span>
 <span class="normal">75</span>
 <span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="normal">77</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@required</span>
 <span class="k">def</span> <span class="nf">includes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if the set includes `version_set`.</span>
 
@@ -1818,14 +1818,14 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">80</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">79</span>
+<span class="normal">80</span>
 <span class="normal">81</span>
 <span class="normal">82</span>
 <span class="normal">83</span>
 <span class="normal">84</span>
 <span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="normal">86</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@required</span>
 <span class="k">def</span> <span class="nf">intersects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if the set intersects `version_set`.</span>
 
@@ -1877,14 +1877,14 @@ and <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRa
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">89</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">88</span>
+<span class="normal">89</span>
 <span class="normal">90</span>
 <span class="normal">91</span>
 <span class="normal">92</span>
 <span class="normal">93</span>
 <span class="normal">94</span>
-<span class="normal">95</span>
-<span class="normal">96</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="normal">95</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@required</span>
 <span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if the set contains some `version`.</span>
 
@@ -1935,7 +1935,8 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 98</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 97</span>
+<span class="normal"> 98</span>
 <span class="normal"> 99</span>
 <span class="normal">100</span>
 <span class="normal">101</span>
@@ -1944,8 +1945,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 <span class="normal">104</span>
 <span class="normal">105</span>
 <span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">accepts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="normal">107</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">accepts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if the set contains some `version`.</span>
 
 <span class="sd">    This is an implementation of the [`accepts`][versions.specification.Specification.accepts]</span>
@@ -2000,14 +2000,14 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">110</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">109</span>
+<span class="normal">110</span>
 <span class="normal">111</span>
 <span class="normal">112</span>
 <span class="normal">113</span>
 <span class="normal">114</span>
 <span class="normal">115</span>
-<span class="normal">116</span>
-<span class="normal">117</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="normal">116</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@required</span>
 <span class="k">def</span> <span class="nf">intersection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the *intersection* of `self` and `version_set`.</span>
 
@@ -2059,14 +2059,14 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">119</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">118</span>
+<span class="normal">119</span>
 <span class="normal">120</span>
 <span class="normal">121</span>
 <span class="normal">122</span>
 <span class="normal">123</span>
 <span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="normal">125</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@required</span>
 <span class="k">def</span> <span class="nf">union</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the *union* of `self` and `version_set`.</span>
 
@@ -2118,14 +2118,14 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">128</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">127</span>
+<span class="normal">128</span>
 <span class="normal">129</span>
 <span class="normal">130</span>
 <span class="normal">131</span>
 <span class="normal">132</span>
 <span class="normal">133</span>
-<span class="normal">134</span>
-<span class="normal">135</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="normal">134</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@required</span>
 <span class="k">def</span> <span class="nf">difference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the *difference* of `self` and `version_set`.</span>
 
@@ -2177,14 +2177,14 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">137</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">136</span>
+<span class="normal">137</span>
 <span class="normal">138</span>
 <span class="normal">139</span>
 <span class="normal">140</span>
 <span class="normal">141</span>
 <span class="normal">142</span>
-<span class="normal">143</span>
-<span class="normal">144</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="normal">143</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@required</span>
 <span class="k">def</span> <span class="nf">complement</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the *complement* of `self`.</span>
 
@@ -2233,7 +2233,8 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">146</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">145</span>
+<span class="normal">146</span>
 <span class="normal">147</span>
 <span class="normal">148</span>
 <span class="normal">149</span>
@@ -2241,8 +2242,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 <span class="normal">151</span>
 <span class="normal">152</span>
 <span class="normal">153</span>
-<span class="normal">154</span>
-<span class="normal">155</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">symmetric_difference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
+<span class="normal">154</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">symmetric_difference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the *symmetric difference* of `self` and `version_set`.</span>
 
 <span class="sd">    Equivalent to [`self.union(version_set).difference(self.intersection(version_set))`]</span>
@@ -2292,13 +2292,13 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">157</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">156</span>
+<span class="normal">157</span>
 <span class="normal">158</span>
 <span class="normal">159</span>
 <span class="normal">160</span>
 <span class="normal">161</span>
-<span class="normal">162</span>
-<span class="normal">163</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="normal">162</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if the set contains some `version` via the *contains* (`in`) operation.</span>
 
 <span class="sd">    Returns:</span>
@@ -2346,7 +2346,8 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">165</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">164</span>
+<span class="normal">165</span>
 <span class="normal">166</span>
 <span class="normal">167</span>
 <span class="normal">168</span>
@@ -2354,8 +2355,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 <span class="normal">170</span>
 <span class="normal">171</span>
 <span class="normal">172</span>
-<span class="normal">173</span>
-<span class="normal">174</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__and__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
+<span class="normal">173</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__and__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the *intersection* of `self` and `version_set` via the *and* (`&amp;`) operation.</span>
 
 <span class="sd">    This is equivalent to [`self.intersection(version_set)`]</span>
@@ -2407,7 +2407,8 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">176</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">175</span>
+<span class="normal">176</span>
 <span class="normal">177</span>
 <span class="normal">178</span>
 <span class="normal">179</span>
@@ -2416,8 +2417,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 <span class="normal">182</span>
 <span class="normal">183</span>
 <span class="normal">184</span>
-<span class="normal">185</span>
-<span class="normal">186</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__iand__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
+<span class="normal">185</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__iand__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the *intersection* of `self` and `version_set` via the *and-assign*</span>
 <span class="sd">    (`&amp;=`) operation.</span>
 
@@ -2469,7 +2469,8 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">188</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">187</span>
+<span class="normal">188</span>
 <span class="normal">189</span>
 <span class="normal">190</span>
 <span class="normal">191</span>
@@ -2477,8 +2478,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 <span class="normal">193</span>
 <span class="normal">194</span>
 <span class="normal">195</span>
-<span class="normal">196</span>
-<span class="normal">197</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__or__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
+<span class="normal">196</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__or__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the *union* of `self` and `version_set` via the *or* (`|`) operation.</span>
 
 <span class="sd">    This is equivalent to [`self.union(version_set)`]</span>
@@ -2529,7 +2529,8 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">199</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">198</span>
+<span class="normal">199</span>
 <span class="normal">200</span>
 <span class="normal">201</span>
 <span class="normal">202</span>
@@ -2537,8 +2538,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 <span class="normal">204</span>
 <span class="normal">205</span>
 <span class="normal">206</span>
-<span class="normal">207</span>
-<span class="normal">208</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__ior__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
+<span class="normal">207</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__ior__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the *union* of `self` and `version_set` via the *or-assign* (`|=`) operation.</span>
 
 <span class="sd">    This is equivalent to [`self.union(version_set)`]</span>
@@ -2589,7 +2589,8 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">210</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">209</span>
+<span class="normal">210</span>
 <span class="normal">211</span>
 <span class="normal">212</span>
 <span class="normal">213</span>
@@ -2597,8 +2598,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 <span class="normal">215</span>
 <span class="normal">216</span>
 <span class="normal">217</span>
-<span class="normal">218</span>
-<span class="normal">219</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
+<span class="normal">218</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the *difference* of `self` and `version_set` via the *sub* (`-`) operation.</span>
 
 <span class="sd">    This is equivalent to [`self.difference(version_set)`]</span>
@@ -2650,7 +2650,8 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">221</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">220</span>
+<span class="normal">221</span>
 <span class="normal">222</span>
 <span class="normal">223</span>
 <span class="normal">224</span>
@@ -2659,8 +2660,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 <span class="normal">227</span>
 <span class="normal">228</span>
 <span class="normal">229</span>
-<span class="normal">230</span>
-<span class="normal">231</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__isub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
+<span class="normal">230</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__isub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the *difference* of `self` and `version_set` via the *sub-assign*</span>
 <span class="sd">    (`-=`) operation.</span>
 
@@ -2713,7 +2713,8 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">233</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">232</span>
+<span class="normal">233</span>
 <span class="normal">234</span>
 <span class="normal">235</span>
 <span class="normal">236</span>
@@ -2722,8 +2723,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 <span class="normal">239</span>
 <span class="normal">240</span>
 <span class="normal">241</span>
-<span class="normal">242</span>
-<span class="normal">243</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__xor__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
+<span class="normal">242</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__xor__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the *symmetric difference* of `self` and `version_set` via the *xor*</span>
 <span class="sd">    (`^`) operation.</span>
 
@@ -2776,7 +2776,8 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">245</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">244</span>
+<span class="normal">245</span>
 <span class="normal">246</span>
 <span class="normal">247</span>
 <span class="normal">248</span>
@@ -2785,8 +2786,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 <span class="normal">251</span>
 <span class="normal">252</span>
 <span class="normal">253</span>
-<span class="normal">254</span>
-<span class="normal">255</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__ixor__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
+<span class="normal">254</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__ixor__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the *symmetric difference* of `self` and `version_set` via the *xor-assign*</span>
 <span class="sd">    (`^=`) operation.</span>
 
@@ -2838,7 +2838,8 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">257</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">256</span>
+<span class="normal">257</span>
 <span class="normal">258</span>
 <span class="normal">259</span>
 <span class="normal">260</span>
@@ -2846,8 +2847,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 <span class="normal">262</span>
 <span class="normal">263</span>
 <span class="normal">264</span>
-<span class="normal">265</span>
-<span class="normal">266</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">__negate__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
+<span class="normal">265</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">__negate__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VersionSet</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the *complement* of `self` via the *negate* (`~`) operation.</span>
 
 <span class="sd">    This is equivalent to [`self.complement()`]</span>
@@ -2892,7 +2892,8 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
         <details class="quote">
           <summary>Source code in <code>versions/version_sets.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">333</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">332</span>
+<span class="normal">333</span>
 <span class="normal">334</span>
 <span class="normal">335</span>
 <span class="normal">336</span>
@@ -2926,15 +2927,14 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 <span class="normal">364</span>
 <span class="normal">365</span>
 <span class="normal">366</span>
-<span class="normal">367</span>
-<span class="normal">368</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="normal">367</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">VersionEmpty</span><span class="p">(</span><span class="n">Representation</span><span class="p">,</span> <span class="n">ToString</span><span class="p">,</span> <span class="n">VersionSetProtocol</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents empty version sets (`{}`).&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Represents empty version sets (`{}`).&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">True</span><span class="p">]:</span>
         <span class="k">return</span> <span class="kc">True</span>
 
-    <span class="k">def</span> <span class="nf">is_universe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">False</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">is_universal</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">False</span><span class="p">]:</span>
         <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">includes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -3007,10 +3007,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
         <details class="quote">
           <summary>Source code in <code>versions/version_sets.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">557</span>
-<span class="normal">558</span>
-<span class="normal">559</span>
-<span class="normal">560</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">560</span>
 <span class="normal">561</span>
 <span class="normal">562</span>
 <span class="normal">563</span>
@@ -3354,9 +3351,14 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 <span class="normal">901</span>
 <span class="normal">902</span>
 <span class="normal">903</span>
-<span class="normal">904</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">eq</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="normal">904</span>
+<span class="normal">905</span>
+<span class="normal">906</span>
+<span class="normal">907</span>
+<span class="normal">908</span>
+<span class="normal">909</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">eq</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">VersionRange</span><span class="p">(</span><span class="n">Representation</span><span class="p">,</span> <span class="n">ToString</span><span class="p">,</span> <span class="n">VersionRangeProtocol</span><span class="p">,</span> <span class="n">VersionSetProtocol</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents version ranges (`(v, w)`, `(v, w]`, `[v, w)` and `[v, w]`).&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Represents version ranges (`(v, w)`, `(v, w]`, `[v, w)` and `[v, w]`).&quot;&quot;&quot;</span>
 
     <span class="nb">min</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Version</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="nb">max</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Version</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -3365,10 +3367,12 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
     <span class="k">def</span> <span class="nf">__attrs_post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">min</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">evolve_in_place</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">include_min</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">include_min</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">CAN_NOT_INCLUDE_INFINITY</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">evolve_in_place</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">include_max</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">include_max</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">CAN_NOT_INCLUDE_INFINITY</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">comparable_min</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">comparable_max</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">MIN_MAX_CONSTRAINT</span><span class="p">)</span>
@@ -3379,7 +3383,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
     <span class="k">def</span> <span class="nf">is_point</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_empty_or_point</span><span class="p">()</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_closed</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">is_universe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">is_universal</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_unbounded</span><span class="p">()</span>
 
     <span class="nd">@property</span>
@@ -3648,7 +3652,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
             <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
             <span class="k">return</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_universe</span><span class="p">():</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_universal</span><span class="p">():</span>
             <span class="k">yield</span> <span class="n">UNIVERSE_VERSION</span>
             <span class="k">return</span>
 
@@ -3677,7 +3681,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
             <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">to_short_string</span><span class="p">()</span>
             <span class="k">return</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_universe</span><span class="p">():</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_universal</span><span class="p">():</span>
             <span class="k">yield</span> <span class="n">UNIVERSE_VERSION</span>
             <span class="k">return</span>
 
@@ -3741,17 +3745,12 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
         Bases: <code><span title="versions.representation.Representation">Representation</span></code>, <code><span title="versions.string.ToString">ToString</span></code>, <code><span title="versions.version_sets.VersionRangeProtocol">VersionRangeProtocol</span></code>, <code><a class="autorefs autorefs-internal" title="versions.version_sets.VersionSetProtocol" href="#versions.version_sets.VersionSetProtocol">VersionSetProtocol</a></code></p>
 
   
-      <p>Represents version points (<code>[v, v]</code>, also known as <code>{v}</code>).</p>
+      <p>Represents version points (<code>[v, v]</code> ranges, also known as singleton sets <code>{v}</code>).</p>
 
 
         <details class="quote">
           <summary>Source code in <code>versions/version_sets.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">907</span>
-<span class="normal">908</span>
-<span class="normal">909</span>
-<span class="normal">910</span>
-<span class="normal">911</span>
-<span class="normal">912</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">912</span>
 <span class="normal">913</span>
 <span class="normal">914</span>
 <span class="normal">915</span>
@@ -3822,9 +3821,14 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 <span class="normal">980</span>
 <span class="normal">981</span>
 <span class="normal">982</span>
-<span class="normal">983</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">eq</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="normal">983</span>
+<span class="normal">984</span>
+<span class="normal">985</span>
+<span class="normal">986</span>
+<span class="normal">987</span>
+<span class="normal">988</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">eq</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">VersionPoint</span><span class="p">(</span><span class="n">Representation</span><span class="p">,</span> <span class="n">ToString</span><span class="p">,</span> <span class="n">VersionRangeProtocol</span><span class="p">,</span> <span class="n">VersionSetProtocol</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents version points (`[v, v]`, also known as `{v}`).&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Represents version points (`[v, v]` ranges, also known as singleton sets `{v}`).&quot;&quot;&quot;</span>
 
     <span class="n">version</span><span class="p">:</span> <span class="n">Version</span>
 
@@ -3850,7 +3854,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
     <span class="k">def</span> <span class="nf">is_point</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">True</span>
 
-    <span class="k">def</span> <span class="nf">is_universe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">is_universal</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -3943,14 +3947,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 
         <details class="quote">
           <summary>Source code in <code>versions/version_sets.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1001</span>
-<span class="normal">1002</span>
-<span class="normal">1003</span>
-<span class="normal">1004</span>
-<span class="normal">1005</span>
-<span class="normal">1006</span>
-<span class="normal">1007</span>
-<span class="normal">1008</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1008</span>
 <span class="normal">1009</span>
 <span class="normal">1010</span>
 <span class="normal">1011</span>
@@ -4105,7 +4102,14 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
 <span class="normal">1160</span>
 <span class="normal">1161</span>
 <span class="normal">1162</span>
-<span class="normal">1163</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="normal">1163</span>
+<span class="normal">1164</span>
+<span class="normal">1165</span>
+<span class="normal">1166</span>
+<span class="normal">1167</span>
+<span class="normal">1168</span>
+<span class="normal">1169</span>
+<span class="normal">1170</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@frozen</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">VersionUnion</span><span class="p">(</span><span class="n">Representation</span><span class="p">,</span> <span class="n">ToString</span><span class="p">,</span> <span class="n">Specification</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents version unions.&quot;&quot;&quot;</span>
 
@@ -4115,8 +4119,8 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
     <span class="k">def</span> <span class="nf">check_items</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">:</span> <span class="n">Attribute</span><span class="p">[</span><span class="n">VersionItems</span><span class="p">],</span> <span class="n">items</span><span class="p">:</span> <span class="n">VersionItems</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">check_items</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
 
-    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">VersionItem</span><span class="p">]:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="n">version_set</span><span class="p">:</span> <span class="n">VersionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">VersionItem</span><span class="p">]:</span>
         <span class="k">if</span> <span class="n">is_version_union</span><span class="p">(</span><span class="n">version_set</span><span class="p">):</span>
             <span class="k">yield from</span> <span class="n">version_set</span><span class="o">.</span><span class="n">items</span>
 
@@ -4134,7 +4138,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
         <span class="k">if</span> <span class="ow">not</span> <span class="n">extracted</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">VersionEmpty</span><span class="p">()</span>
 
-        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">is_universe</span><span class="p">()</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">extracted</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">is_universal</span><span class="p">()</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">extracted</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">VersionRange</span><span class="p">()</span>
 
         <span class="n">extracted</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
@@ -4174,7 +4178,7 @@ method of <a class="autorefs autorefs-internal" href="../specification/#versions
     <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
 
-    <span class="k">def</span> <span class="nf">is_universe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">is_universal</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="n">Version</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -4327,14 +4331,14 @@ of <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionEmp
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">269</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">268</span>
+<span class="normal">269</span>
 <span class="normal">270</span>
 <span class="normal">271</span>
 <span class="normal">272</span>
 <span class="normal">273</span>
 <span class="normal">274</span>
-<span class="normal">275</span>
-<span class="normal">276</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_version_empty</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">VersionEmpty</span><span class="p">]:</span>
+<span class="normal">275</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_version_empty</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">VersionEmpty</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if an `item` is an instance of [`VersionEmpty`][versions.version_sets.VersionEmpty].</span>
 
 <span class="sd">    Returns:</span>
@@ -4383,14 +4387,14 @@ of <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionPoi
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">279</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">278</span>
+<span class="normal">279</span>
 <span class="normal">280</span>
 <span class="normal">281</span>
 <span class="normal">282</span>
 <span class="normal">283</span>
 <span class="normal">284</span>
-<span class="normal">285</span>
-<span class="normal">286</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_version_point</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">VersionPoint</span><span class="p">]:</span>
+<span class="normal">285</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_version_point</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">VersionPoint</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if an `item` is an instance of [`VersionPoint`][versions.version_sets.VersionPoint].</span>
 
 <span class="sd">    Returns:</span>
@@ -4439,14 +4443,14 @@ of <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionRan
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">289</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">288</span>
+<span class="normal">289</span>
 <span class="normal">290</span>
 <span class="normal">291</span>
 <span class="normal">292</span>
 <span class="normal">293</span>
 <span class="normal">294</span>
-<span class="normal">295</span>
-<span class="normal">296</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_version_range</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">VersionRange</span><span class="p">]:</span>
+<span class="normal">295</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_version_range</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">VersionRange</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if an `item` is an instance of [`VersionRange`][versions.version_sets.VersionRange].</span>
 
 <span class="sd">    Returns:</span>
@@ -4495,14 +4499,14 @@ of <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionUni
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">299</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">298</span>
+<span class="normal">299</span>
 <span class="normal">300</span>
 <span class="normal">301</span>
 <span class="normal">302</span>
 <span class="normal">303</span>
 <span class="normal">304</span>
-<span class="normal">305</span>
-<span class="normal">306</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_version_union</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">VersionUnion</span><span class="p">]:</span>
+<span class="normal">305</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_version_union</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">VersionUnion</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if an `item` is an instance of [`VersionUnion`][versions.version_sets.VersionUnion].</span>
 
 <span class="sd">    Returns:</span>
@@ -4551,14 +4555,14 @@ of <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionIte
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">309</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">308</span>
+<span class="normal">309</span>
 <span class="normal">310</span>
 <span class="normal">311</span>
 <span class="normal">312</span>
 <span class="normal">313</span>
 <span class="normal">314</span>
-<span class="normal">315</span>
-<span class="normal">316</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_version_item</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">VersionItem</span><span class="p">]:</span>
+<span class="normal">315</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_version_item</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">VersionItem</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if an `item` is an instance of [`VersionItem`][versions.version_sets.VersionItem].</span>
 
 <span class="sd">    Returns:</span>
@@ -4607,14 +4611,14 @@ of <a class="autorefs autorefs-internal" href="#versions.version_sets.VersionSet
 
       <details class="quote">
         <summary>Source code in <code>versions/version_sets.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">319</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">318</span>
+<span class="normal">319</span>
 <span class="normal">320</span>
 <span class="normal">321</span>
 <span class="normal">322</span>
 <span class="normal">323</span>
 <span class="normal">324</span>
-<span class="normal">325</span>
-<span class="normal">326</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_version_set</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">VersionSet</span><span class="p">]:</span>
+<span class="normal">325</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_version_set</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">VersionSet</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if an `item` is an instance of [`VersionSet`][versions.version_sets.VersionSet].</span>
 
 <span class="sd">    Returns:</span>
