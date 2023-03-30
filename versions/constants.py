@@ -1,3 +1,5 @@
+from versions.utils import unary_tuple
+
 __all__ = (
     # release constants
     "ALPHA",
@@ -76,24 +78,24 @@ C_LITERAL = "c"
 
 RC = "rc"  # preferred
 
-# preview release
+# preview (post) release
 PREVIEW = "preview"
 PRE = "pre"
 
 # post release
 POST = "post"
 
-# revision release
+# revision (post) release
 REV = "rev"
 R_LITERAL = "r"
 
 # development release
 DEV = "dev"
 
-# phases
+# phases (in order of precedence, used in patterns)
 PRE_PHASES = (ALPHA, BETA, A_LITERAL, B_LITERAL, C_LITERAL, RC, PREVIEW, PRE)
 POST_PHASES = (POST, REV, R_LITERAL)
-DEV_PHASES = (DEV,)
+DEV_PHASES = unary_tuple(DEV)
 
 # empty and space strings
 EMPTY = str()
@@ -103,7 +105,7 @@ SPACE = " "
 ZERO = "0"
 
 # empty and universe
-EMPTY_VERSION = "∅"
+EMPTY_VERSION = ZERO
 UNIVERSE_VERSION = "*"
 
 # some punctuation

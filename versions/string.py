@@ -1,4 +1,4 @@
-from abc import abstractmethod
+from abc import abstractmethod as required
 from typing import Iterable, List, Type, TypeVar
 
 from typing_extensions import Protocol, runtime_checkable
@@ -23,8 +23,6 @@ __all__ = (
     # simple from_string() and to_string() protocols
     "FromString",
     "ToString",
-    # case folding
-    "case_fold",
     # checks
     "check_int",
     # clearing whitespace
@@ -57,24 +55,24 @@ __all__ = (
     "Split",
 )
 
-F = TypeVar("F", bound="FromString")
+T = TypeVar("T", bound="FromString")
 
 
 @runtime_checkable
 class FromString(Protocol):
     @classmethod
-    @abstractmethod
-    def from_string(cls: Type[F], string: str) -> F:
+    @required
+    def from_string(cls: Type[T], string: str) -> T:
         raise NotImplementedError
 
     @classmethod
-    def parse(cls: Type[F], string: str) -> F:
+    def parse(cls: Type[T], string: str) -> T:
         return cls.from_string(string)
 
 
 @runtime_checkable
 class ToString(Protocol):
-    @abstractmethod
+    @required
     def to_string(self) -> str:
         raise NotImplementedError
 
@@ -84,8 +82,6 @@ class ToString(Protocol):
     def __str__(self) -> str:
         return self.to_string()
 
-
-case_fold = str.casefold
 
 check_int = str.isdigit
 

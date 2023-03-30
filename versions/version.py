@@ -1,4 +1,4 @@
-from typing import Any, Iterator, Optional, Tuple, Type, TypeVar, Union
+from typing import Iterator, Optional, Tuple, Type, TypeVar, Union
 
 from attrs import evolve, field, frozen
 
@@ -12,6 +12,7 @@ from versions.segments import (
     Epoch,
     Extra,
     Local,
+    LocalPart,
     PostTag,
     PreTag,
     Release,
@@ -19,7 +20,6 @@ from versions.segments import (
 from versions.specification import Specification
 from versions.string import FromString, ToString, concat_empty
 from versions.types import AnyInfinity, Infinity, NegativeInfinity, infinity, negative_infinity
-from versions.utils import evolve_in_place
 
 __all__ = ("CompareKey", "Version")
 
@@ -67,8 +67,25 @@ class Version(Representation, FromString, ToString):
 
     compare_key: CompareKey = field(repr=False, init=False, eq=True, order=True, hash=False)
 
-    def __attrs_post_init__(self) -> None:
-        evolve_in_place(self, compare_key=self.compute_compare_key())
+    @compare_key.default
+    def default_compare_key(self) -> CompareKey:
+        compare_epoch = self.epoch
+        compare_release = self.release
+
+        compare_pre, compare_post, compare_dev = self.compute_compare_tags(
+            self.pre, self.post, self.dev
+        )
+
+        compare_local = self.compute_compare_local(self.local)
+
+        return (
+            compare_epoch,
+            compare_release,
+            compare_pre,
+            compare_post,
+            compare_dev,
+            compare_local,
+        )
 
     @staticmethod
     def compute_compare_tags(
@@ -96,25 +113,6 @@ class Version(Representation, FromString, ToString):
     @staticmethod
     def compute_compare_local(local: Optional[Local]) -> CompareLocal:
         return negative_infinity if local is None else local
-
-    def compute_compare_key(self) -> CompareKey:
-        compare_epoch = self.epoch
-        compare_release = self.release
-
-        compare_pre, compare_post, compare_dev = self.compute_compare_tags(
-            self.pre, self.post, self.dev
-        )
-
-        compare_local = self.compute_compare_local(self.local)
-
-        return (
-            compare_epoch,
-            compare_release,
-            compare_pre,
-            compare_post,
-            compare_dev,
-            compare_local,
-        )
 
     @classmethod
     def from_string(cls: Type[V], string: str) -> V:
@@ -209,6 +207,25 @@ class Version(Representation, FromString, ToString):
         """
         return concat_empty(self.to_short_string_iterator())
 
+    def to_pep440_string(self) -> str:
+        """Converts a [`Version`][versions.version.Version] to its
+        [*PEP 440*](https://peps.python.org/pep-0440) representation.
+
+        ```python
+        version.to_pep440_string()
+        ```
+
+        Is equivalent to the following:
+
+        ```python
+        version.normalize().to_short_string()
+        ```
+
+        Returns:
+            The [*PEP 440*](https://peps.python.org/pep-0440) version string.
+        """
+        return self.normalize().to_short_string()
+
     @property
     def precision(self) -> int:
         """The precision of the [`Release`][versions.segments.Release]."""
@@ -290,7 +307,22 @@ class Version(Representation, FromString, ToString):
         Returns:
             The converted version.
         """
-        return self.update(release=self.release.to_semantic())
+        return evolve(self, release=self.release.to_semantic())
+
+    def set_epoch(self: V, epoch: Epoch) -> V:
+        return evolve(self, epoch=epoch)
+
+    def set_epoch_value(self: V, value: int) -> V:
+        return self.set_epoch(self.epoch.set_value(value))
+
+    def set_release(self: V, release: Release) -> V:
+        return evolve(self, release=release)
+
+    def set_release_parts(self: V, *parts: int) -> V:
+        return self.set_release(self.release.set_parts(*parts))
+
+    def slice(self: V, index: int) -> V:
+        return self.set_release(self.release.slice(index))
 
     def set_major(self: V, value: int) -> V:
         """Sets the *major* part of the [`Release`][versions.segments.Release] to the `value`.
@@ -301,7 +333,7 @@ class Version(Representation, FromString, ToString):
         Returns:
             The updated version.
         """
-        return self.update(release=self.release.set_major(value))
+        return self.set_release(self.release.set_major(value))
 
     def set_minor(self: V, value: int) -> V:
         """Sets the *minor* part of the [`Release`][versions.segments.Release] to the `value`.
@@ -312,7 +344,7 @@ class Version(Representation, FromString, ToString):
         Returns:
             The updated version.
         """
-        return self.update(release=self.release.set_minor(value))
+        return self.set_release(self.release.set_minor(value))
 
     def set_micro(self: V, value: int) -> V:
         """Sets the *micro* part of the [`Release`][versions.segments.Release] to the `value`.
@@ -323,7 +355,7 @@ class Version(Representation, FromString, ToString):
         Returns:
             The updated version.
         """
-        return self.update(release=self.release.set_micro(value))
+        return self.set_release(self.release.set_micro(value))
 
     def set_patch(self: V, value: int) -> V:
         """Sets the *patch* part of the [`Release`][versions.segments.Release] to the `value`.
@@ -336,7 +368,7 @@ class Version(Representation, FromString, ToString):
         Returns:
             The updated version.
         """
-        return self.update(release=self.release.set_patch(value))
+        return self.set_release(self.release.set_patch(value))
 
     def set_at(self: V, index: int, value: int) -> V:
         """Sets the [`Release`][versions.segments.Release] part at the `index` to the `value`.
@@ -348,7 +380,7 @@ class Version(Representation, FromString, ToString):
         Returns:
             The updated version.
         """
-        return self.update(release=self.release.set_at(index, value))
+        return self.set_release(self.release.set_at(index, value))
 
     def set_at_unchecked(self: V, index: int, value: int) -> V:
         """Sets the [`Release`][versions.segments.Release] part at the `index` to the `value`.
@@ -363,7 +395,10 @@ class Version(Representation, FromString, ToString):
         Returns:
             The updated version.
         """
-        return self.update(release=self.release.set_at_unchecked(index, value))
+        return self.set_release(self.release.set_at_unchecked(index, value))
+
+    def next_epoch(self: V) -> V:
+        return self.set_epoch(self.epoch.next_value())
 
     def next_major(self: V) -> V:
         """Bumps the *major* part of the [`Release`][versions.segments.Release]
@@ -500,7 +535,7 @@ class Version(Representation, FromString, ToString):
         Returns:
             The padded version.
         """
-        return evolve(self, release=self.release.pad_to(length, padding))
+        return self.set_release(self.release.pad_to(length, padding))
 
     def pad_to_index(self: V, index: int, padding: int = DEFAULT_PADDING) -> V:
         """Pads the [`Release`][versions.segments.Release] to the `index` with `padding`.
@@ -512,7 +547,7 @@ class Version(Representation, FromString, ToString):
         Returns:
             The padded version.
         """
-        return evolve(self, release=self.release.pad_to_index(index, padding))
+        return self.set_release(self.release.pad_to_index(index, padding))
 
     def pad_to_next(self: V, padding: int = DEFAULT_PADDING) -> V:
         """Pads the [`Release`][versions.segments.Release] to the next index.
@@ -523,7 +558,7 @@ class Version(Representation, FromString, ToString):
         Returns:
             The padded version.
         """
-        return evolve(self, release=self.release.pad_to_next(padding))
+        return self.set_release(self.release.pad_to_next(padding))
 
     def is_pre_release(self) -> bool:
         """Checks if the version is *pre-release*.
@@ -608,7 +643,7 @@ class Version(Representation, FromString, ToString):
             if pre is None:
                 return None
 
-        return self.create(self.epoch, self.release, pre)
+        return self.without_tags_and_local().with_pre(pre)
 
     def next_post(self: V) -> V:
         """Bumps the [`PostTag`][versions.segments.PostTag] if it is present,
@@ -625,7 +660,7 @@ class Version(Representation, FromString, ToString):
         else:
             post = post.next()
 
-        return self.create(self.epoch, self.release, self.pre, post, self.dev)
+        return self.with_post(post).without_dev_and_local()
 
     def next_dev(self: V) -> V:
         """Bumps the [`DevTag`][versions.segments.DevTag] if it is present,
@@ -642,7 +677,43 @@ class Version(Representation, FromString, ToString):
         else:
             dev = dev.next()
 
-        return self.create(self.epoch, self.release, self.pre, self.post, dev)
+        return self.with_dev(dev).without_local()
+
+    def set_pre(self: V, pre: Optional[PreTag]) -> V:
+        return evolve(self, pre=pre)
+
+    def set_post(self: V, post: Optional[PostTag]) -> V:
+        return evolve(self, post=post)
+
+    def set_dev(self: V, dev: Optional[DevTag]) -> V:
+        return evolve(self, dev=dev)
+
+    def set_tags(
+        self: V, pre: Optional[PreTag], post: Optional[PostTag], dev: Optional[DevTag]
+    ) -> V:
+        return evolve(self, pre=pre, post=post, dev=dev)
+
+    def set_local(self: V, local: Optional[Local]) -> V:
+        return evolve(self, local=local)
+
+    def set_local_parts(self: V, *parts: LocalPart) -> V:
+        local = self.local
+
+        local = Local.from_parts(*parts) if local is None else local.set_parts(*parts)
+
+        return self.set_local(local)
+
+    def set_dev_and_local(self: V, dev: Optional[DevTag], local: Optional[Local]) -> V:
+        return evolve(self, dev=dev, local=local)
+
+    def set_tags_and_local(
+        self: V,
+        pre: Optional[PreTag],
+        post: Optional[PostTag],
+        dev: Optional[DevTag],
+        local: Optional[Local],
+    ) -> V:
+        return evolve(self, pre=pre, post=post, dev=dev, local=local)
 
     def with_pre(self: V, pre: PreTag) -> V:
         """Updates a version to include [`PreTag`][versions.segments.PreTag].
@@ -653,7 +724,7 @@ class Version(Representation, FromString, ToString):
         Returns:
             The updated version.
         """
-        return self.update(pre=pre)
+        return self.set_pre(pre)
 
     def with_post(self: V, post: PostTag) -> V:
         """Updates a version to include [`PostTag`][versions.segments.PostTag].
@@ -664,7 +735,7 @@ class Version(Representation, FromString, ToString):
         Returns:
             The updated version.
         """
-        return self.update(post=post)
+        return self.set_post(post)
 
     def with_dev(self: V, dev: DevTag) -> V:
         """Updates a version to include [`DevTag`][versions.segments.DevTag].
@@ -675,7 +746,10 @@ class Version(Representation, FromString, ToString):
         Returns:
             The updated version.
         """
-        return self.update(dev=dev)
+        return self.set_dev(dev)
+
+    def with_tags(self: V, pre: PreTag, post: PostTag, dev: DevTag) -> V:
+        return self.set_tags(pre, post, dev)
 
     def with_local(self: V, local: Local) -> V:
         """Updates a version to include [`Local`][versions.segments.Local].
@@ -686,7 +760,13 @@ class Version(Representation, FromString, ToString):
         Returns:
             The updated version.
         """
-        return self.update(local=local)
+        return self.set_local(local)
+
+    def with_dev_and_local(self: V, dev: DevTag, local: Local) -> V:
+        return self.set_dev_and_local(dev, local)
+
+    def with_tags_and_local(self: V, pre: PreTag, post: PostTag, dev: DevTag, local: Local) -> V:
+        return self.set_tags_and_local(pre, post, dev, local)
 
     def without_pre(self: V) -> V:
         """Updates a version, removing any [`PreTag`][versions.segments.PreTag] from it.
@@ -694,7 +774,7 @@ class Version(Representation, FromString, ToString):
         Returns:
             The updated version.
         """
-        return self.update(pre=None)
+        return self.set_pre(None)
 
     def without_post(self: V) -> V:
         """Updates a version, removing any [`PostTag`][versions.segments.PostTag] from it.
@@ -702,7 +782,7 @@ class Version(Representation, FromString, ToString):
         Returns:
             The updated version.
         """
-        return self.update(post=None)
+        return self.set_post(None)
 
     def without_dev(self: V) -> V:
         """Updates a version, removing any [`DevTag`][versions.segments.DevTag] from it.
@@ -710,7 +790,10 @@ class Version(Representation, FromString, ToString):
         Returns:
             The updated version.
         """
-        return self.update(dev=None)
+        return self.set_dev(None)
+
+    def without_tags(self: V) -> V:
+        return self.set_tags(None, None, None)
 
     def without_local(self: V) -> V:
         """Updates a version, removing any [`Local`][versions.segments.Local] segment from it.
@@ -718,18 +801,13 @@ class Version(Representation, FromString, ToString):
         Returns:
             The updated version.
         """
-        return self.update(local=None)
+        return self.set_local(None)
 
-    def update(self: V, **changes: Any) -> V:
-        """Updates a version with `changes`.
+    def without_dev_and_local(self: V) -> V:
+        return self.set_dev_and_local(None, None)
 
-        Arguments:
-            **changes: The changes to apply.
-
-        Returns:
-            The updated version.
-        """
-        return evolve(self, **changes)
+    def without_tags_and_local(self: V) -> V:
+        return self.set_tags_and_local(None, None, None, None)
 
     def weaken(self, other: W) -> W:
         """Weakens the `other` version for further comparison.
@@ -754,12 +832,15 @@ class Version(Representation, FromString, ToString):
         Returns:
             The stable version.
         """
-        return self if self.is_stable() else self.create(self.epoch, self.release)
+        return self if self.is_stable() else self.to_stable_unchecked()
+
+    def to_stable_unchecked(self: V) -> V:
+        return self.without_tags_and_local()
 
     def next_breaking(self: V) -> V:
         """Returns the next breaking version.
 
-        This function is slightly convoluted due to how `0.x.y` versions are handled:
+        This function is slightly convoluted due to how `0.x.y` and `0.0.z` versions are handled:
 
         | version | next breaking |
         |---------|---------------|
@@ -810,7 +891,7 @@ class Version(Representation, FromString, ToString):
         if dev is not None:
             dev = dev.normalize()
 
-        return self.update(pre=pre, post=post, dev=dev)
+        return self.set_tags(pre, post, dev)
 
     @classmethod
     def create(

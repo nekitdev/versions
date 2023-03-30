@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from enum import Enum
 from string import digits
-from typing import TYPE_CHECKING, Any, Mapping, Optional, Tuple, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Mapping, Optional, Tuple, Type, TypeVar, Union
 
 from attrs import frozen
 
@@ -51,7 +51,7 @@ __all__ = (
     "matches_greater_or_equal",
     "matches_wildcard_equal",
     "matches_wildcard_not_equal",
-    # translating versions to constraints
+    # translating versions to version sets
     "translate_caret",
     "translate_tilde",
     "translate_tilde_equal",
@@ -63,18 +63,16 @@ __all__ = (
     "translate_greater_or_equal",
     "translate_wildcard_equal",
     "translate_wildcard_not_equal",
-    # get next breaking versions of different types
+    # fetching next breaking versions of different types
     "next_caret_breaking",
     "next_tilde_breaking",
     "next_tilde_equal_breaking",
     "next_wildcard_breaking",
+    # partial matches
+    "partial_matches",
     # operators
     "Operator",
     "OperatorType",
-    # types that represent functions and their signatures
-    "Matches",
-    "PartialMatches",
-    "Translate",
 )
 
 V = TypeVar("V", bound="Version")
@@ -83,7 +81,7 @@ V = TypeVar("V", bound="Version")
 def next_caret_breaking(version: V) -> V:
     """Returns the next breaking version according to the *caret* (`^`) strategy.
 
-    This function is slightly convoluted due to handling `0.x.y` versions.
+    This function is slightly convoluted due to handling `0.x.y` and `0.0.z` versions.
 
     See [`next_breaking`][versions.version.Version.next_breaking] for more information.
 
@@ -527,7 +525,7 @@ def translate_tilde(version: Version) -> VersionRange:
 def translate_equal(version: Version) -> VersionPoint:
     """Translates the `version` into a version set according to the *equal* (`=`) strategy.
 
-    This function returns the `[version, version]` range (aka `version` point).
+    This function returns the `[version, version]` range (aka single `version`, `{version}`).
 
     Arguments:
         version: The version to translate.
@@ -695,6 +693,45 @@ class OperatorType(Enum):
     WILDCARD_NOT_EQUAL = WILDCARD_NOT_EQUAL
     """The wildcard binary `!=*` operator."""
 
+    def is_tilde_equal(self) -> bool:
+        return self is type(self).TILDE_EQUAL
+
+    def is_double_equal(self) -> bool:
+        return self is type(self).DOUBLE_EQUAL
+
+    def is_not_equal(self) -> bool:
+        return self is type(self).NOT_EQUAL
+
+    def is_less(self) -> bool:
+        return self is type(self).LESS
+
+    def is_less_or_equal(self) -> bool:
+        return self is type(self).LESS_OR_EQUAL
+
+    def is_greater(self) -> bool:
+        return self is type(self).GREATER
+
+    def is_greater_or_equal(self) -> bool:
+        return self is type(self).GREATER_OR_EQUAL
+
+    def is_caret(self) -> bool:
+        return self is type(self).CARET
+
+    def is_equal(self) -> bool:
+        return self is type(self).EQUAL
+
+    def is_tilde(self) -> bool:
+        return self is type(self).TILDE
+
+    def is_wildcard_double_equal(self) -> bool:
+        return self is type(self).WILDCARD_DOUBLE_EQUAL
+
+    def is_wildcard_equal(self) -> bool:
+        return self is type(self).WILDCARD_EQUAL
+
+    def is_wildcard_not_equal(self) -> bool:
+        return self is type(self).WILDCARD_NOT_EQUAL
+
     def is_wildcard(self) -> bool:
         """Checks if an operator is *wildcard*.
 
@@ -703,10 +740,10 @@ class OperatorType(Enum):
         """
         return self in WILDCARD
 
-    def is_equals(self) -> bool:
+    def in_equals(self) -> bool:
         return self in EQUALS
 
-    def is_wildcard_equals(self) -> bool:
+    def in_wildcard_equals(self) -> bool:
         return self in WILDCARD_EQUALS
 
     def is_unary(self) -> bool:
@@ -720,8 +757,8 @@ class OperatorType(Enum):
     def __eq__(self, other: Any) -> bool:
         if is_same_type(other, self):
             return (
-                (self.is_equals() and other.is_equals())
-                or (self.is_wildcard_equals() and other.is_wildcard_equals())
+                (self.in_equals() and other.in_equals())
+                or (self.in_wildcard_equals() and other.in_wildcard_equals())
                 or super().__eq__(other)
             )
 
@@ -763,6 +800,8 @@ OPERATOR: Mapping[OperatorType, Tuple[Matches, Translate]] = {
     OperatorType.WILDCARD_NOT_EQUAL: (matches_wildcard_not_equal, translate_wildcard_not_equal),
 }
 
+O = TypeVar("O", bound="Operator")
+
 
 @frozen(repr=False)
 class Operator(Representation, ToString):
@@ -776,7 +815,47 @@ class Operator(Representation, ToString):
 
     def __attrs_post_init__(self) -> None:
         if self.type is OperatorType.TILDE_EQUAL:
-            next_tilde_equal_breaking(self.version)  # check whether `~=` can be used
+            if not self.version.last_index:
+                raise ValueError(CAN_NOT_USE_TILDE_EQUAL)
+
+    def is_tilde_equal(self) -> bool:
+        return self.type.is_tilde_equal()
+
+    def is_double_equal(self) -> bool:
+        return self.type.is_double_equal()
+
+    def is_not_equal(self) -> bool:
+        return self.type.is_not_equal()
+
+    def is_less(self) -> bool:
+        return self.type.is_less()
+
+    def is_less_or_equal(self) -> bool:
+        return self.type.is_less_or_equal()
+
+    def is_greater(self) -> bool:
+        return self.type.is_greater()
+
+    def is_greater_or_equal(self) -> bool:
+        return self.type.is_greater_or_equal()
+
+    def is_caret(self) -> bool:
+        return self.type.is_caret()
+
+    def is_equal(self) -> bool:
+        return self.type.is_equal()
+
+    def is_tilde(self) -> bool:
+        return self.type.is_tilde()
+
+    def is_wildcard_double_equal(self) -> bool:
+        return self.type.is_wildcard_double_equal()
+
+    def is_wildcard_equal(self) -> bool:
+        return self.type.is_wildcard_equal()
+
+    def is_wildcard_not_equal(self) -> bool:
+        return self.type.is_wildcard_not_equal()
 
     def is_unary(self) -> bool:
         """Checks if an operator is *unary*.
@@ -793,6 +872,58 @@ class Operator(Representation, ToString):
             Whether the operator is *wildcard*.
         """
         return self.type.is_wildcard()
+
+    @classmethod
+    def tilde_equal(cls: Type[O], version: Version) -> O:
+        return cls(OperatorType.TILDE_EQUAL, version)
+
+    @classmethod
+    def double_equal(cls: Type[O], version: Version) -> O:
+        return cls(OperatorType.DOUBLE_EQUAL, version)
+
+    @classmethod
+    def not_equal(cls: Type[O], version: Version) -> O:
+        return cls(OperatorType.NOT_EQUAL, version)
+
+    @classmethod
+    def less(cls: Type[O], version: Version) -> O:
+        return cls(OperatorType.LESS, version)
+
+    @classmethod
+    def less_or_equal(cls: Type[O], version: Version) -> O:
+        return cls(OperatorType.LESS_OR_EQUAL, version)
+
+    @classmethod
+    def greater(cls: Type[O], version: Version) -> O:
+        return cls(OperatorType.GREATER, version)
+
+    @classmethod
+    def greater_or_equal(cls: Type[O], version: Version) -> O:
+        return cls(OperatorType.GREATER_OR_EQUAL, version)
+
+    @classmethod
+    def caret(cls: Type[O], version: Version) -> O:
+        return cls(OperatorType.CARET, version)
+
+    @classmethod
+    def equal(cls: Type[O], version: Version) -> O:
+        return cls(OperatorType.EQUAL, version)
+
+    @classmethod
+    def tilde(cls: Type[O], version: Version) -> O:
+        return cls(OperatorType.TILDE, version)
+
+    @classmethod
+    def wildcard_double_equal(cls: Type[O], version: Version) -> O:
+        return cls(OperatorType.WILDCARD_DOUBLE_EQUAL, version)
+
+    @classmethod
+    def wildcard_equal(cls: Type[O], version: Version) -> O:
+        return cls(OperatorType.WILDCARD_EQUAL, version)
+
+    @classmethod
+    def wildcard_not_equal(cls: Type[O], version: Version) -> O:
+        return cls(OperatorType.WILDCARD_NOT_EQUAL, version)
 
     @property
     def matches_and_translate(self) -> Tuple[Matches, Translate]:
@@ -836,7 +967,8 @@ class Operator(Representation, ToString):
         return concat_space_args(self.type.string, string)
 
     def to_short_string(self) -> str:
-        """Converts an [`Operator`][versions.operators.Operator] to its *short* string representation.
+        """Converts an [`Operator`][versions.operators.Operator]
+        to its *short* string representation.
 
         Returns:
             The *short* operator string.

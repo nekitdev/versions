@@ -8,7 +8,7 @@ try:
     )
 
 except SyntaxError:
-    from versions.converters_modern import (
+    from versions.converters_normal import (
         simplify,
         specifier_from_version_set,
         specifier_to_version_set,

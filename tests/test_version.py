@@ -1,7 +1,91 @@
 import pytest
 
-from versions.segments import DevTag, Epoch, Local, PostTag, PreTag
+from versions.segments import DevTag, Epoch, Local, PostTag, PreTag, Release
 from versions.version import Version
+
+ALPHA = "alpha"
+BETA = "beta"
+RC = "rc"
+
+CANDIDATE = "candidate"
+
+POST = "post"
+
+REV = "rev"
+
+DEV = "dev"
+
+BUILD = "build"
+
+
+@pytest.fixture()
+def e1() -> Epoch:
+    return Epoch(1)
+
+
+@pytest.fixture()
+def r200() -> Release:
+    return Release.from_parts(2, 0, 0)
+
+
+@pytest.fixture()
+def alpha0() -> PreTag:
+    return PreTag(ALPHA, 0)
+
+
+@pytest.fixture()
+def alpha1() -> PreTag:
+    return PreTag(ALPHA, 1)
+
+
+@pytest.fixture()
+def beta1() -> PreTag:
+    return PreTag(BETA, 1)
+
+
+@pytest.fixture()
+def rc0() -> PreTag:
+    return PreTag(RC, 0)
+
+
+@pytest.fixture()
+def rc1() -> PreTag:
+    return PreTag(RC, 1)
+
+
+@pytest.fixture()
+def candidate0() -> PreTag:
+    return PreTag(CANDIDATE, 0)
+
+
+@pytest.fixture()
+def post0() -> PostTag:
+    return PostTag(POST, 0)
+
+
+@pytest.fixture()
+def post1() -> PostTag:
+    return PostTag(POST, 1)
+
+
+@pytest.fixture()
+def rev0() -> PostTag:
+    return PostTag(REV, 0)
+
+
+@pytest.fixture()
+def dev0() -> DevTag:
+    return DevTag(DEV, 0)
+
+
+@pytest.fixture()
+def dev1() -> DevTag:
+    return DevTag(DEV, 1)
+
+
+@pytest.fixture()
+def build1() -> Local:
+    return Local.from_parts(BUILD, 1)
 
 
 @pytest.fixture()
@@ -9,100 +93,69 @@ def v100() -> Version:
     return Version.from_parts(1, 0, 0)
 
 
-DEV = "dev"
+@pytest.fixture()
+def v100dev0(dev0: DevTag) -> Version:
+    return Version.from_parts(1, 0, 0, dev=dev0)
 
 
 @pytest.fixture()
-def v100dev0() -> Version:
-    return Version.from_parts(1, 0, 0, dev=DevTag(DEV, 0))
+def v100dev1(dev1: DevTag) -> Version:
+    return Version.from_parts(1, 0, 0, dev=dev1)
 
 
 @pytest.fixture()
-def v100dev1() -> Version:
-    return Version.from_parts(1, 0, 0, dev=DevTag(DEV, 1))
-
-
-ALPHA = "alpha"
+def v100alpha0(alpha0: PreTag) -> Version:
+    return Version.from_parts(1, 0, 0, pre=alpha0)
 
 
 @pytest.fixture()
-def v100alpha0() -> Version:
-    return Version.from_parts(1, 0, 0, pre=PreTag(ALPHA, 0))
-
-
-BETA = "beta"
+def v100beta1(beta1: PreTag) -> Version:
+    return Version.from_parts(1, 0, 0, pre=beta1)
 
 
 @pytest.fixture()
-def v100beta1() -> Version:
-    return Version.from_parts(1, 0, 0, pre=PreTag(BETA, 1))
-
-
-RC = "rc"
+def v100rc0(rc0: PreTag) -> Version:
+    return Version.from_parts(1, 0, 0, pre=rc0)
 
 
 @pytest.fixture()
-def v100rc0() -> Version:
-    return Version.from_parts(1, 0, 0, pre=PreTag(RC, 0))
+def v100rc1(rc1: PreTag) -> Version:
+    return Version.from_parts(1, 0, 0, pre=rc1)
 
 
 @pytest.fixture()
-def v100rc1() -> Version:
-    return Version.from_parts(1, 0, 0, pre=PreTag(RC, 1))
-
-
-BUILD = "build"
+def v100build1(build1: Local) -> Version:
+    return Version.from_parts(1, 0, 0, local=build1)
 
 
 @pytest.fixture()
-def v100build1() -> Version:
-    return Version.from_parts(1, 0, 0, local=Local.from_parts(BUILD, 1))
-
-
-POST = "post"
+def v100post0(post0: PostTag) -> Version:
+    return Version.from_parts(1, 0, 0, post=post0)
 
 
 @pytest.fixture()
-def v100post0() -> Version:
-    return Version.from_parts(1, 0, 0, post=PostTag(POST, 0))
-
-
-@pytest.fixture()
-def v100post1() -> Version:
-    return Version.from_parts(1, 0, 0, post=PostTag(POST, 1))
+def v100post1(post1: PostTag) -> Version:
+    return Version.from_parts(1, 0, 0, post=post1)
 
 
 # weird ones
 
 
 @pytest.fixture()
-def v1e100alpha1post1dev1build1() -> Version:
-    return Version.from_parts(
-        1,
-        0,
-        0,
-        epoch=Epoch(1),
-        pre=PreTag(ALPHA, 1),
-        post=PostTag(POST, 1),
-        dev=DevTag(DEV, 1),
-        local=Local.from_parts(BUILD, 1),
-    )
-
-
-CANDIDATE = "candidate"
-REV = "rev"
+def v1e100alpha1post1dev1build1(
+    e1: Epoch, alpha1: PreTag, post1: PostTag, dev1: DevTag, build1: Local
+) -> Version:
+    return Version.from_parts(1, 0, 0, epoch=e1, pre=alpha1, post=post1, dev=dev1, local=build1)
 
 
 @pytest.fixture()
-def v100candidate0rev0dev0() -> Version:
-    return Version.from_parts(
-        1, 0, 0, pre=PreTag(CANDIDATE, 0), post=PostTag(REV, 0), dev=DevTag(DEV, 0)
-    )
+def v100candidate0rev0dev0(candidate0: PreTag, rev0: PostTag, dev0: DevTag) -> Version:
+    return Version.from_parts(1, 0, 0, pre=candidate0, post=rev0, dev=dev0)
 
 
 @pytest.fixture()
-def v100rc0post0dev0() -> Version:
-    return Version.from_parts(1, 0, 0, pre=PreTag(RC, 0), post=PostTag(POST, 0), dev=DevTag(DEV, 0))
+def v100rc0post0dev0(rc0: PreTag, post0: PostTag, dev0: DevTag) -> Version:
+    return Version.from_parts(1, 0, 0, pre=rc0, post=post0, dev=dev0)
 
 
 @pytest.fixture()
@@ -141,33 +194,25 @@ def v200() -> Version:
 
 
 @pytest.fixture()
-def v1e100() -> Version:
-    return Version.from_parts(1, 0, 0, epoch=Epoch(1))
-
-
-@pytest.fixture()
-def dev1() -> DevTag:
-    return DevTag(DEV, 1)
-
-
-@pytest.fixture()
-def rc1() -> PreTag:
-    return PreTag(RC, 1)
-
-
-@pytest.fixture()
-def post1() -> PostTag:
-    return PostTag(POST, 1)
-
-
-@pytest.fixture()
-def build1() -> Local:
-    return Local.from_parts(BUILD, 1)
+def v1e100(e1: Epoch) -> Version:
+    return Version.from_parts(1, 0, 0, epoch=e1)
 
 
 def test_epoch(v100: Version, v1e100: Version) -> None:
     assert not v100.epoch
     assert v1e100.epoch
+
+
+def test_set_epoch(v100: Version, v1e100: Version, e1: Epoch) -> None:
+    assert v100.set_epoch(e1) == v1e100
+
+
+def test_set_epoch_value(v100: Version, v1e100: Version) -> None:
+    assert v100.set_epoch_value(1) == v1e100
+
+
+def test_set_release(v100: Version, v200: Version, r200: Release) -> None:
+    assert v100.set_release(r200) == v200
 
 
 def test_precision(v100: Version) -> None:
@@ -250,6 +295,10 @@ def test_set_at(
 def test_set_at_unchecked(v100: Version) -> None:
     with pytest.raises(IndexError):
         v100.set_at_unchecked(3, 0)
+
+
+def test_next_epoch(v100: Version, v1e100: Version) -> None:
+    assert v100.next_epoch() == v1e100
 
 
 def test_next_major(v100: Version, v200: Version) -> None:

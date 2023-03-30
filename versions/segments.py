@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import ClassVar, Iterable, Optional, Set, Tuple, Type, TypeVar, Union
 
 from attrs import Attribute, evolve, field, frozen
+from named import get_type_name
 
 from versions.constants import EMPTY
 from versions.parsers import TagParser
@@ -24,7 +25,6 @@ from versions.representation import Representation
 from versions.string import (
     FromString,
     ToString,
-    case_fold,
     check_int,
     concat_dot,
     concat_dot_args,
@@ -33,8 +33,8 @@ from versions.string import (
     split_separators,
 )
 from versions.types import NegativeInfinity, negative_infinity
-from versions.typing import DynamicTuple, get_type_name, is_int
-from versions.utils import count_leading_zeros, evolve_in_place, fix_to_length
+from versions.typing import DynamicTuple, is_int
+from versions.utils import count_leading_zeros, fix_to_length
 
 __all__ = (
     # default values
@@ -63,7 +63,7 @@ __all__ = (
     "local_part",
 )
 
-Parts = DynamicTuple[int]
+Parts = DynamicTuple[int]  # technically parts are never empty
 Extra = DynamicTuple[int]
 
 DEFAULT_PARTS = (0, 0, 0)  # makes sense as the default for semantic versions
@@ -127,6 +127,12 @@ class Epoch(Representation, FromString, ToString):
         """
         return str(self.value)
 
+    def set_value(self: E, value: int) -> E:
+        return evolve(self, value=value)
+
+    def next_value(self: E) -> E:
+        return self.set_value(self.value + 1)
+
 
 EMPTY_RELEASE = "release can not be empty"
 
@@ -147,16 +153,14 @@ class Release(Representation, FromString, ToString):
         if not value:
             raise ValueError(EMPTY_RELEASE)
 
-    def __attrs_post_init__(self) -> None:
-        evolve_in_place(self, compare_parts=self.compute_compare_parts())
-
-    def compute_compare_parts(self) -> Parts:
+    @compare_parts.default
+    def default_compare_parts(self) -> Parts:
         parts = self.parts
 
         index = count_leading_zeros(reversed(parts))
 
         if index == self.precision:
-            index -= 1
+            index -= 1  # preserve single zero if the version fully consists of zeros
 
         return self.slice_parts(-index) if index else parts
 
@@ -203,6 +207,9 @@ class Release(Representation, FromString, ToString):
             The parts of the release.
         """
         return self.parts
+
+    def set_parts(self: R, *parts: int) -> R:
+        return evolve(self, parts=parts)
 
     @property
     def precision(self) -> int:
@@ -498,11 +505,11 @@ class Release(Representation, FromString, ToString):
         """
         return self.pad_to(self.precision + 1, padding)
 
-    def slice(self: R, stop: int) -> R:
-        return self.create(self.slice_parts(stop))
+    def slice(self: R, index: int) -> R:
+        return self.create(self.slice_parts(index))
 
-    def slice_parts(self, stop: int) -> Parts:
-        return self.parts[:stop]
+    def slice_parts(self, index: int) -> Parts:
+        return self.parts[:index]
 
     @classmethod
     def from_string(cls: Type[R], string: str) -> R:
@@ -531,6 +538,10 @@ CAN_NOT_PARSE = "can not parse `{}` to `{}`"
 T = TypeVar("T", bound="Tag")
 
 
+def convert_phase(phase: str) -> str:
+    return SHORT_TO_PHASE.get(phase, phase)
+
+
 @frozen(repr=False, eq=True, order=True)
 class Tag(Representation, FromString, ToString):
     """Represents various version *tags* (`tag.n`)."""
@@ -538,7 +549,7 @@ class Tag(Representation, FromString, ToString):
     DEFAULT_PHASE: ClassVar[str] = PHASE_ALL_DEFAULT
     PHASE_SET: ClassVar[Set[str]] = PHASE_ALL_SET
 
-    phase: str = field(converter=case_fold)  # type: ignore
+    phase: str = field(converter=convert_phase)
     """The phase of the release tag."""
 
     value: int = field(default=DEFAULT_VALUE)
@@ -552,21 +563,6 @@ class Tag(Representation, FromString, ToString):
     def check_phase(self, attribute: Attribute[str], value: str) -> None:
         if value not in self.PHASE_SET:
             raise ValueError(PHASE_NOT_ALLOWED.format(value, get_type_name(self)))
-
-    def __attrs_post_init__(self) -> None:
-        evolve_in_place(self, phase=self.expand(self.phase))
-
-    @staticmethod
-    def expand(phase: str) -> str:
-        return SHORT_TO_PHASE.get(phase, phase)
-
-    @staticmethod
-    def reduce(phase: str) -> str:
-        return PHASE_TO_SHORT.get(phase, phase)
-
-    @staticmethod
-    def normalize_phase(phase: str) -> str:
-        return PHASE_TO_NORMAL.get(phase, phase)
 
     @classmethod
     def create(cls: Type[T], phase: Optional[str] = None, value: int = DEFAULT_VALUE) -> T:
@@ -598,13 +594,17 @@ class Tag(Representation, FromString, ToString):
 
     @property
     def short(self) -> str:
-        """The *short* phase of the release."""
-        return self.reduce(self.phase)
+        """The *short* phase of the tag."""
+        phase = self.phase
+
+        return PHASE_TO_SHORT.get(phase, phase)
 
     @property
     def normal(self) -> str:
-        """The *normalized* phase of the release."""
-        return self.normalize_phase(self.phase)
+        """The *normalized* phase of the tag."""
+        phase = self.phase
+
+        return PHASE_TO_NORMAL.get(phase, phase)
 
     def normalize(self: T) -> T:
         """Normalizes the version tag.
@@ -612,15 +612,21 @@ class Tag(Representation, FromString, ToString):
         Returns:
             The normalized tag.
         """
-        return evolve(self, phase=self.normal)
+        return self.set_phase(self.normal)
+
+    def set_phase(self: T, phase: str) -> T:
+        return evolve(self, phase=phase)
+
+    def set_value(self: T, value: int) -> T:
+        return evolve(self, value=value)
 
     def next(self: T) -> T:
-        """Bumps the version tag.
+        """Bumps the version tag value.
 
         Returns:
             The next version tag.
         """
-        return evolve(self, value=self.value + 1)
+        return self.set_value(self.value + 1)
 
     def next_phase(self: T) -> Optional[T]:
         """Bumps the version tag phase, if possible.
@@ -686,7 +692,7 @@ class DevTag(Tag):
 
 
 LocalPart = Union[int, str]
-LocalParts = DynamicTuple[LocalPart]
+LocalParts = DynamicTuple[LocalPart]  # technically local parts are never empty
 
 CompareLocalIntPart = Tuple[int, str]
 CompareLocalStringPart = Tuple[NegativeInfinity, str]
@@ -705,7 +711,7 @@ def local_part(string: str) -> LocalPart:
 
 @frozen(repr=False, eq=True, order=True)
 class Local(Representation, FromString, ToString):
-    """Represents the *local* segment of the version (`+abcdefg.n`)"""
+    """Represents the *local* segment of the version (`+abcdef.n`)"""
 
     parts: LocalParts = field(eq=False, order=False)
     """The local segment parts."""
@@ -719,10 +725,8 @@ class Local(Representation, FromString, ToString):
         if not value:
             raise ValueError(EMPTY_LOCAL)
 
-    def __attrs_post_init__(self) -> None:
-        evolve_in_place(self, compare_parts=self.compute_compare_parts())
-
-    def compute_compare_parts(self) -> CompareLocalParts:
+    @compare_parts.default
+    def default_compare_parts(self) -> CompareLocalParts:
         empty = EMPTY
 
         return tuple(
@@ -773,6 +777,9 @@ class Local(Representation, FromString, ToString):
             The parts of the local segment.
         """
         return self.parts
+
+    def set_parts(self: L, *parts: LocalPart) -> L:
+        return evolve(self, parts=parts)
 
     @classmethod
     def from_string(cls: Type[L], string: str) -> L:

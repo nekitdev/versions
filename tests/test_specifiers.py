@@ -4,13 +4,16 @@ import pytest
 
 from versions.operators import OperatorType
 from versions.specifiers import (
-    SpecifierAll, SpecifierAny, SpecifierFalse, SpecifierOne, SpecifierTrue
+    SpecifierAll,
+    SpecifierAny,
+    SpecifierFalse,
+    SpecifierOne,
+    SpecifierTrue,
 )
 from versions.string import concat_empty_args, concat_space_args
 from versions.version import Version
 
-
-EMPTY = "∅"
+EMPTY = "0"
 UNIVERSE = "*"
 
 
@@ -125,7 +128,9 @@ class TestSpecifierOne:
     def test_tilde_equal_to_short_string(self, v100: Version) -> None:
         tilde_equal_specifier = SpecifierOne(OperatorType.TILDE_EQUAL, v100)
 
-        assert tilde_equal_specifier.to_short_string() == concat_empty_args(TILDE_EQUAL, v100.to_string())
+        assert tilde_equal_specifier.to_short_string() == concat_empty_args(
+            TILDE_EQUAL, v100.to_string()
+        )
 
     def test_wildcard_equal_accepts(self, v100: Version, v110: Version) -> None:
         wildcard_equal_specifier = SpecifierOne(OperatorType.WILDCARD_EQUAL, v100)

@@ -1,7 +1,8 @@
 from typing import ClassVar
 
+from named import get_type_name
+
 from versions.string import create_wrap_around
-from versions.typing import get_type_name
 
 __all__ = ("TEMPLATE", "Representation")
 

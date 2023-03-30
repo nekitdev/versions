@@ -1,7 +1,6 @@
 from __future__ import annotations
 
-from abc import abstractmethod
-from builtins import isinstance as is_instance
+from abc import abstractmethod as required
 from itertools import chain
 from typing import TYPE_CHECKING, Any, Iterable, Iterator, List, Optional, Tuple, TypeVar, Union
 
@@ -22,8 +21,8 @@ from versions.string import (
     concat_pipes_spaced,
 )
 from versions.types import Infinity, NegativeInfinity, infinity, negative_infinity
-from versions.typing import DynamicTuple
-from versions.utils import contains_only_item, evolve_in_place, first, last, next_or_none, set_last
+from versions.typing import DynamicTuple, is_instance
+from versions.utils import contains_only_item, first, last, next_or_none, set_last
 
 if TYPE_CHECKING:
     from versions.version import Version
@@ -50,7 +49,7 @@ T = TypeVar("T")
 
 @runtime_checkable
 class VersionSetProtocol(Specification, Protocol):
-    @abstractmethod
+    @required
     def is_empty(self) -> bool:
         """Checks if the set is *empty*.
 
@@ -59,8 +58,8 @@ class VersionSetProtocol(Specification, Protocol):
         """
         raise NotImplementedError
 
-    @abstractmethod
-    def is_universe(self) -> bool:
+    @required
+    def is_universal(self) -> bool:
         """Checks if the set is the *universal*.
 
         Returns:
@@ -68,7 +67,7 @@ class VersionSetProtocol(Specification, Protocol):
         """
         raise NotImplementedError
 
-    @abstractmethod
+    @required
     def includes(self, version_set: VersionSet) -> bool:
         """Checks if the set includes `version_set`.
 
@@ -77,7 +76,7 @@ class VersionSetProtocol(Specification, Protocol):
         """
         raise NotImplementedError
 
-    @abstractmethod
+    @required
     def intersects(self, version_set: VersionSet) -> bool:
         """Checks if the set intersects `version_set`.
 
@@ -86,7 +85,7 @@ class VersionSetProtocol(Specification, Protocol):
         """
         raise NotImplementedError
 
-    @abstractmethod
+    @required
     def contains(self, version: Version) -> bool:
         """Checks if the set contains some `version`.
 
@@ -107,7 +106,7 @@ class VersionSetProtocol(Specification, Protocol):
         """
         return self.contains(version)
 
-    @abstractmethod
+    @required
     def intersection(self, version_set: VersionSet) -> VersionSet:
         """Computes the *intersection* of `self` and `version_set`.
 
@@ -116,7 +115,7 @@ class VersionSetProtocol(Specification, Protocol):
         """
         raise NotImplementedError
 
-    @abstractmethod
+    @required
     def union(self, version_set: VersionSet) -> VersionSet:
         """Computes the *union* of `self` and `version_set`.
 
@@ -125,7 +124,7 @@ class VersionSetProtocol(Specification, Protocol):
         """
         raise NotImplementedError
 
-    @abstractmethod
+    @required
     def difference(self, version_set: VersionSet) -> VersionSet:
         """Computes the *difference* of `self` and `version_set`.
 
@@ -134,7 +133,7 @@ class VersionSetProtocol(Specification, Protocol):
         """
         raise NotImplementedError
 
-    @abstractmethod
+    @required
     def complement(self) -> VersionSet:
         """Computes the *complement* of `self`.
 
@@ -332,12 +331,12 @@ S = TypeVar("S", bound="VersionSet")
 
 @frozen(repr=False, order=False)
 class VersionEmpty(Representation, ToString, VersionSetProtocol):
-    """Represents empty version sets (`{}`)."""
+    r"""Represents empty version sets (`{}`)."""
 
     def is_empty(self) -> Literal[True]:
         return True
 
-    def is_universe(self) -> Literal[False]:
+    def is_universal(self) -> Literal[False]:
         return False
 
     def includes(self, version_set: VersionSet) -> bool:
@@ -491,13 +490,16 @@ class VersionRangeProtocol(Protocol):
         return self.exclude_min or other.exclude_max
 
     def is_left_adjacent(self, other: VersionRangeProtocol) -> bool:
-        return (self.max == other.min) and (self.include_max != other.include_min)
+        return (self.max == other.min) and (self.include_max is other.exclude_min)
 
     def is_right_adjacent(self, other: VersionRangeProtocol) -> bool:
-        return (self.min == other.max) and (self.include_min != other.include_max)
+        return (self.min == other.max) and (self.include_min is other.exclude_max)
 
     def is_adjacent(self, other: VersionRangeProtocol) -> bool:
         return self.is_left_adjacent(other) or self.is_right_adjacent(other)
+
+    def __hash__(self) -> int:
+        return hash(self.parameters)
 
     def __eq__(self, other: Any) -> bool:
         return is_version_range_protocol(other) and self.parameters == other.parameters
@@ -549,14 +551,15 @@ class VersionRangeProtocol(Protocol):
         return Ordering.EQUAL
 
 
-MIN_MAX_CONSTRAINT = "version ranges expect min <= max, got min > max"
+MIN_MAX_CONSTRAINT = "version ranges expect `min <= max`, got `min > max`"
 RANGE_NOT_POINT = "version range is not a point"
 UNEXPECTED_VERSION_SET = "unexpected version set provided: {}"
+CAN_NOT_INCLUDE_INFINITY = "ranges can not contain infinities"
 
 
 @frozen(repr=False, eq=False, order=False)
 class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetProtocol):
-    """Represents version ranges (`(v, w)`, `(v, w]`, `[v, w)` and `[v, w]`)."""
+    r"""Represents version ranges (`(v, w)`, `(v, w]`, `[v, w)` and `[v, w]`)."""
 
     min: Optional[Version] = None
     max: Optional[Version] = None
@@ -565,10 +568,12 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
 
     def __attrs_post_init__(self) -> None:
         if self.min is None:
-            evolve_in_place(self, include_min=False)
+            if self.include_min:
+                raise ValueError(CAN_NOT_INCLUDE_INFINITY)
 
         if self.max is None:
-            evolve_in_place(self, include_max=False)
+            if self.include_max:
+                raise ValueError(CAN_NOT_INCLUDE_INFINITY)
 
         if self.comparable_min > self.comparable_max:
             raise ValueError(MIN_MAX_CONSTRAINT)
@@ -579,7 +584,7 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
     def is_point(self) -> bool:
         return self.is_empty_or_point() and self.is_closed()
 
-    def is_universe(self) -> bool:
+    def is_universal(self) -> bool:
         return self.is_unbounded()
 
     @property
@@ -848,7 +853,7 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
             yield self.version.to_string()
             return
 
-        if self.is_universe():
+        if self.is_universal():
             yield UNIVERSE_VERSION
             return
 
@@ -877,7 +882,7 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
             yield self.version.to_short_string()
             return
 
-        if self.is_universe():
+        if self.is_universal():
             yield UNIVERSE_VERSION
             return
 
@@ -906,7 +911,7 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
 
 @frozen(repr=False, eq=False, order=False)
 class VersionPoint(Representation, ToString, VersionRangeProtocol, VersionSetProtocol):
-    """Represents version points (`[v, v]`, also known as `{v}`)."""
+    r"""Represents version points (`[v, v]` ranges, also known as singleton sets `{v}`)."""
 
     version: Version
 
@@ -932,7 +937,7 @@ class VersionPoint(Representation, ToString, VersionRangeProtocol, VersionSetPro
     def is_point(self) -> bool:
         return True
 
-    def is_universe(self) -> bool:
+    def is_universal(self) -> bool:
         return False
 
     def contains(self, version: Version) -> bool:
@@ -997,6 +1002,8 @@ def check_items(items: VersionItems) -> None:
 
 UNEXPECTED_UNION = "the union of adjacent or intersecting ranges must be a range"
 
+U = TypeVar("U", bound="VersionUnion")
+
 
 @frozen(repr=False, order=False)
 class VersionUnion(Representation, ToString, Specification):
@@ -1008,8 +1015,8 @@ class VersionUnion(Representation, ToString, Specification):
     def check_items(self, attribute: Attribute[VersionItems], items: VersionItems) -> None:
         check_items(items)
 
-    @classmethod
-    def extract(cls, version_set: VersionSet) -> Iterator[VersionItem]:
+    @staticmethod
+    def extract(version_set: VersionSet) -> Iterator[VersionItem]:
         if is_version_union(version_set):
             yield from version_set.items
 
@@ -1027,7 +1034,7 @@ class VersionUnion(Representation, ToString, Specification):
         if not extracted:
             return VersionEmpty()
 
-        if any(item.is_universe() for item in extracted):
+        if any(item.is_universal() for item in extracted):
             return VersionRange()
 
         extracted.sort()
@@ -1067,7 +1074,7 @@ class VersionUnion(Representation, ToString, Specification):
     def is_empty(self) -> bool:
         return False
 
-    def is_universe(self) -> bool:
+    def is_universal(self) -> bool:
         return False
 
     def contains(self, version: Version) -> bool:

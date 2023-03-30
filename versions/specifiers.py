@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from builtins import isinstance as is_instance
 from typing import TYPE_CHECKING, Any, ClassVar, Iterable
 
 from attrs import Attribute, field, frozen
@@ -18,7 +17,7 @@ from versions.string import (
     concat_pipes_spaced,
     create_wrap_around,
 )
-from versions.typing import DynamicTuple
+from versions.typing import DynamicTuple, is_instance
 from versions.utils import contains_only_item, first
 
 if TYPE_CHECKING:

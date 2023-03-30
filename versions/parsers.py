@@ -1,9 +1,10 @@
 from __future__ import annotations
 
-from abc import abstractmethod
+from abc import abstractmethod as required
 from typing import TYPE_CHECKING, Generic, Optional, Pattern, Type, TypeVar
 
 from attrs import frozen
+from named import get_name
 from typing_extensions import Protocol, runtime_checkable
 
 from versions.constants import STAR, X_LITERAL, ZERO
@@ -32,7 +33,6 @@ from versions.patterns import (
 )
 from versions.specifiers import Specifier, SpecifierAll, SpecifierAny, SpecifierOne
 from versions.string import clear_whitespace, split_comma, split_pipes
-from versions.typing import get_name
 from versions.version_sets import VersionSet
 
 if TYPE_CHECKING:
@@ -51,7 +51,7 @@ CAN_NOT_PARSE = "can not parse `{}` to `{}`"
 
 @runtime_checkable
 class Parser(Protocol[R]):
-    @abstractmethod
+    @required
     def parse(self, string: str) -> R:
         raise NotImplementedError
 

@@ -3,10 +3,14 @@
 ## Example
 
 ```python
->>> from versions import parse_version, parse_version_set
+>>> from versions import parse_specifier, parse_version, parse_version_set
 >>> version = parse_version("1.0.0")
 >>> version
 <Version (1.0.0)>
+>>> specifier = parse_specifier("^1.0.0")
+>>> specifier
+<SpecifierOne (^1.0.0)>
+>>> assert version.matches(specifier)
 >>> version_set = parse_version_set("^1.0.0")
 >>> version_set
 <VersionRange (>= 1.0.0, < 2.0.0)>

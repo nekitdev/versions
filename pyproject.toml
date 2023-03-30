@@ -87,6 +87,7 @@ testpaths = ["tests"]
 
 [tool.coverage.run]
 source = ["versions"]
+omit = ["versions/main.py", "versions/__main__.py"]
 
 [tool.coverage.report]
 ignore_errors = true

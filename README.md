@@ -112,7 +112,7 @@ True
 
 `versions` also supports specifying version requirements and matching version against them.
 
-Since versions support total ordering, they can be checked using version sets
+Since versions support total ordering, they can be checked using *version sets*
 (via [`parse_version_set`][versions.functions.parse_version_set]):
 
 ```python
@@ -121,12 +121,26 @@ Since versions support total ordering, they can be checked using version sets
 >>> version_set
 <VersionRange (>= 1.0.0, < 2.0.0)>
 >>> version = parse_version("1.3.0")
->>> version
-<Version (1.3.0)>
 >>> version.matches(version_set)
 True
 >>> another = parse_version("2.2.0")
 >>> another.matches(version_set)
+False
+```
+
+Alternatively, one can use *specifiers*, which are similar to version sets, except they retain
+the structure of specifications given (via [`parse_specifier`][versions.functions.parse_specifier]):
+
+```python
+>>> from versions import parse_specifier, parse_version
+>>> specifier = parse_specifier("^1.0.0")
+>>> specifier
+<SpecifierOne (^1.0.0)>
+>>> version = parse_version("1.3.0")
+>>> version.matches(specifier)
+True
+>>> another = parse_version("2.2.0")
+>>> another.matches(specifier)
 False
 ```
 
@@ -183,5 +197,6 @@ If you are interested in contributing to `versions`, make sure to take a look at
 [Test Badge]: https://github.com/nekitdev/versions/workflows/test/badge.svg
 [Coverage Badge]: https://codecov.io/gh/nekitdev/versions/branch/main/graph/badge.svg
 
+[versions.functions.parse_specifier]: https://nekitdev.github.io/versions/reference/functions#versions.functions.parse_specifier
 [versions.functions.parse_version]: https://nekitdev.github.io/versions/reference/functions#versions.functions.parse_version
 [versions.functions.parse_version_set]: https://nekitdev.github.io/versions/reference/functions#versions.functions.parse_version_set

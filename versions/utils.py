@@ -1,7 +1,7 @@
 from itertools import chain
 from itertools import islice as iter_slice
 from itertools import repeat
-from typing import Any, Iterable, Iterator, MutableSequence, Optional, Sequence, Sized, TypeVar
+from typing import Iterable, Iterator, MutableSequence, Optional, Sequence, Sized, Tuple, TypeVar
 
 __all__ = (
     "first",
@@ -9,15 +9,12 @@ __all__ = (
     "set_last",
     "next_or_none",
     "contains_only_item",
-    "evolve_in_place",
     "fix_to_length",
     "count_leading_zeros",
 )
 
 A = TypeVar("A")
 T = TypeVar("T")
-
-set_attribute_directly = object.__setattr__
 
 
 FIRST = 0
@@ -44,13 +41,6 @@ def contains_only_item(sized: Sized) -> bool:
     return len(sized) == 1
 
 
-def evolve_in_place(instance: A, **changes: Any) -> A:
-    for name, value in changes.items():
-        set_attribute_directly(instance, name, value)
-
-    return instance
-
-
 def fix_to_length(length: int, padding: T, iterable: Iterable[T]) -> Iterator[T]:
     return iter_slice(chain(iterable, repeat(padding)), length)
 
@@ -65,3 +55,7 @@ def count_leading_zeros(iterable: Iterable[int]) -> int:
         count += 1
 
     return count
+
+
+def unary_tuple(item: T) -> Tuple[T]:
+    return (item,)
