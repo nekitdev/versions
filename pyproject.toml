@@ -55,7 +55,7 @@ python = "^3.7"
 optional = true
 
 [tool.poetry.group.check.dependencies]
-mypy = "0.971"
+mypy = "1.2.0"
 
 [tool.poetry.group.test]
 optional = true
