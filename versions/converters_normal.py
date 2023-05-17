@@ -13,10 +13,10 @@ from versions.specifiers import (
     Specifier,
     SpecifierAny,
     is_specifier_all,
+    is_specifier_always,
     is_specifier_any,
     is_specifier_never,
     is_specifier_one,
-    is_specifier_always,
 )
 from versions.utils import cache
 from versions.version_sets import (

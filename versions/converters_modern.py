@@ -19,7 +19,13 @@ from versions.specifiers import (
 )
 from versions.utils import cache
 from versions.version_sets import (
-    EMPTY_SET, UNIVERSAL_SET, VersionEmpty, VersionPoint, VersionRange, VersionSet, VersionUnion
+    EMPTY_SET,
+    UNIVERSAL_SET,
+    VersionEmpty,
+    VersionPoint,
+    VersionRange,
+    VersionSet,
+    VersionUnion,
 )
 
 __all__ = (
