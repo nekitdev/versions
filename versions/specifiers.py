@@ -24,15 +24,17 @@ if TYPE_CHECKING:
     from versions.version import Version
 
 __all__ = (
+    "NEVER",
+    "ALWAYS",
     "Specifier",
-    "SpecifierFalse",
-    "SpecifierTrue",
+    "SpecifierNever",
+    "SpecifierAlways",
     "SpecifierOne",
     "SpecifierAny",
     "SpecifierAll",
     "is_specifier",
-    "is_specifier_false",
-    "is_specifier_true",
+    "is_specifier_never",
+    "is_specifier_always",
     "is_specifier_one",
     "is_specifier_any",
     "is_specifier_all",
@@ -47,7 +49,7 @@ Specifiers = DynamicTuple[Specifier]
 
 
 @frozen(repr=False)
-class SpecifierFalse(Specifier):
+class SpecifierNever(Specifier):
     """Represents specifiers that do not accept any versions."""
 
     def accepts(self, version: Version) -> Literal[False]:
@@ -57,8 +59,11 @@ class SpecifierFalse(Specifier):
         return EMPTY_VERSION
 
 
+NEVER = SpecifierNever()
+
+
 @frozen(repr=False)
-class SpecifierTrue(Specifier):
+class SpecifierAlways(Specifier):
     """Represents specifiers that accept all versions."""
 
     def accepts(self, version: Version) -> Literal[True]:
@@ -66,6 +71,9 @@ class SpecifierTrue(Specifier):
 
     def to_string(self) -> str:
         return UNIVERSE_VERSION
+
+
+ALWAYS = SpecifierAlways()
 
 
 @frozen(repr=False)
@@ -107,7 +115,7 @@ class SpecifierAny(Specifier):
     @classmethod
     def of_specifiers(cls, specifiers: Specifiers) -> Specifier:
         if not specifiers:
-            return SpecifierTrue()
+            return SpecifierNever()
 
         if contains_only_item(specifiers):
             return first(specifiers)
@@ -153,7 +161,7 @@ class SpecifierAll(Specifier):
     @classmethod
     def of_specifiers(cls, specifiers: Specifiers) -> Specifier:
         if not specifiers:
-            return SpecifierTrue()
+            return SpecifierAlways()
 
         if contains_only_item(specifiers):
             return first(specifiers)
@@ -194,32 +202,32 @@ def is_specifier(item: Any) -> TypeGuard[Specifier]:
     return is_instance(item, Specifier)
 
 
-def is_specifier_false(item: Any) -> TypeGuard[SpecifierFalse]:
+def is_specifier_never(item: Any) -> TypeGuard[SpecifierNever]:
     """Checks if an `item` is an instance of
-    [`SpecifierFalse`][versions.specifiers.SpecifierFalse].
+    [`SpecifierNever`][versions.specifiers.SpecifierNever].
 
     Arguments:
         item: The item to check.
 
     Returns:
         Whether the `item` provided is an instance of
-            [`SpecifierFalse`][versions.specifiers.SpecifierFalse].
+            [`SpecifierNever`][versions.specifiers.SpecifierNever].
     """
-    return is_instance(item, SpecifierFalse)
+    return is_instance(item, SpecifierNever)
 
 
-def is_specifier_true(item: Any) -> TypeGuard[SpecifierTrue]:
+def is_specifier_always(item: Any) -> TypeGuard[SpecifierAlways]:
     """Checks if an `item` is an instance of
-    [`SpecifierTrue`][versions.specifiers.SpecifierTrue].
+    [`SpecifierAlways`][versions.specifiers.SpecifierAlways].
 
     Arguments:
         item: The item to check.
 
     Returns:
         Whether the `item` provided is an instance of
-            [`SpecifierTrue`][versions.specifiers.SpecifierTrue].
+            [`SpecifierAlways`][versions.specifiers.SpecifierAlways].
     """
-    return is_instance(item, SpecifierTrue)
+    return is_instance(item, SpecifierAlways)
 
 
 def is_specifier_one(item: Any) -> TypeGuard[SpecifierOne]:

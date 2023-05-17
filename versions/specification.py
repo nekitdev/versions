@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 from abc import abstractmethod as required
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
-from typing_extensions import Protocol, runtime_checkable
+from typing_extensions import Protocol, TypeGuard, runtime_checkable
+
+from versions.typing import is_instance
 
 if TYPE_CHECKING:
     from versions.version import Version
@@ -30,4 +32,8 @@ class Specification(Protocol):
         Returns:
             Whether the `version` matches the specification.
         """
-        raise NotImplementedError
+        raise NotImplementedError(expected_method(ACCEPTS))
+
+
+def is_specification(item: Any) -> TypeGuard[Specification]:
+    return is_instance(item, Specification)

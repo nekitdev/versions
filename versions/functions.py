@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Type, TypeVar, overload
 
 from versions.parsers import SpecifierParser, VersionParser, VersionSetParser
+from versions.utils import cache
 from versions.version import Version
 
 if TYPE_CHECKING:
@@ -24,6 +25,7 @@ def parse_version(string: str, version_type: Type[V]) -> V:
     ...
 
 
+@cache
 def parse_version(string: str, version_type: Type[Version] = Version) -> Version:
     """Parses a `string` into a version of `version_type`.
 
@@ -37,6 +39,7 @@ def parse_version(string: str, version_type: Type[Version] = Version) -> Version
     return VersionParser(version_type).parse(string)
 
 
+@cache
 def parse_specifier(string: str, version_type: Type[Version] = Version) -> Specifier:
     """Parses a `string` into a version specifier with versions of `version_type`.
 
@@ -50,6 +53,7 @@ def parse_specifier(string: str, version_type: Type[Version] = Version) -> Speci
     return SpecifierParser(VersionParser(version_type)).parse(string)
 
 
+@cache
 def parse_version_set(string: str, version_type: Type[Version] = Version) -> VersionSet:
     """Parses a `string` into a version set with versions of `version_type`.
 

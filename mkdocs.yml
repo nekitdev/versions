@@ -13,6 +13,7 @@ nav:
   - Reference:
     - Functions: "reference/functions.md"
     - Version: "reference/version.md"
+    - Versioned: "reference/versioned.md"
     - Meta: "reference/meta.md"
     - Segments: "reference/segments.md"
     - Specification: "reference/specification.md"

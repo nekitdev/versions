@@ -813,10 +813,12 @@ class Operator(Representation, ToString):
     version: Version
     """The operator version."""
 
-    def __attrs_post_init__(self) -> None:
-        if self.type is OperatorType.TILDE_EQUAL:
+    def validate(self) -> None:
+        if self.type.is_tilde_equal():
             if not self.version.last_index:
                 raise ValueError(CAN_NOT_USE_TILDE_EQUAL)
+
+    __attrs_post_init__ = validate
 
     def is_tilde_equal(self) -> bool:
         return self.type.is_tilde_equal()

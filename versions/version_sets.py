@@ -1,8 +1,18 @@
 from __future__ import annotations
 
 from abc import abstractmethod as required
-from itertools import chain
-from typing import TYPE_CHECKING, Any, Iterable, Iterator, List, Optional, Tuple, TypeVar, Union
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Iterable,
+    Iterator,
+    List,
+    Optional,
+    Tuple,
+    Type,
+    TypeVar,
+    Union,
+)
 
 from attrs import Attribute, define, evolve, field, frozen
 from orderings import Ordering
@@ -22,7 +32,7 @@ from versions.string import (
 )
 from versions.types import Infinity, NegativeInfinity, infinity, negative_infinity
 from versions.typing import DynamicTuple, is_instance
-from versions.utils import contains_only_item, first, last, next_or_none, set_last
+from versions.utils import contains_only_item, first, flatten, last, next_or_none, set_last
 
 if TYPE_CHECKING:
     from versions.version import Version
@@ -41,10 +51,6 @@ __all__ = (
     "is_version_item",
     "is_version_set",
 )
-
-flatten = chain.from_iterable
-
-T = TypeVar("T")
 
 
 @runtime_checkable
@@ -331,7 +337,7 @@ S = TypeVar("S", bound="VersionSet")
 
 @frozen(repr=False, order=False)
 class VersionEmpty(Representation, ToString, VersionSetProtocol):
-    r"""Represents empty version sets (`{}`)."""
+    """Represents empty version sets (`0`)."""
 
     def is_empty(self) -> Literal[True]:
         return True
@@ -361,22 +367,44 @@ class VersionEmpty(Representation, ToString, VersionSetProtocol):
         return version_set
 
     def complement(self) -> VersionRange:
-        return VersionRange()
+        return UNIVERSAL_SET
 
     def to_string(self) -> str:
         return EMPTY_VERSION
 
 
-def is_version_range_protocol(item: Any) -> TypeGuard[VersionRangeProtocol]:
-    return is_instance(item, VersionRangeProtocol)
+EMPTY_SET = VersionEmpty()
+
+MIN_MAX_CONSTRAINT = "version ranges expect `min <= max`, got `min > max`"
+RANGE_NOT_POINT = "version range is not a point"
+UNEXPECTED_VERSION_SET = "unexpected version set provided: {}"
+CAN_NOT_INCLUDE_INFINITY = "ranges can not contain infinities"
 
 
-@runtime_checkable
-class VersionRangeProtocol(Protocol):
-    min: Optional[Version]
-    max: Optional[Version]
-    include_min: bool
-    include_max: bool
+def unexpected_version_set(item: Any) -> TypeError:
+    return TypeError(UNEXPECTED_VERSION_SET.format(item))
+
+
+@frozen(repr=False, eq=False, order=False)
+class VersionRange(Representation, ToString, VersionSetProtocol):
+    """Represents version ranges (`(v, w)`, `(v, w]`, `[v, w)` and `[v, w]`)."""
+
+    min: Optional[Version] = None
+    max: Optional[Version] = None
+    include_min: bool = False
+    include_max: bool = False
+
+    def __attrs_post_init__(self) -> None:
+        if self.min is None and self.include_min:
+            raise ValueError(CAN_NOT_INCLUDE_INFINITY)
+
+        if self.max is None and self.include_max:
+            raise ValueError(CAN_NOT_INCLUDE_INFINITY)
+
+        if self.comparable_min > self.comparable_max:
+            raise ValueError(MIN_MAX_CONSTRAINT)
+
+    # range stuff
 
     @property
     def parameters(self) -> Tuple[Optional[Version], Optional[Version], bool, bool]:
@@ -441,7 +469,7 @@ class VersionRangeProtocol(Protocol):
     def is_empty_or_point(self) -> bool:
         return self.comparable_min == self.comparable_max
 
-    def is_lower(self, other: VersionRangeProtocol) -> bool:
+    def is_lower(self, other: VersionRange) -> bool:
         self_comparable_min = self.comparable_min
         other_comparable_min = other.comparable_min
 
@@ -453,7 +481,7 @@ class VersionRangeProtocol(Protocol):
 
         return self.include_min and other.exclude_min
 
-    def is_higher(self, other: VersionRangeProtocol) -> bool:
+    def is_higher(self, other: VersionRange) -> bool:
         self_comparable_max = self.comparable_max
         other_comparable_max = other.comparable_max
 
@@ -465,7 +493,7 @@ class VersionRangeProtocol(Protocol):
 
         return self.include_max and other.exclude_max
 
-    def is_strictly_lower(self, other: VersionRangeProtocol) -> bool:
+    def is_strictly_lower(self, other: VersionRange) -> bool:
         self_comparable_max = self.comparable_max
         other_comparable_min = other.comparable_min
 
@@ -477,7 +505,7 @@ class VersionRangeProtocol(Protocol):
 
         return self.exclude_max or other.exclude_min
 
-    def is_strictly_higher(self, other: VersionRangeProtocol) -> bool:
+    def is_strictly_higher(self, other: VersionRange) -> bool:
         self_comparable_min = self.comparable_min
         other_comparable_max = other.comparable_max
 
@@ -489,37 +517,37 @@ class VersionRangeProtocol(Protocol):
 
         return self.exclude_min or other.exclude_max
 
-    def is_left_adjacent(self, other: VersionRangeProtocol) -> bool:
+    def is_left_adjacent(self, other: VersionRange) -> bool:
         return (self.max == other.min) and (self.include_max is other.exclude_min)
 
-    def is_right_adjacent(self, other: VersionRangeProtocol) -> bool:
+    def is_right_adjacent(self, other: VersionRange) -> bool:
         return (self.min == other.max) and (self.include_min is other.exclude_max)
 
-    def is_adjacent(self, other: VersionRangeProtocol) -> bool:
+    def is_adjacent(self, other: VersionRange) -> bool:
         return self.is_left_adjacent(other) or self.is_right_adjacent(other)
 
     def __hash__(self) -> int:
         return hash(self.parameters)
 
     def __eq__(self, other: Any) -> bool:
-        return is_version_range_protocol(other) and self.parameters == other.parameters
+        return is_version_range(other) and self.parameters == other.parameters
 
     def __ne__(self, other: Any) -> bool:
         return not self.__eq__(other)
 
-    def __lt__(self, other: VersionRangeProtocol) -> bool:
+    def __lt__(self, other: VersionRange) -> bool:
         return self.compare(other).is_less()
 
-    def __le__(self, other: VersionRangeProtocol) -> bool:
+    def __le__(self, other: VersionRange) -> bool:
         return self.compare(other).is_less_or_equal()
 
-    def __gt__(self, other: VersionRangeProtocol) -> bool:
+    def __gt__(self, other: VersionRange) -> bool:
         return self.compare(other).is_greater()
 
-    def __ge__(self, other: VersionRangeProtocol) -> bool:
+    def __ge__(self, other: VersionRange) -> bool:
         return self.compare(other).is_greater_or_equal()
 
-    def compare(self, other: VersionRangeProtocol) -> Ordering:
+    def compare(self, other: VersionRange) -> Ordering:
         self_comparable_min = self.comparable_min
         other_comparable_min = other.comparable_min
 
@@ -550,33 +578,7 @@ class VersionRangeProtocol(Protocol):
 
         return Ordering.EQUAL
 
-
-MIN_MAX_CONSTRAINT = "version ranges expect `min <= max`, got `min > max`"
-RANGE_NOT_POINT = "version range is not a point"
-UNEXPECTED_VERSION_SET = "unexpected version set provided: {}"
-CAN_NOT_INCLUDE_INFINITY = "ranges can not contain infinities"
-
-
-@frozen(repr=False, eq=False, order=False)
-class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetProtocol):
-    r"""Represents version ranges (`(v, w)`, `(v, w]`, `[v, w)` and `[v, w]`)."""
-
-    min: Optional[Version] = None
-    max: Optional[Version] = None
-    include_min: bool = False
-    include_max: bool = False
-
-    def __attrs_post_init__(self) -> None:
-        if self.min is None:
-            if self.include_min:
-                raise ValueError(CAN_NOT_INCLUDE_INFINITY)
-
-        if self.max is None:
-            if self.include_max:
-                raise ValueError(CAN_NOT_INCLUDE_INFINITY)
-
-        if self.comparable_min > self.comparable_max:
-            raise ValueError(MIN_MAX_CONSTRAINT)
+    # protocol implementation
 
     def is_empty(self) -> bool:
         return self.is_empty_or_point() and not self.is_closed()
@@ -589,15 +591,19 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
 
     @property
     def version(self) -> Version:
-        version = self.min or self.max
-
-        if version is None:
-            raise ValueError(RANGE_NOT_POINT)
-
         if self.is_point():
-            return version
+            return self.version_unchecked
 
         raise ValueError(RANGE_NOT_POINT)
+
+    @property
+    def version_unchecked(self) -> Version:
+        version = self.min or self.max
+
+        if version is None:  # we can not violate the type system
+            raise ValueError(RANGE_NOT_POINT)
+
+        return version
 
     def contains(self, version: Version) -> bool:
         comparable_min = self.comparable_min
@@ -632,7 +638,7 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
         if is_version_union(version_set):
             return all(self.includes(item) for item in version_set.items)
 
-        raise TypeError(UNEXPECTED_VERSION_SET.format(repr(version_set)))
+        raise unexpected_version_set(version_set)
 
     def intersects(self, version_set: VersionSet) -> bool:
         if is_version_empty(version_set):
@@ -647,14 +653,14 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
         if is_version_union(version_set):
             return any(self.intersects(item) for item in version_set.items)
 
-        raise TypeError(UNEXPECTED_VERSION_SET.format(repr(version_set)))
+        raise unexpected_version_set(version_set)
 
     def intersects_range(self, range: VersionRange) -> bool:
         return not range.is_strictly_lower(self) and not range.is_strictly_higher(self)
 
     def intersection(self, version_set: VersionSet) -> VersionSet:
         if is_version_empty(version_set):
-            return VersionEmpty()
+            return EMPTY_SET
 
         if is_version_point(version_set):
             return version_set.intersection(self)
@@ -662,14 +668,14 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
         if is_version_range(version_set):
             if self.is_lower(version_set):
                 if self.is_strictly_lower(version_set):
-                    return VersionEmpty()
+                    return EMPTY_SET
 
                 intersection_min = version_set.min
                 intersection_include_min = version_set.include_min
 
             else:
                 if self.is_strictly_higher(version_set):
-                    return VersionEmpty()
+                    return EMPTY_SET
 
                 intersection_min = self.min
                 intersection_include_min = self.include_min
@@ -698,7 +704,7 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
         if is_version_union(version_set):
             return version_set.intersection(self)
 
-        raise TypeError(UNEXPECTED_VERSION_SET.format(repr(version_set)))
+        raise unexpected_version_set(version_set)
 
     def union(self, version_set: VersionSet) -> VersionSet:
         if is_version_empty(version_set):
@@ -748,7 +754,7 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
         if is_version_union(version_set):
             return version_set.union(self)
 
-        raise TypeError(UNEXPECTED_VERSION_SET.format(repr(version_set)))
+        raise unexpected_version_set(version_set)
 
     def difference(self, version_set: VersionSet) -> VersionSet:
         if is_version_empty(version_set):
@@ -804,7 +810,7 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
                 after = evolve(self, min=version_set.max, include_min=version_set.exclude_max)
 
             if before is None and after is None:
-                return VersionEmpty()
+                return EMPTY_SET
 
             if before is None:
                 return after  # type: ignore
@@ -817,7 +823,7 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
         if is_version_union(version_set):
             return VersionUnion.of_iterable(self.difference_iterator(version_set))
 
-        raise TypeError(UNEXPECTED_VERSION_SET.format(repr(version_set)))
+        raise unexpected_version_set(version_set)
 
     def difference_iterator(self, version_union: VersionUnion) -> Iterator[VersionItem]:
         current: VersionItem = self
@@ -842,7 +848,7 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
         yield current
 
     def complement(self) -> VersionSet:
-        return VersionRange().difference(self)
+        return UNIVERSAL_SET.difference(self)
 
     def to_string_iterator(self) -> Iterator[str]:
         if self.is_empty():
@@ -859,17 +865,17 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
 
         min = self.min
 
-        if min:
-            min_type = OperatorType.GREATER_OR_EQUAL if self.include_min else OperatorType.GREATER
-            min_operator = Operator(min_type, min)
+        if min is not None:
+            min_operator = (
+                Operator.greater_or_equal(min) if self.include_min else Operator.greater(min)
+            )
 
             yield min_operator.to_string()
 
         max = self.max
 
-        if max:
-            max_type = OperatorType.LESS_OR_EQUAL if self.include_max else OperatorType.LESS
-            max_operator = Operator(max_type, max)
+        if max is not None:
+            max_operator = Operator.less_or_equal(max) if self.include_max else Operator.less(max)
 
             yield max_operator.to_string()
 
@@ -888,17 +894,17 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
 
         min = self.min
 
-        if min:
-            min_type = OperatorType.GREATER_OR_EQUAL if self.include_min else OperatorType.GREATER
-            min_operator = Operator(min_type, min)
+        if min is not None:
+            min_operator = (
+                Operator.greater_or_equal(min) if self.include_min else Operator.greater(min)
+            )
 
             yield min_operator.to_short_string()
 
         max = self.max
 
-        if max:
-            max_type = OperatorType.LESS_OR_EQUAL if self.include_max else OperatorType.LESS
-            max_operator = Operator(max_type, max)
+        if max is not None:
+            max_operator = Operator.less_or_equal(max) if self.include_max else Operator.less(max)
 
             yield max_operator.to_short_string()
 
@@ -909,27 +915,30 @@ class VersionRange(Representation, ToString, VersionRangeProtocol, VersionSetPro
         return concat_comma(self.to_short_string_iterator())
 
 
+UNIVERSAL_SET = VersionRange()
+
+
 @frozen(repr=False, eq=False, order=False)
-class VersionPoint(Representation, ToString, VersionRangeProtocol, VersionSetProtocol):
-    r"""Represents version points (`[v, v]` ranges, also known as singleton sets `{v}`)."""
+class VersionPoint(VersionRange):
+    """Represents version points (`[v, v]` ranges, also known as singleton sets `{v}`)."""
 
-    version: Version
+    version: Version = field()
 
-    @property
-    def min(self) -> Optional[Version]:  # type: ignore
+    # initialize range fields accordingly
+
+    min: Version = field(init=False)
+    max: Version = field(init=False)
+
+    include_min: Literal[True] = field(default=True, init=False)
+    include_max: Literal[True] = field(default=True, init=False)
+
+    @min.default
+    def default_min(self) -> Version:
         return self.version
 
-    @property
-    def max(self) -> Optional[Version]:  # type: ignore
+    @max.default
+    def default_max(self) -> Version:
         return self.version
-
-    @property
-    def include_min(self) -> bool:  # type: ignore
-        return True
-
-    @property
-    def include_max(self) -> bool:  # type: ignore
-        return True
 
     def is_empty(self) -> bool:
         return False
@@ -955,7 +964,7 @@ class VersionPoint(Representation, ToString, VersionRangeProtocol, VersionSetPro
         return version_set.contains(self.version)
 
     def intersection(self, version_set: VersionSet) -> VersionSet:
-        return self if version_set.contains(self.version) else VersionEmpty()
+        return self if version_set.contains(self.version) else EMPTY_SET
 
     def union(self, version_set: VersionSet) -> VersionSet:
         if is_version_empty(version_set):
@@ -973,13 +982,13 @@ class VersionPoint(Representation, ToString, VersionRangeProtocol, VersionSetPro
         if is_version_range(version_set) or is_version_union(version_set):
             return VersionUnion.of(self, version_set)
 
-        raise TypeError(UNEXPECTED_VERSION_SET.format(repr(version_set)))
+        raise unexpected_version_set(version_set)
 
     def difference(self, version_set: VersionSet) -> VersionSet:
-        return VersionEmpty() if version_set.contains(self.version) else self
+        return EMPTY_SET if version_set.contains(self.version) else self
 
     def complement(self) -> VersionSet:
-        return VersionRange().difference(self)
+        return UNIVERSAL_SET.difference(self)
 
     def to_string(self) -> str:
         return self.version.to_string()
@@ -1015,6 +1024,14 @@ class VersionUnion(Representation, ToString, Specification):
     def check_items(self, attribute: Attribute[VersionItems], items: VersionItems) -> None:
         check_items(items)
 
+    @classmethod
+    def of_unchecked(cls: Type[U], *items: VersionItem) -> U:
+        return cls(items)
+
+    @classmethod
+    def of_iterable_unchecked(cls: Type[U], items: Iterable[VersionItem]) -> U:
+        return cls(tuple(items))
+
     @staticmethod
     def extract(version_set: VersionSet) -> Iterator[VersionItem]:
         if is_version_union(version_set):
@@ -1024,25 +1041,21 @@ class VersionUnion(Representation, ToString, Specification):
             yield version_set
 
     @classmethod
-    def of(cls, *version_sets: VersionSet) -> VersionSet:
-        return cls.of_iterable(version_sets)
-
-    @classmethod
-    def of_iterable(cls, iterable: Iterable[VersionSet]) -> VersionSet:
+    def merge(cls, iterable: Iterable[VersionSet]) -> VersionSet:
         extracted = list(flatten(map(cls.extract, iterable)))
 
         if not extracted:
-            return VersionEmpty()
+            return EMPTY_SET
 
         if any(item.is_universal() for item in extracted):
-            return VersionRange()
+            return UNIVERSAL_SET
 
-        extracted.sort()
+        extracted.sort()  # since ranges and points are ordered
 
         merged: List[VersionItem] = []
 
         for item in extracted:
-            if not merged:
+            if not merged:  # nothing to merge yet
                 merged.append(item)
 
             else:
@@ -1063,7 +1076,15 @@ class VersionUnion(Representation, ToString, Specification):
         if contains_only_item(merged):
             return first(merged)
 
-        return cls(tuple(merged))
+        return cls.of_iterable_unchecked(merged)
+
+    @classmethod
+    def of(cls, *version_sets: VersionSet) -> VersionSet:
+        return cls.of_iterable(version_sets)
+
+    @classmethod
+    def of_iterable(cls, version_sets: Iterable[VersionSet]) -> VersionSet:
+        return cls.merge(version_sets)
 
     @property
     def exclude_version(self) -> Optional[Version]:
@@ -1147,7 +1168,7 @@ class VersionUnion(Representation, ToString, Specification):
         return self.of_iterable(items_difference.compute())
 
     def complement(self) -> VersionSet:
-        return VersionRange().difference(self)
+        return UNIVERSAL_SET.difference(self)
 
     def to_string(self) -> str:
         exclude_version = self.exclude_version

@@ -40,21 +40,25 @@ from versions.operators import Operator, OperatorType
 from versions.segments import DevTag, Epoch, Local, PostTag, PreTag, Release, Tag
 from versions.specification import Specification
 from versions.specifiers import (
+    ALWAYS,
+    NEVER,
     Specifier,
     SpecifierAll,
+    SpecifierAlways,
     SpecifierAny,
-    SpecifierFalse,
+    SpecifierNever,
     SpecifierOne,
-    SpecifierTrue,
     is_specifier,
     is_specifier_all,
+    is_specifier_always,
     is_specifier_any,
-    is_specifier_false,
+    is_specifier_never,
     is_specifier_one,
-    is_specifier_true,
 )
 from versions.version import Version
 from versions.version_sets import (
+    EMPTY_SET,
+    UNIVERSAL_SET,
     VersionEmpty,
     VersionItem,
     VersionPoint,
@@ -67,6 +71,13 @@ from versions.version_sets import (
     is_version_range,
     is_version_set,
     is_version_union,
+)
+from versions.versioned import (
+    Versioned,
+    get_version,
+    get_version_unchecked,
+    has_version,
+    is_versioned,
 )
 
 __all__ = (
@@ -86,20 +97,24 @@ __all__ = (
     # specification
     "Specification",
     # specifiers
+    "NEVER",
+    "ALWAYS",
     "Specifier",
-    "SpecifierFalse",
-    "SpecifierTrue",
+    "SpecifierNever",
+    "SpecifierAlways",
     "SpecifierOne",
     "SpecifierAll",
     "SpecifierAny",
     # specifiers type guards
     "is_specifier",
-    "is_specifier_false",
-    "is_specifier_true",
+    "is_specifier_never",
+    "is_specifier_always",
     "is_specifier_one",
     "is_specifier_all",
     "is_specifier_any",
     # version sets
+    "EMPTY_SET",
+    "UNIVERSAL_SET",
     "VersionEmpty",
     "VersionPoint",
     "VersionRange",
@@ -130,4 +145,10 @@ __all__ = (
     # meta
     "version_info",
     "python_version_info",
+    # versioned
+    "Versioned",
+    "is_versioned",
+    "has_version",
+    "get_version",
+    "get_version_unchecked",
 )

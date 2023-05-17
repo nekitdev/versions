@@ -1,17 +1,15 @@
 from __future__ import annotations
 
-from functools import lru_cache
 from typing import TYPE_CHECKING, Optional
 
 from versions.errors import InternalError
-from versions.specifiers import Specifier, SpecifierAll, SpecifierFalse, SpecifierOne, SpecifierTrue
+from versions.specifiers import ALWAYS, NEVER, Specifier, SpecifierAll, SpecifierOne
 from versions.version_sets import VersionRange, VersionSet, VersionUnion
 
 if TYPE_CHECKING:
     from versions.version import Version
 
 __all__ = (
-    "cache",
     "version_set_intersection",
     "version_set_union",
     "pin_version",
@@ -20,8 +18,6 @@ __all__ = (
     "try_range_simple",
     "try_range_unwrap",
 )
-
-cache = lru_cache(None)
 
 
 def version_set_intersection(left: VersionSet, right: VersionSet) -> VersionSet:
@@ -48,10 +44,10 @@ def try_exclude_version(version_union: VersionUnion) -> Optional[SpecifierOne]:
 
 def try_range_simple(version_range: VersionRange) -> Optional[Specifier]:
     if version_range.is_empty():
-        return SpecifierFalse()
+        return NEVER
 
     if version_range.is_universal():
-        return SpecifierTrue()
+        return ALWAYS
 
     if version_range.is_point():
         return pin_version(version_range.version)

@@ -44,7 +44,7 @@ Or by directly specifying it in the configuration like so:
 
 ```toml
 [tool.poetry.dependencies]
-versions = "^1.3.0"
+versions = "^1.4.0"
 ```
 
 Alternatively, you can add it directly from the source:
@@ -142,6 +142,17 @@ True
 >>> another = parse_version("2.2.0")
 >>> another.matches(specifier)
 False
+```
+
+## Versioned
+
+`versions` allows users to access versions of items that have the `__version__` attribute:
+
+```python
+>>> from versions import get_version
+>>> import versions
+>>> get_version(versions)
+<Version (1.4.0)>
 ```
 
 ## Documentation

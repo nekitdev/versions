@@ -5,10 +5,10 @@ from versions.operators import OperatorType
 from versions.specifiers import (
     Specifier,
     SpecifierAll,
+    SpecifierAlways,
     SpecifierAny,
-    SpecifierFalse,
+    SpecifierNever,
     SpecifierOne,
-    SpecifierTrue,
 )
 from versions.version import Version
 from versions.version_sets import VersionEmpty, VersionPoint, VersionRange, VersionSet, VersionUnion
@@ -17,8 +17,8 @@ from versions.version_sets import VersionEmpty, VersionPoint, VersionRange, Vers
 @pytest.mark.parametrize(
     ("version_set", "specifier", "resulting_version_set"),
     (
-        (VersionEmpty(), SpecifierFalse(), VersionEmpty()),
-        (VersionRange(), SpecifierTrue(), VersionRange()),
+        (VersionEmpty(), SpecifierNever(), VersionEmpty()),
+        (VersionRange(), SpecifierAlways(), VersionRange()),
         (
             VersionRange(
                 min=Version.from_parts(1, 0, 0),
@@ -26,7 +26,7 @@ from versions.version_sets import VersionEmpty, VersionPoint, VersionRange, Vers
                 include_min=False,
                 include_max=False,
             ),
-            SpecifierFalse(),
+            SpecifierNever(),
             VersionEmpty(),
         ),
         (

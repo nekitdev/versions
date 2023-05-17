@@ -1,9 +1,12 @@
+from functools import lru_cache
 from itertools import chain
 from itertools import islice as iter_slice
 from itertools import repeat
 from typing import Iterable, Iterator, MutableSequence, Optional, Sequence, Sized, Tuple, TypeVar
 
 __all__ = (
+    "cache",
+    "flatten",
     "first",
     "last",
     "set_last",
@@ -13,9 +16,12 @@ __all__ = (
     "count_leading_zeros",
 )
 
+cache = lru_cache(None)
+
+flatten = chain.from_iterable
+
 A = TypeVar("A")
 T = TypeVar("T")
-
 
 FIRST = 0
 LAST = ~0

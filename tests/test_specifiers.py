@@ -5,10 +5,10 @@ import pytest
 from versions.operators import OperatorType
 from versions.specifiers import (
     SpecifierAll,
+    SpecifierAlways,
     SpecifierAny,
-    SpecifierFalse,
+    SpecifierNever,
     SpecifierOne,
-    SpecifierTrue,
 )
 from versions.string import concat_empty_args, concat_space_args
 from versions.version import Version
@@ -42,28 +42,28 @@ def v200() -> Version:
     return Version.from_parts(2, 0, 0)
 
 
-class TestSpecifierFalse:
+class TestSpecifierNever:
     def test_accepts(self, v100: Version, v200: Version) -> None:
-        specifier = SpecifierFalse()
+        specifier = SpecifierNever()
 
         assert not specifier.accepts(v100)
         assert not specifier.accepts(v200)
 
     def test_to_string(self) -> None:
-        specifier = SpecifierFalse()
+        specifier = SpecifierNever()
 
         assert specifier.to_string() == EMPTY
 
 
-class TestSpecifierTrue:
+class TestSpecifierAlways:
     def test_accepts(self, v100: Version, v200: Version) -> None:
-        specifier = SpecifierTrue()
+        specifier = SpecifierAlways()
 
         assert specifier.accepts(v100)
         assert specifier.accepts(v200)
 
     def test_to_string(self) -> None:
-        specifier = SpecifierTrue()
+        specifier = SpecifierAlways()
 
         assert specifier.to_string() == UNIVERSE
 

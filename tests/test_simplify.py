@@ -5,10 +5,10 @@ from versions.operators import OperatorType
 from versions.specifiers import (
     Specifier,
     SpecifierAll,
+    SpecifierAlways,
     SpecifierAny,
-    SpecifierFalse,
+    SpecifierNever,
     SpecifierOne,
-    SpecifierTrue,
 )
 from versions.version import Version
 
@@ -62,8 +62,8 @@ from versions.version import Version
                 SpecifierOne(OperatorType.LESS, Version.from_parts(1, 1, 0)),
             ),
         ),
-        (SpecifierOne(OperatorType.WILDCARD_EQUAL, Version.from_parts(0)), SpecifierTrue()),
-        (SpecifierOne(OperatorType.WILDCARD_NOT_EQUAL, Version.from_parts(0)), SpecifierFalse()),
+        (SpecifierOne(OperatorType.WILDCARD_EQUAL, Version.from_parts(0)), SpecifierAlways()),
+        (SpecifierOne(OperatorType.WILDCARD_NOT_EQUAL, Version.from_parts(0)), SpecifierNever()),
         (
             SpecifierOne(OperatorType.TILDE_EQUAL, Version.from_parts(1, 0, 0)),
             SpecifierAll.of(
@@ -76,8 +76,8 @@ from versions.version import Version
             SpecifierOne(OperatorType.EQUAL, Version.from_parts(1, 0, 0)),
             SpecifierOne(OperatorType.EQUAL, Version.from_parts(1, 0, 0)),
         ),
-        (SpecifierTrue(), SpecifierTrue()),
-        (SpecifierFalse(), SpecifierFalse()),
+        (SpecifierAlways(), SpecifierAlways()),
+        (SpecifierNever(), SpecifierNever()),
     ),
 )
 def test_simplify(specifier: Specifier, simplified: Specifier) -> None:

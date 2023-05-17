@@ -23,6 +23,7 @@ __all__ = (
     # simple from_string() and to_string() protocols
     "FromString",
     "ToString",
+    "String",
     # checks
     "check_int",
     # clearing whitespace
@@ -81,6 +82,11 @@ class ToString(Protocol):
 
     def __str__(self) -> str:
         return self.to_string()
+
+
+@runtime_checkable
+class String(FromString, ToString, Protocol):
+    pass
 
 
 check_int = str.isdigit

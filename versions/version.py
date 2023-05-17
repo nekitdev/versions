@@ -18,7 +18,7 @@ from versions.segments import (
     Release,
 )
 from versions.specification import Specification
-from versions.string import FromString, ToString, concat_empty
+from versions.string import String, concat_empty
 from versions.types import AnyInfinity, Infinity, NegativeInfinity, infinity, negative_infinity
 
 __all__ = ("CompareKey", "Version")
@@ -44,7 +44,7 @@ W = TypeVar("W", bound="Version")
 
 
 @frozen(repr=False, eq=True, order=True)
-class Version(Representation, FromString, ToString):
+class Version(Representation, String):
     """Represents versions."""
 
     epoch: Epoch = field(factory=Epoch, eq=False, order=False)
@@ -835,6 +835,11 @@ class Version(Representation, FromString, ToString):
         return self if self.is_stable() else self.to_stable_unchecked()
 
     def to_stable_unchecked(self: V) -> V:
+        """Forces a version to be stable, without checking whether it is already stable.
+
+        Returns:
+            The stable version.
+        """
         return self.without_tags_and_local()
 
     def next_breaking(self: V) -> V:

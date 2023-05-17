@@ -22,6 +22,6 @@ if python_phase == FINAL:  # pragma: no cover
 
 else:  # pragma: no cover
     python_version_info = Version.from_parts(
-        python_major, python_minor, python_micro, pre=PreTag(python_phase, python_value).normalize()
-    )
+        python_major, python_minor, python_micro, pre=PreTag(python_phase, python_value)
+    ).normalize()
     """The python version represented as a [`Version`][versions.version.Version]."""

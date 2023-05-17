@@ -1,7 +1,6 @@
 from functools import reduce
 
 from versions.converters_utils import (
-    cache,
     pin_version,
     try_exclude_version,
     try_range_simple,
@@ -10,18 +9,19 @@ from versions.converters_utils import (
     version_set_union,
 )
 from versions.specifiers import (
+    NEVER,
     Specifier,
     SpecifierAny,
-    SpecifierFalse,
     is_specifier_all,
     is_specifier_any,
-    is_specifier_false,
+    is_specifier_never,
     is_specifier_one,
-    is_specifier_true,
+    is_specifier_always,
 )
+from versions.utils import cache
 from versions.version_sets import (
-    VersionEmpty,
-    VersionRange,
+    EMPTY_SET,
+    UNIVERSAL_SET,
     VersionSet,
     is_version_empty,
     is_version_point,
@@ -69,11 +69,11 @@ def specifier_to_version_set(specifier: Specifier) -> VersionSet:
     if is_specifier_one(specifier):
         return specifier.translate(specifier.version)
 
-    if is_specifier_false(specifier):
-        return VersionEmpty()
+    if is_specifier_never(specifier):
+        return EMPTY_SET
 
-    if is_specifier_true(specifier):
-        return VersionRange()
+    if is_specifier_always(specifier):
+        return UNIVERSAL_SET
 
     if is_specifier_all(specifier):
         return reduce(version_set_intersection, map(specifier_to_version_set, specifier.specifiers))
@@ -103,7 +103,7 @@ def version_set_to_specifier(version_set: VersionSet) -> Specifier:
         The converted version specifier.
     """
     if is_version_empty(version_set):
-        return SpecifierFalse()
+        return NEVER
 
     if is_version_point(version_set):
         return pin_version(version_set.version)

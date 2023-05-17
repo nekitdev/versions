@@ -1,7 +1,6 @@
 from functools import reduce
 
 from versions.converters_utils import (
-    cache,
     pin_version,
     try_exclude_version,
     try_range_simple,
@@ -10,14 +9,18 @@ from versions.converters_utils import (
     version_set_union,
 )
 from versions.specifiers import (
+    NEVER,
     Specifier,
     SpecifierAll,
+    SpecifierAlways,
     SpecifierAny,
-    SpecifierFalse,
+    SpecifierNever,
     SpecifierOne,
-    SpecifierTrue,
 )
-from versions.version_sets import VersionEmpty, VersionPoint, VersionRange, VersionSet, VersionUnion
+from versions.utils import cache
+from versions.version_sets import (
+    EMPTY_SET, UNIVERSAL_SET, VersionEmpty, VersionPoint, VersionRange, VersionSet, VersionUnion
+)
 
 __all__ = (
     "simplify",
@@ -57,14 +60,14 @@ def specifier_to_version_set(specifier: Specifier) -> VersionSet:
         The converted version set.
     """
     match specifier:
-        case SpecifierOne(_, version) as one:
-            return one.translate(version)
+        case SpecifierOne(_, version) as specifier_one:
+            return specifier_one.translate(version)
 
-        case SpecifierFalse():
-            return VersionEmpty()
+        case SpecifierNever():
+            return EMPTY_SET
 
-        case SpecifierTrue():
-            return VersionRange()
+        case SpecifierAlways():
+            return UNIVERSAL_SET
 
         case SpecifierAll(specifiers):
             return reduce(version_set_intersection, map(specifier_to_version_set, specifiers))
@@ -96,7 +99,7 @@ def version_set_to_specifier(version_set: VersionSet) -> Specifier:
     """
     match version_set:
         case VersionEmpty():
-            return SpecifierFalse()
+            return NEVER
 
         case VersionPoint(version):
             return pin_version(version)
@@ -111,8 +114,7 @@ def version_set_to_specifier(version_set: VersionSet) -> Specifier:
                 map(version_set_to_specifier, version_items)
             )
 
-        case _:
-            raise TypeError(UNEXPECTED_VERSION_SET.format(repr(version_set)))
+    raise TypeError(UNEXPECTED_VERSION_SET.format(repr(version_set)))
 
 
 specifier_from_version_set = version_set_to_specifier
