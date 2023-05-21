@@ -16,6 +16,7 @@ from typing import (
 
 from attrs import Attribute, define, evolve, field, frozen
 from orderings import Ordering
+from typing_aliases import DynamicTuple, is_instance
 from typing_extensions import Literal, Protocol, TypeGuard, runtime_checkable
 
 from versions.constants import EMPTY_VERSION, UNIVERSE_VERSION
@@ -31,7 +32,6 @@ from versions.string import (
     concat_pipes_spaced,
 )
 from versions.types import Infinity, NegativeInfinity, infinity, negative_infinity
-from versions.typing import DynamicTuple, is_instance
 from versions.utils import contains_only_item, first, flatten, last, next_or_none, set_last
 
 if TYPE_CHECKING:

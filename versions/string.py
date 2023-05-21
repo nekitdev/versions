@@ -1,6 +1,7 @@
 from abc import abstractmethod as required
 from typing import Iterable, List, Type, TypeVar
 
+from typing_aliases import Parse
 from typing_extensions import Protocol, runtime_checkable
 
 from versions.constants import (
@@ -17,7 +18,6 @@ from versions.constants import (
     SPACE,
     UNDER,
 )
-from versions.typing import Unary
 
 __all__ = (
     # simple from_string() and to_string() protocols
@@ -142,7 +142,7 @@ def create_wrap_around(string: str, wrap: Iterable[str] = BRACKETS) -> str:
 create_translation = str.maketrans
 dict_from_keys = dict.fromkeys
 
-Split = Unary[str, List[str]]
+Split = Parse[List[str]]
 
 
 def create_split_multiple(main: str, *rest: str) -> Split:

@@ -3,14 +3,13 @@ from __future__ import annotations
 from abc import abstractmethod as required
 from typing import TYPE_CHECKING, Any
 
+from typing_aliases import is_instance
 from typing_extensions import Protocol, TypeGuard, runtime_checkable
-
-from versions.typing import is_instance
 
 if TYPE_CHECKING:
     from versions.version import Version
 
-__all__ = ("Specification",)
+__all__ = ("Specification", "is_specification")
 
 EXPECTED_METHOD = "expected `{}` to define `{}` method"
 expected_method = EXPECTED_METHOD.format

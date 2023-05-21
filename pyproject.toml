@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "versions"
-version = "1.4.0"
+version = "1.5.0"
 description = "Parsing, inspecting and specifying versions."
 authors = ["nekitdev"]
 license = "MIT"
@@ -33,6 +33,8 @@ include = "versions"
 python = ">= 3.7"
 
 attrs = ">= 23.1.0"
+
+typing-aliases = ">= 1.1.1"
 typing-extensions = ">= 4.5.0"
 
 click = ">= 8.1.3"
@@ -75,14 +77,14 @@ optional = true
 
 [tool.poetry.group.docs.dependencies]
 mkdocs = "1.4.3"
-mkdocs-material = "9.1.13"
+mkdocs-material = "9.1.14"
 
 [tool.poetry.group.docs.dependencies.mkdocstrings]
 version = "0.21.2"
 extras = ["python"]
 
 [tool.poetry.group.dev.dependencies]
-changelogging = "1.2.0"
+changelogging = "1.3.0"
 
 [tool.black]
 line_length = 100
@@ -149,7 +151,7 @@ warn_unused_ignores = false  # compatibility
 
 [tool.changelogging]
 name = "versions"
-version = "1.4.0"
+version = "1.5.0"
 url = "https://github.com/nekitdev/versions"
 directory = "changes"
 output = "CHANGELOG.md"

@@ -4,6 +4,7 @@ from typing import ClassVar, Iterable, Optional, Set, Tuple, Type, TypeVar, Unio
 
 from attrs import Attribute, evolve, field, frozen
 from named import get_type_name
+from typing_aliases import DynamicTuple, is_int
 
 from versions.constants import EMPTY
 from versions.parsers import TagParser
@@ -32,7 +33,6 @@ from versions.string import (
     split_separators,
 )
 from versions.types import NegativeInfinity, negative_infinity
-from versions.typing import DynamicTuple, is_int
 from versions.utils import count_leading_zeros, fix_to_length
 
 __all__ = (

@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any, ClassVar, Iterable
 
 from attrs import Attribute, field, frozen
+from typing_aliases import DynamicTuple, is_instance
 from typing_extensions import Literal, TypeGuard
 
 from versions.constants import EMPTY_VERSION, UNIVERSE_VERSION
@@ -17,7 +18,6 @@ from versions.string import (
     concat_pipes_spaced,
     create_wrap_around,
 )
-from versions.typing import DynamicTuple, is_instance
 from versions.utils import contains_only_item, first
 
 if TYPE_CHECKING:

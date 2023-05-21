@@ -5,6 +5,7 @@ from string import digits
 from typing import TYPE_CHECKING, Any, Mapping, Optional, Tuple, Type, TypeVar, Union
 
 from attrs import frozen
+from typing_aliases import Binary, Unary, is_same_type
 
 from versions.constants import (
     CARET,
@@ -25,7 +26,6 @@ from versions.constants import (
 from versions.errors import InternalError
 from versions.representation import Representation
 from versions.string import ToString, concat_empty_args, concat_space_args
-from versions.typing import Binary, Unary, is_same_type
 
 if TYPE_CHECKING:
     from versions.version import Version
