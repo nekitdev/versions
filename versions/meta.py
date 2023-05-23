@@ -1,6 +1,6 @@
 from sys import version_info as python_version_tuple
 
-from typing_extensions import Final
+from typing_extensions import Literal
 
 import versions
 from versions.segments import PreTag
@@ -12,7 +12,7 @@ __all__ = ("version_info", "python_version_info")
 version_info = get_version(versions)  # type: ignore
 """The library version represented as a [`Version`][versions.version.Version]."""
 
-FINAL: Final[str] = "final"
+FINAL: Literal["final"] = "final"
 
 python_major, python_minor, python_micro, python_phase, python_value = python_version_tuple
 
