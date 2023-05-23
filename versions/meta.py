@@ -2,14 +2,14 @@ from sys import version_info as python_version_tuple
 
 from typing_extensions import Final
 
-from versions import __version__ as version
-from versions.functions import parse_version
+import versions
 from versions.segments import PreTag
 from versions.version import Version
+from versions.versioned import get_version_unchecked
 
 __all__ = ("version_info", "python_version_info")
 
-version_info = parse_version(version)
+version_info = get_version_unchecked(versions)  # type: ignore
 """The library version represented as a [`Version`][versions.version.Version]."""
 
 FINAL: Final[str] = "final"
