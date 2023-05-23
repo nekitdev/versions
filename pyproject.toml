@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "versions"
-version = "1.6.0"
+version = "1.6.1"
 description = "Parsing, inspecting and specifying versions."
 authors = ["nekitdev"]
 license = "MIT"
@@ -151,7 +151,7 @@ warn_unused_ignores = false  # compatibility
 
 [tool.changelogging]
 name = "versions"
-version = "1.6.0"
+version = "1.6.1"
 url = "https://github.com/nekitdev/versions"
 directory = "changes"
 output = "CHANGELOG.md"

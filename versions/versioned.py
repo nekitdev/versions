@@ -49,16 +49,16 @@ V = TypeVar("V", bound=Version)
 
 
 @overload
-def get_version(item: Versioned) -> Optional[Version]:
+def get_version(item: Versioned) -> Version:
     ...
 
 
 @overload
-def get_version(item: Versioned, version_type: Type[V]) -> Optional[V]:
+def get_version(item: Versioned, version_type: Type[V]) -> V:
     ...
 
 
-def get_version(item: Versioned, version_type: Type[Version] = Version) -> Optional[Version]:
+def get_version(item: Versioned, version_type: Type[Version] = Version) -> Version:
     """Fetches the `__version__` attribute of the `item`,
     parsing it into the version of `version_type`, without checking whether the attribute exists.
 

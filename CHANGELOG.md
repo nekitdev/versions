@@ -2,6 +2,12 @@
 
 <!-- changelogging: start -->
 
+## 1.6.1 (2023-05-24)
+
+### Fixes
+
+- Fixed types of `get_version`.
+
 ## 1.6.0 (2023-05-24)
 
 ### Removals
