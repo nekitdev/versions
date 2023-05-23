@@ -2,6 +2,13 @@
 
 <!-- changelogging: start -->
 
+## 1.6.0 (2023-05-24)
+
+### Removals
+
+- `get_version_unchecked` has been renamed to `get_version`,
+  which now returns `str` instead of `Optional[str]`.
+
 ## 1.5.0 (2023-05-21)
 
 ### Internal

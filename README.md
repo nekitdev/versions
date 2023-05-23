@@ -44,7 +44,7 @@ Or by directly specifying it in the configuration like so:
 
 ```toml
 [tool.poetry.dependencies]
-versions = "^1.5.0"
+versions = "^1.6.0"
 ```
 
 Alternatively, you can add it directly from the source:
@@ -152,7 +152,7 @@ False
 >>> from versions import get_version
 >>> import versions
 >>> get_version(versions)
-<Version (1.5.0)>
+<Version (1.6.0)>
 ```
 
 ## Documentation

@@ -10,10 +10,9 @@ from versions.version import Version
 __all__ = (
     "VERSION",
     "Versioned",
-    "is_versioned",
-    "has_version",
     "get_version",
-    "get_version_unchecked",
+    "has_version",
+    "is_versioned",
 )
 
 VERSION = "__version__"
@@ -50,40 +49,16 @@ V = TypeVar("V", bound=Version)
 
 
 @overload
-def get_version(item: Any) -> Optional[Version]:
+def get_version(item: Versioned) -> Optional[Version]:
     ...
 
 
 @overload
-def get_version(item: Any, version_type: Type[V]) -> Optional[V]:
+def get_version(item: Versioned, version_type: Type[V]) -> Optional[V]:
     ...
 
 
-def get_version(item: Any, version_type: Type[Version] = Version) -> Optional[Version]:
-    """Parses the version of the `item` if [`has_version(item)`][versions.versioned.has_version],
-    otherwise this function returns [`None`][None].
-
-    Parameters:
-        item: The item to fetch the version from.
-        version_type: The type of the version to parse.
-
-    Returns:
-        The version of `version_type` of the `item`, if one is present, otherwise [`None`][None].
-    """
-    return get_version_unchecked(item, version_type) if has_version(item) else None
-
-
-@overload
-def get_version_unchecked(item: Versioned) -> Version:
-    ...
-
-
-@overload
-def get_version_unchecked(item: Versioned, version_type: Type[V]) -> V:
-    ...
-
-
-def get_version_unchecked(item: Versioned, version_type: Type[Version] = Version) -> Version:
+def get_version(item: Versioned, version_type: Type[Version] = Version) -> Optional[Version]:
     """Fetches the `__version__` attribute of the `item`,
     parsing it into the version of `version_type`, without checking whether the attribute exists.
 

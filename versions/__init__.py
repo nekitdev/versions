@@ -24,7 +24,7 @@ __url__ = "https://github.com/nekitdev/versions"
 __title__ = "versions"
 __author__ = "nekitdev"
 __license__ = "MIT"
-__version__ = "1.5.0"
+__version__ = "1.6.0"
 
 from versions.converters import (
     simplify,
@@ -73,9 +73,9 @@ from versions.version_sets import (
     is_version_union,
 )
 from versions.versioned import (
+    VERSION,
     Versioned,
     get_version,
-    get_version_unchecked,
     has_version,
     is_versioned,
 )
@@ -146,9 +146,9 @@ __all__ = (
     "version_info",
     "python_version_info",
     # versioned
+    "VERSION",
     "Versioned",
-    "is_versioned",
-    "has_version",
     "get_version",
-    "get_version_unchecked",
+    "has_version",
+    "is_versioned",
 )
