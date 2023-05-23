@@ -1,5 +1,5 @@
 from builtins import hasattr as has_attribute
-from typing import Any, Optional, Type, TypeVar, overload
+from typing import Any, Type, TypeVar, overload
 
 from typing_aliases import is_string
 from typing_extensions import Protocol, TypeGuard, runtime_checkable
