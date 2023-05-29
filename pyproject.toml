@@ -70,7 +70,7 @@ optional = true
 pytest = "7.3.1"
 pytest-cov = "4.0.0"
 
-hypothesis = "6.75.3"
+hypothesis = "6.75.6"
 
 [tool.poetry.group.docs]
 optional = true
