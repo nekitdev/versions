@@ -1,5 +1,3 @@
-from versions.utils import unary_tuple
-
 __all__ = (
     # release constants
     "ALPHA",
@@ -95,7 +93,7 @@ DEV = "dev"
 # phases (in order of precedence, used in patterns)
 PRE_PHASES = (ALPHA, BETA, A_LITERAL, B_LITERAL, C_LITERAL, RC, PREVIEW, PRE)
 POST_PHASES = (POST, REV, R_LITERAL)
-DEV_PHASES = unary_tuple(DEV)
+DEV_PHASES = (DEV,)
 
 # empty and space strings
 EMPTY = str()

@@ -1,12 +1,10 @@
 from functools import lru_cache
-from itertools import chain
-from itertools import islice as iter_slice
-from itertools import repeat
-from typing import Iterable, Iterator, MutableSequence, Optional, Sequence, Sized, Tuple, TypeVar
+from typing import Iterable, Iterator, MutableSequence, Optional, Sequence, Sized, TypeVar
+
+from iters.iters import iter
 
 __all__ = (
     "cache",
-    "flatten",
     "first",
     "last",
     "set_last",
@@ -18,9 +16,6 @@ __all__ = (
 
 cache = lru_cache(None)
 
-flatten = chain.from_iterable
-
-A = TypeVar("A")
 T = TypeVar("T")
 
 FIRST = 0
@@ -48,7 +43,11 @@ def contains_only_item(sized: Sized) -> bool:
 
 
 def fix_to_length(length: int, padding: T, iterable: Iterable[T]) -> Iterator[T]:
-    return iter_slice(chain(iterable, repeat(padding)), length)
+    return iter(iterable).chain(iter.repeat(padding).unwrap()).take(length).unwrap()
+
+
+def flatten(nested: Iterable[Iterable[T]]) -> Iterator[T]:
+    return iter(nested).flatten().unwrap()
 
 
 def count_leading_zeros(iterable: Iterable[int]) -> int:
@@ -61,7 +60,3 @@ def count_leading_zeros(iterable: Iterable[int]) -> int:
         count += 1
 
     return count
-
-
-def unary_tuple(item: T) -> Tuple[T]:
-    return (item,)

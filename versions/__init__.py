@@ -24,7 +24,7 @@ __url__ = "https://github.com/nekitdev/versions"
 __title__ = "versions"
 __author__ = "nekitdev"
 __license__ = "MIT"
-__version__ = "1.6.1"
+__version__ = "2.0.0"
 
 from versions.converters import (
     simplify,
@@ -37,7 +37,10 @@ from versions.errors import ParseError, ParseSpecificationError, ParseVersionErr
 from versions.functions import parse_specifier, parse_version, parse_version_set
 from versions.meta import python_version_info, version_info
 from versions.operators import Operator, OperatorType
-from versions.segments import DevTag, Epoch, Local, PostTag, PreTag, Release, Tag
+from versions.segments.epoch import Epoch
+from versions.segments.local import Local
+from versions.segments.release import Release
+from versions.segments.tags import DevTag, PostTag, PreTag, Tag
 from versions.specification import Specification
 from versions.specifiers import (
     ALWAYS,

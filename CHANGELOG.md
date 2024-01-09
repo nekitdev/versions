@@ -2,6 +2,13 @@
 
 <!-- changelogging: start -->
 
+## 2.0.0 (2024-01-09)
+
+### Internal
+
+- Improved type annotations.
+- Dropped support for Python 3.7.
+
 ## 1.6.1 (2023-05-24)
 
 ### Fixes

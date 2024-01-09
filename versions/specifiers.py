@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, ClassVar, Iterable
+from typing import TYPE_CHECKING, Any, ClassVar, Iterable, Literal
 
 from attrs import Attribute, field, frozen
 from typing_aliases import DynamicTuple, is_instance
-from typing_extensions import Literal, TypeGuard
+from typing_extensions import TypeGuard
 
 from versions.constants import EMPTY_VERSION, UNIVERSE_VERSION
 from versions.operators import Operator

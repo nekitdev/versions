@@ -112,7 +112,7 @@ def test_conversion(
 
 def test_invalid() -> None:
     with pytest.raises(TypeError):
-        specifier_to_version_set(13)  # type: ignore
+        specifier_to_version_set(13)
 
     with pytest.raises(TypeError):
-        version_set_to_specifier(42)  # type: ignore
+        version_set_to_specifier(42)

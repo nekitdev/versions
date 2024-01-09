@@ -1,23 +1,25 @@
 from __future__ import annotations
 
-from abc import abstractmethod as required
 from typing import (
     TYPE_CHECKING,
     Any,
     Iterable,
     Iterator,
     List,
+    Literal,
     Optional,
+    Protocol,
     Tuple,
     Type,
     TypeVar,
     Union,
+    runtime_checkable,
 )
 
 from attrs import Attribute, define, evolve, field, frozen
 from orderings import Ordering
-from typing_aliases import DynamicTuple, is_instance
-from typing_extensions import Literal, Protocol, TypeGuard, runtime_checkable
+from typing_aliases import DynamicTuple, is_instance, required
+from typing_extensions import Self, TypeGuard
 
 from versions.constants import EMPTY_VERSION, UNIVERSE_VERSION
 from versions.errors import InternalError
@@ -354,13 +356,13 @@ class VersionEmpty(Representation, ToString, VersionSetProtocol):
     def contains(self, version: Version) -> Literal[False]:
         return False
 
-    def intersection(self: E, version_set: VersionSet) -> E:
+    def intersection(self, version_set: VersionSet) -> Self:
         return self
 
     def union(self, version_set: S) -> S:
         return version_set
 
-    def difference(self: E, version_set: VersionSet) -> E:
+    def difference(self, version_set: VersionSet) -> Self:
         return self
 
     def symmetric_difference(self, version_set: S) -> S:
@@ -809,14 +811,17 @@ class VersionRange(Representation, ToString, VersionSetProtocol):
             else:
                 after = evolve(self, min=version_set.max, include_min=version_set.exclude_max)
 
-            if before is None and after is None:
-                return EMPTY_SET
-
             if before is None:
-                return after  # type: ignore
+                if after is None:
+                    return EMPTY_SET
+
+                return after
 
             if after is None:
-                return before  # type: ignore
+                if before is None:
+                    return EMPTY_SET
+
+                return before
 
             return VersionUnion.of(before, after)
 

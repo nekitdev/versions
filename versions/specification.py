@@ -1,10 +1,9 @@
 from __future__ import annotations
 
-from abc import abstractmethod as required
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, Protocol, runtime_checkable
 
-from typing_aliases import is_instance
-from typing_extensions import Protocol, TypeGuard, runtime_checkable
+from typing_aliases import is_instance, required
+from typing_extensions import TypeGuard
 
 if TYPE_CHECKING:
     from versions.version import Version

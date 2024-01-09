@@ -1,8 +1,7 @@
-from abc import abstractmethod as required
-from typing import Iterable, List, Type, TypeVar
+from typing import Iterable, List, Protocol, runtime_checkable
 
-from typing_aliases import Parse
-from typing_extensions import Protocol, runtime_checkable
+from typing_aliases import Parse, required
+from typing_extensions import Self
 
 from versions.constants import (
     BRACKETS,
@@ -56,18 +55,16 @@ __all__ = (
     "Split",
 )
 
-T = TypeVar("T", bound="FromString")
-
 
 @runtime_checkable
 class FromString(Protocol):
     @classmethod
     @required
-    def from_string(cls: Type[T], string: str) -> T:
+    def from_string(cls, string: str) -> Self:
         raise NotImplementedError
 
     @classmethod
-    def parse(cls: Type[T], string: str) -> T:
+    def parse(cls, string: str) -> Self:
         return cls.from_string(string)
 
 

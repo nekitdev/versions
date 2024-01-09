@@ -14,7 +14,7 @@
 
 ## Installing
 
-**Python 3.7 or above is required.**
+**Python 3.8 or above is required.**
 
 ### pip
 
@@ -44,7 +44,7 @@ Or by directly specifying it in the configuration like so:
 
 ```toml
 [tool.poetry.dependencies]
-versions = "^1.6.1"
+versions = "^2.0.0"
 ```
 
 Alternatively, you can add it directly from the source:
@@ -152,7 +152,7 @@ False
 >>> from versions import get_version
 >>> import versions
 >>> get_version(versions)
-<Version (1.6.1)>
+<Version (2.0.0)>
 ```
 
 ## Documentation

@@ -2,7 +2,9 @@ import pytest
 
 from versions.errors import ParseVersionError
 from versions.functions import parse_version
-from versions.segments import Epoch, Local, PostTag, PreTag
+from versions.segments.epoch import Epoch
+from versions.segments.local import Local
+from versions.segments.tags import PostTag, PreTag
 from versions.version import Version
 
 

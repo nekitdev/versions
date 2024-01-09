@@ -1,15 +1,24 @@
 from __future__ import annotations
+from sqlite3 import InternalError
 
-from abc import abstractmethod as required
-from typing import TYPE_CHECKING, Generic, Optional, Pattern, Type, TypeVar
+from typing import (
+    TYPE_CHECKING,
+    Generic,
+    Optional,
+    Pattern,
+    Protocol,
+    Type,
+    TypeVar,
+    runtime_checkable,
+)
 
 from attrs import frozen
 from named import get_name
-from typing_extensions import Protocol, runtime_checkable
+from typing_aliases import required
 
 from versions.constants import STAR, X_LITERAL, ZERO
 from versions.converters import specifier_to_version_set
-from versions.errors import InternalError, ParseSpecificationError, ParseTagError, ParseVersionError
+from versions.errors import ParseSpecificationError, ParseTagError, ParseVersionError
 from versions.operators import OperatorType
 from versions.patterns import (
     CARET_SPECIFICATION,
@@ -36,7 +45,7 @@ from versions.string import clear_whitespace, split_comma, split_pipes
 from versions.version_sets import VersionSet
 
 if TYPE_CHECKING:
-    from versions.segments import Tag
+    from versions.segments.tags import Tag
     from versions.version import Version
 
 __all__ = ("Parser", "SpecifierParser", "TagParser", "VersionParser", "VersionSetParser")
@@ -262,4 +271,7 @@ class VersionSetParser(Generic[V], Parser[VersionSet]):
 
 
 # another import cycle solution
-from versions.segments import DevTag, Epoch, Local, PostTag, PreTag, Release
+from versions.segments.epoch import Epoch
+from versions.segments.local import Local
+from versions.segments.release import Release
+from versions.segments.tags import DevTag, PostTag, PreTag

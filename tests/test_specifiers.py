@@ -4,9 +4,7 @@ import pytest
 
 from versions.operators import OperatorType
 from versions.specifiers import (
-    SpecifierAll,
     SpecifierAlways,
-    SpecifierAny,
     SpecifierNever,
     SpecifierOne,
 )

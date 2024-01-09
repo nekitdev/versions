@@ -2,10 +2,11 @@ from __future__ import annotations
 
 from enum import Enum
 from string import digits
-from typing import TYPE_CHECKING, Any, Mapping, Optional, Tuple, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Mapping, Optional, Tuple, TypeVar, Union
 
 from attrs import frozen
 from typing_aliases import Binary, Unary, is_same_type
+from typing_extensions import Self
 
 from versions.constants import (
     CARET,
@@ -644,7 +645,7 @@ def translate_wildcard_not_equal(version: Version) -> Union[VersionEmpty, Versio
     the *wildcard-not-equal* (`!=*`) strategy.
 
     This function returns the `(ε, version) | (next_wildcard_breaking(version), ω)` union
-    in most cases, except for when the version is `*`; then the `{}` empty set is returned.
+    in most cases, except for when the version is `*`; then the `0` empty set is returned.
 
     Arguments:
         version: The version to translate.
@@ -765,7 +766,7 @@ class OperatorType(Enum):
         return NotImplemented  # pragma: no cover  # not tested
 
     def __hash__(self) -> int:
-        return super().__hash__()  # type: ignore
+        return super().__hash__()
 
     @property
     def string(self) -> str:
@@ -799,8 +800,6 @@ OPERATOR: Mapping[OperatorType, Tuple[Matches, Translate]] = {
     OperatorType.WILDCARD_EQUAL: (matches_wildcard_equal, translate_wildcard_equal),
     OperatorType.WILDCARD_NOT_EQUAL: (matches_wildcard_not_equal, translate_wildcard_not_equal),
 }
-
-O = TypeVar("O", bound="Operator")
 
 
 @frozen(repr=False)
@@ -876,55 +875,55 @@ class Operator(Representation, ToString):
         return self.type.is_wildcard()
 
     @classmethod
-    def tilde_equal(cls: Type[O], version: Version) -> O:
+    def tilde_equal(cls, version: Version) -> Self:
         return cls(OperatorType.TILDE_EQUAL, version)
 
     @classmethod
-    def double_equal(cls: Type[O], version: Version) -> O:
+    def double_equal(cls, version: Version) -> Self:
         return cls(OperatorType.DOUBLE_EQUAL, version)
 
     @classmethod
-    def not_equal(cls: Type[O], version: Version) -> O:
+    def not_equal(cls, version: Version) -> Self:
         return cls(OperatorType.NOT_EQUAL, version)
 
     @classmethod
-    def less(cls: Type[O], version: Version) -> O:
+    def less(cls, version: Version) -> Self:
         return cls(OperatorType.LESS, version)
 
     @classmethod
-    def less_or_equal(cls: Type[O], version: Version) -> O:
+    def less_or_equal(cls, version: Version) -> Self:
         return cls(OperatorType.LESS_OR_EQUAL, version)
 
     @classmethod
-    def greater(cls: Type[O], version: Version) -> O:
+    def greater(cls, version: Version) -> Self:
         return cls(OperatorType.GREATER, version)
 
     @classmethod
-    def greater_or_equal(cls: Type[O], version: Version) -> O:
+    def greater_or_equal(cls, version: Version) -> Self:
         return cls(OperatorType.GREATER_OR_EQUAL, version)
 
     @classmethod
-    def caret(cls: Type[O], version: Version) -> O:
+    def caret(cls, version: Version) -> Self:
         return cls(OperatorType.CARET, version)
 
     @classmethod
-    def equal(cls: Type[O], version: Version) -> O:
+    def equal(cls, version: Version) -> Self:
         return cls(OperatorType.EQUAL, version)
 
     @classmethod
-    def tilde(cls: Type[O], version: Version) -> O:
+    def tilde(cls, version: Version) -> Self:
         return cls(OperatorType.TILDE, version)
 
     @classmethod
-    def wildcard_double_equal(cls: Type[O], version: Version) -> O:
+    def wildcard_double_equal(cls, version: Version) -> Self:
         return cls(OperatorType.WILDCARD_DOUBLE_EQUAL, version)
 
     @classmethod
-    def wildcard_equal(cls: Type[O], version: Version) -> O:
+    def wildcard_equal(cls, version: Version) -> Self:
         return cls(OperatorType.WILDCARD_EQUAL, version)
 
     @classmethod
-    def wildcard_not_equal(cls: Type[O], version: Version) -> O:
+    def wildcard_not_equal(cls, version: Version) -> Self:
         return cls(OperatorType.WILDCARD_NOT_EQUAL, version)
 
     @property

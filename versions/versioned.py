@@ -1,8 +1,7 @@
-from builtins import hasattr as has_attribute
-from typing import Any, Type, TypeVar, overload
+from typing import Any, Protocol, Type, TypeVar, overload, runtime_checkable
 
-from typing_aliases import is_string
-from typing_extensions import Protocol, TypeGuard, runtime_checkable
+from typing_aliases import is_instance
+from typing_extensions import TypeGuard
 
 from versions.functions import parse_version
 from versions.version import Version
@@ -38,7 +37,7 @@ def is_versioned(item: Any) -> TypeGuard[Versioned]:
     Returns:
         Whether the `item` implements the [`Versioned`][versions.versioned.Versioned] protocol.
     """
-    return has_attribute(item, VERSION) and is_string(item.__version__)
+    return is_instance(item, Versioned)
 
 
 has_version = is_versioned

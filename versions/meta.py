@@ -1,9 +1,8 @@
 from sys import version_info as python_version_tuple
-
-from typing_extensions import Literal
+from typing import Literal
 
 import versions
-from versions.segments import PreTag
+from versions.segments.tags import PreTag
 from versions.version import Version
 from versions.versioned import get_version
 
