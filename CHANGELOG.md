@@ -2,6 +2,13 @@
 
 <!-- changelogging: start -->
 
+## 2.1.0 (2024-02-08)
+
+### Internal
+
+- Removed `versions.converters_modern` and renamed
+  `versions.converter_normal -> versions.converters`.
+
 ## 2.0.0 (2024-01-09)
 
 ### Internal
