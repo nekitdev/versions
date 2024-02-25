@@ -24,7 +24,7 @@ __url__ = "https://github.com/nekitdev/versions"
 __title__ = "versions"
 __author__ = "nekitdev"
 __license__ = "MIT"
-__version__ = "2.1.0"
+__version__ = "2.1.1"
 
 from versions.converters import (
     simplify,
