@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "versions"
-version = "2.1.1"
+version = "2.1.2"
 description = "Parsing, inspecting and specifying versions."
 authors = ["nekitdev"]
 license = "MIT"
@@ -32,25 +32,29 @@ include = "versions"
 [tool.poetry.dependencies]
 python = ">= 3.8"
 
-attrs = "^23.2.0"
+attrs = ">= 23.2.0"
 
-typing-aliases = "^1.7.0"
-typing-extensions = "^4.9.0"
+typing-aliases = ">= 1.7.1"
+typing-extensions = ">= 4.10.0"
 
-click = "^8.1.7"
+click = ">= 8.1.7"
 
-funcs = "^0.9.0"
-iters = "^0.15.0"
+funcs = ">= 0.9.1"
+iters = ">= 0.16.1"
 
-orderings = "^1.3.0"
-solus = "^1.1.0"
-entrypoint = "^2.0.1"
+orderings = ">= 1.3.1"
+solus = ">= 1.2.2"
+entrypoint = ">= 2.0.2"
 
 [tool.poetry.group.format.dependencies]
 ruff = "0.2.2"
 
 [tool.poetry.group.check.dependencies]
 mypy = "1.8.0"
+
+[tool.poetry.group.check.dependencies.pre-commit]
+version = "3.6.2"
+python = ">= 3.9"
 
 [tool.poetry.group.test.dependencies]
 coverage = "7.4.3"
@@ -74,7 +78,7 @@ extras = ["python"]
 optional = true
 
 [tool.poetry.group.release.dependencies]
-changelogging = "1.3.0"
+changelogging = "1.4.1"
 
 [tool.ruff]
 line-length = 100
@@ -118,7 +122,7 @@ strict = true
 
 [tool.changelogging]
 name = "versions"
-version = "2.1.1"
+version = "2.1.2"
 url = "https://github.com/nekitdev/versions"
 directory = "changes"
 output = "CHANGELOG.md"

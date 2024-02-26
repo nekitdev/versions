@@ -2,6 +2,10 @@
 
 <!-- changelogging: start -->
 
+## 2.1.2 (2024-02-26)
+
+No significant changes.
+
 ## 2.1.1 (2024-02-25)
 
 No significant changes.
