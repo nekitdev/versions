@@ -61,7 +61,7 @@ coverage = "7.4.3"
 pytest = "8.0.2"
 pytest-cov = "4.1.0"
 
-hypothesis = "6.98.13"
+hypothesis = "6.99.6"
 
 [tool.poetry.group.docs]
 optional = true
