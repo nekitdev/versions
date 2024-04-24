@@ -50,7 +50,7 @@ entrypoint = ">= 2.0.2"
 ruff = "0.2.2"
 
 [tool.poetry.group.check.dependencies]
-mypy = "1.8.0"
+mypy = "1.10.0"
 
 [tool.poetry.group.check.dependencies.pre-commit]
 version = "3.6.2"
